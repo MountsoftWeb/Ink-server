@@ -1,16 +1,15 @@
 package com.ink.controller.user;
 
-import com.ink.entity.User;
 import com.ink.entity.User_login;
-import com.ink.entity.login.UserEntity;
+import com.ink.entity.login.userEntity;
 import com.ink.service.IUserService;
+import com.ink.utils.Json.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 /**
@@ -31,7 +30,7 @@ public class loginController {
         return "d";
     }
     @PostMapping(value= "/login")
-    public String login(@RequestBody UserEntity userEntity, HttpServletRequest request){
+    public Result login(@RequestBody userEntity userEntity, HttpServletRequest request){
         String ip = request.getHeader("X-Real-IP");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -64,17 +63,8 @@ public class loginController {
 
 
         // 登录判断
-        User_login user = iUserService.longin(userEntity);
-        System.out.println("user = " + user);
-        if (user != null){
-            user.setLoginip(ip);
-            user.setLogintime(data.toString());
-            iUserService.update(user);
-        }else {
-
-        }
-
-        return "1";
+        Result result = iUserService.longin(userEntity, ip);
+        return result;
     }
 
 }

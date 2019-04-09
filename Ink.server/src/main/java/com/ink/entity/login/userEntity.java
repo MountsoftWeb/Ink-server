@@ -3,18 +3,18 @@ package com.ink.entity.login;
 /**
  * @author Created by carlos
  */
-public class UserEntity {
+public class userEntity {
     String username;
     String logintype;
     String password;
 
-    public UserEntity(String username, String logintype, String password) {
+    public userEntity(String username, String logintype, String password) {
         this.username = username;
         this.logintype = logintype;
         this.password = password;
     }
 
-    public UserEntity() {
+    public userEntity() {
     }
 
     @Override
