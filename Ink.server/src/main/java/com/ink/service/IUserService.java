@@ -1,12 +1,12 @@
 package com.ink.service;
 
 
-import com.ink.entity.User;
 import com.ink.entity.User_login;
-import com.ink.entity.login.UserEntity;
+import com.ink.entity.login.userEntity;
+import com.ink.utils.Json.Result;
 
 public interface IUserService {
-    User_login longin(UserEntity userEntity);
+    Result longin(userEntity userEntity, String ip);
 
-    Boolean update(User_login user_login);
+    boolean update(User_login user_login);
 }
