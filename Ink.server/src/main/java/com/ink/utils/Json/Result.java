@@ -10,6 +10,8 @@ public class Result {
     private String message;
     private boolean success = true;
     private Object data;
+    private String token;               // 返回 token 做登录验证
+
 
     public Result setCode(ResultCode resultCode){
         this.code = resultCode.code();
@@ -54,6 +56,15 @@ public class Result {
     @Override
     public String toString() {
         return JSON.toJSONString(this);
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public Result setToken(String token) {
+        this.token = token;
+        return this;
     }
 
 }
