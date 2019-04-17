@@ -34,6 +34,11 @@ public class User {
         this.major = major;
     }
 
+    public User(String username, String avatar){
+        this.username = username;
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "User{" +

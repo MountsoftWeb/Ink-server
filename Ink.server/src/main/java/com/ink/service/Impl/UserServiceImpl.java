@@ -1,7 +1,7 @@
 package com.ink.service.Impl;
 
-
 import com.ink.dao.user_loginMapper;
+import com.ink.entity.User;
 import com.ink.entity.User_login;
 import com.ink.entity.login.userEntity;
 import com.ink.dao.userMapper;
@@ -18,7 +18,7 @@ import java.util.Date;
  * @author Created by carlos
  */
 @Service
-public class UserServiceImpl implements IUserService {
+public class userServiceImpl implements IUserService {
     @Autowired
     userMapper userMapper;
     @Autowired
@@ -84,5 +84,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean update(User_login user_login) {
         return user_loginMapper.update(user_login);
+    }
+
+    @Override
+    public boolean updateAvator(User user) {
+        return userMapper.updateAvator(user);
     }
 }

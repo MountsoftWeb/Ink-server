@@ -146,4 +146,11 @@
       major = #{major,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateAvator" parameterType="com.ink.entity.User">
+    update user
+    set avatar = #{avatar, jdbcType=VARCHAR}
+    where username = #{username,jdbcType=VARCHAR}
+  
+  </update>
 </mapper>

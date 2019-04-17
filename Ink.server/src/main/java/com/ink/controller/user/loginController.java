@@ -5,10 +5,12 @@ import com.ink.entity.login.userEntity;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.Date;
@@ -71,7 +73,9 @@ public class loginController {
    
 
      @PostMapping("/test/life")
-     public String test(){
+     public String test(ServletRequest request){
+         String id = (String) request.getAttribute("name");
+         System.out.println(id);
         return "123";
      }
 

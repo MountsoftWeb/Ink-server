@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ink.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface userMapper {
@@ -21,4 +22,6 @@ public interface userMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    boolean updateAvator(@Param("user")User user);
 }

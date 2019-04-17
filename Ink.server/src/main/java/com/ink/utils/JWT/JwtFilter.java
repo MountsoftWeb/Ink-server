@@ -53,6 +53,7 @@ public class JwtFilter extends GenericFilterBean {
                 final Claims claims = Jwts.parser().setSigningKey("secretkey").parseClaimsJws(token).getBody();
 
                 System.out.println(claims.getSubject() + " = " + claims.getIssuedAt());
+                request.setAttribute("name", claims.getSubject());
                 // Add the claim to request header
                 request.setAttribute("claims", claims);
             } catch (final SignatureException e) {
