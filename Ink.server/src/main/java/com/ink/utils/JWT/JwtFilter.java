@@ -12,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+
 /**
  * @author Created by carlos
  */
@@ -22,6 +24,7 @@ public class JwtFilter extends GenericFilterBean {
         // Change the req and res to HttpServletRequest and HttpServletResponse
         final HttpServletRequest request = (HttpServletRequest) req;
         final HttpServletResponse response = (HttpServletResponse) res;
+
 
         // Get authorization from Http request
         final String authHeader = request.getHeader("authorization");
@@ -38,7 +41,8 @@ public class JwtFilter extends GenericFilterBean {
 
             // Check the authorization, check if the token is started by "Bearer "
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                throw new ServletException("Missing or invalid Authorization header");
+
+//                throw new ServletException("Missing or invalid Authorization header");
             }
 
             // Then get the JWT token from authorization
@@ -48,6 +52,7 @@ public class JwtFilter extends GenericFilterBean {
                 // Use JWT parser to check if the signature is valid with the Key "secretkey"
                 final Claims claims = Jwts.parser().setSigningKey("secretkey").parseClaimsJws(token).getBody();
 
+                System.out.println(claims.getSubject() + " = " + claims.getIssuedAt());
                 // Add the claim to request header
                 request.setAttribute("claims", claims);
             } catch (final SignatureException e) {

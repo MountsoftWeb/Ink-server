@@ -7,6 +7,8 @@ import com.ink.entity.login.userEntity;
 import com.ink.dao.userMapper;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +39,38 @@ public class UserServiceImpl implements IUserService {
             user_login.setLoginip(ip);
             user_login.setLogintime(data.toString());
 
+
+            String jwtToken = Jwts.builder()
+                    .setSubject(userEntity.getUsername())
+                    .claim("roles", "member")
+                    .setIssuedAt(new Date())
+                    .signWith(SignatureAlgorithm.HS256, "secretkey")
+                    .compact();
+
+            /*
+            Jwts.builder()
+          .setId(UUID.randomUUID().toString())
+          .setIssuedAt(new Date(currentTime))  //签发时间
+          .setSubject("system")  //说明
+          .setIssuer("shenniu003") //签发者信息
+          .setAudience("custom")  //接收用户
+          .compressWith(CompressionCodecs.GZIP)  //数据压缩方式
+
+         .signWith(SignatureAlgorithm.HS256, encryKey) //加密方式
+         .setExpiration(new Date(currentTime + secondTimeOut * 1000))  //过期时间戳
+         .addClaims(claimMaps) //cla信息
+         .compact();
+
+         Jwts.parser().setSigningKey(key).parseClaimsJws(compactJws).getBody().getSubject().equals("Joe");
+
+             */
+
             user_loginMapper.update(user_login);
 
             result.setMessage("登录成功");
             result.setCode("200");
             result.setSuccess(true);
+            result.setToken(jwtToken);
             result.setData(data.toString());
             return result;
         }else {

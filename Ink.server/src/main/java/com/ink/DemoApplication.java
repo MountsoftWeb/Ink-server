@@ -1,13 +1,15 @@
-
 package com.ink;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-class DomeApplication {
+//@MapperScan("com.example.domain")
+public class DemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DomeApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+
 }
+

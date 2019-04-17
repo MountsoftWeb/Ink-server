@@ -1,0 +1,37 @@
+2019-04-17 16:44:12.650  INFO 1697 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 1697 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-04-17 16:44:12.659  INFO 1697 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-04-17 16:44:13.831  INFO 1697 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-04-17 16:44:13.860  INFO 1697 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-04-17 16:44:13.860  INFO 1697 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-17 16:44:13.872  INFO 1697 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-04-17 16:44:13.959  INFO 1697 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-04-17 16:44:13.959  INFO 1697 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1259 ms
+2019-04-17 16:44:14.532  INFO 1697 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-17 16:44:14.795  INFO 1697 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2019-04-17 16:44:14.799  INFO 1697 --- [main] com.ink.DemoApplication                  : Started DemoApplication in 2.671 seconds (JVM running for 3.114)
+2019-04-17 16:45:31.472  INFO 1697 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-04-17 16:45:31.473  INFO 1697 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-04-17 16:45:31.481  INFO 1697 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-04-17 16:45:31.672  INFO 1697 --- [http-nio-8090-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-04-17 16:46:48.317  INFO 1743 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 1743 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-04-17 16:46:48.320  INFO 1743 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-04-17 16:46:49.420  INFO 1743 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-04-17 16:46:49.450  INFO 1743 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-04-17 16:46:49.450  INFO 1743 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-17 16:46:49.461  INFO 1743 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-04-17 16:46:49.541  INFO 1743 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-04-17 16:46:49.541  INFO 1743 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1180 ms
+2019-04-17 16:46:50.060  INFO 1743 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-17 16:46:50.296  INFO 1743 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2019-04-17 16:46:50.299  INFO 1743 --- [main] com.ink.DemoApplication                  : Started DemoApplication in 2.354 seconds (JVM running for 2.688)
+2019-04-17 16:51:53.411  INFO 1890 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 1890 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-04-17 16:51:53.415  INFO 1890 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-04-17 16:51:54.991  INFO 1890 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-04-17 16:51:55.038  INFO 1890 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-04-17 16:51:55.038  INFO 1890 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-17 16:51:55.054  INFO 1890 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-04-17 16:51:55.160  INFO 1890 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-04-17 16:51:55.163  INFO 1890 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1681 ms
+2019-04-17 16:51:55.934  INFO 1890 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-17 16:51:56.210  INFO 1890 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2019-04-17 16:51:56.213  INFO 1890 --- [main] com.ink.DemoApplication                  : Started DemoApplication in 3.264 seconds (JVM running for 3.684)
