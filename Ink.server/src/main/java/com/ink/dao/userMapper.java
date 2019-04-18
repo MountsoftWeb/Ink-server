@@ -23,5 +23,7 @@ public interface userMapper {
 
     int updateByPrimaryKey(User record);
 
-    boolean updateAvator(@Param("user")User user);
+    boolean updatePicture(@Param("user")User user);
+
+    String selectPicture(@Param("username")String username);
 }

@@ -6,7 +6,7 @@
     <result column="userName" jdbcType="VARCHAR" property="username" />
     <result column="profile" jdbcType="VARCHAR" property="profile" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
-    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="registTime" jdbcType="VARCHAR" property="registtime" />
     <result column="school" jdbcType="VARCHAR" property="school" />
     <result column="major" jdbcType="VARCHAR" property="major" />
@@ -19,11 +19,14 @@
         <result property="logintime" column="loginTime"/>
       </association>
   </resultMap>
-
+  <!-- 返回头像地址 -->
+  <resultMap id="picturePath" type="java.lang.String" >
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+  </resultMap>
 
 
   <sql id="Base_Column_List">
-    id, userName, profile, sex, avatar, registTime, school, major
+    id, userName, profile, sex, picture, registTime, school, major
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -31,6 +34,12 @@
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectPicture" parameterType="java.lang.String" resultMap="picturePath">
+    select picture
+    from user
+    where username = #{username, jdbcType=VARCHAR}
   </select>
 
   <select id="selectByUserid" resultMap="BaseResultMap">
@@ -44,10 +53,10 @@
 
   <insert id="insert" parameterType="com.ink.entity.User">
     insert into user (id, userName, profile, 
-      sex, avatar, registTime, 
+      sex, picture, registTime, 
       school, major)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{profile,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{registtime,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{registtime,jdbcType=VARCHAR}, 
       #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR})
   </insert>
 
@@ -66,8 +75,8 @@
       <if test="sex != null">
         sex,
       </if>
-      <if test="avatar != null">
-        avatar,
+      <if test="picture != null">
+        picture,
       </if>
       <if test="registtime != null">
         registTime,
@@ -92,8 +101,8 @@
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
       </if>
-      <if test="avatar != null">
-        #{avatar,jdbcType=VARCHAR},
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
       </if>
       <if test="registtime != null">
         #{registtime,jdbcType=VARCHAR},
@@ -119,8 +128,8 @@
       <if test="sex != null">
         sex = #{sex,jdbcType=VARCHAR},
       </if>
-      <if test="avatar != null">
-        avatar = #{avatar,jdbcType=VARCHAR},
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
       </if>
       <if test="registtime != null">
         registTime = #{registtime,jdbcType=VARCHAR},
@@ -140,17 +149,17 @@
     set userName = #{username,jdbcType=VARCHAR},
       profile = #{profile,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
-      avatar = #{avatar,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
       registTime = #{registtime,jdbcType=VARCHAR},
       school = #{school,jdbcType=VARCHAR},
       major = #{major,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateAvator" parameterType="com.ink.entity.User">
+  <update id="updatePicture" parameterType="com.ink.entity.User">
     update user
-    set avatar = #{avatar, jdbcType=VARCHAR}
-    where username = #{username,jdbcType=VARCHAR}
+    set picture = #{user.picture}
+    where username = #{user.username}
   
   </update>
 </mapper>

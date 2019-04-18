@@ -86,8 +86,18 @@ public class userServiceImpl implements IUserService {
         return user_loginMapper.update(user_login);
     }
 
+    /**
+     * 更新头像地址
+     */
     @Override
-    public boolean updateAvator(User user) {
-        return userMapper.updateAvator(user);
+    public boolean updatePicture(User user) {
+        return userMapper.updatePicture(user);
     }
+
+    @Override
+    public String selectPicture(String username) {
+        return userMapper.selectPicture(username);
+    }
+
+    
 }

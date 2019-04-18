@@ -1,6 +1,5 @@
 package com.ink.controller;
 
-import java.awt.PageAttributes.MediaType;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +13,7 @@ import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,25 +29,29 @@ public class avatorController {
     /**
      * 添加头像，服务器地址为 /home/carlos/images/user 
      * @param file
+     * @param request
      * @return
      */
-    @PostMapping("/addImage")
+    @PostMapping("/test/updatePicture")
     public Result addImage(@RequestParam(name = "image_data", required = false) MultipartFile file, ServletRequest request) {
         Result result = new Result();
-        //文件上传
+        // 文件上传 本地文件目录
         String path = "/Users/carlos/Documents/images";
+        // 服务器路径
+        // String path = "/home/carlos/image";
+        
+        // 获取更新头像用户的用户名
         String username = (String) request.getAttribute("name");
-        System.out.println("====================");
         if (!file.isEmpty()) {
             try {
                 // 图片命名
-                String newCompanyImageName = System.currentTimeMillis() + ".png";
-                String newCompanyImagepath = path;
+                String userNamePicture = username + ".png";
+                String userPicturePath = path + "/" + userNamePicture;
                 // 存储路径到数据库
-                User user = new User(username, path + username);
+                User user = new User(username, userPicturePath);
                 boolean bool = iUserService.updateAvator(user);
 
-                File newFile = new File(newCompanyImagepath);
+                File newFile = new File(userPicturePath);
                 if (!newFile.exists()) {
                     newFile.createNewFile();
                 }
@@ -56,6 +60,10 @@ public class avatorController {
                 out.write(file.getBytes());
                 out.flush();
                 out.close();
+
+                result.setMessage("成功");
+                result.setCode("25");   // 头像上传成功
+                return result;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 result.setCode("23");
@@ -67,9 +75,11 @@ public class avatorController {
 
                 return result;
             }
+        }else{
+            result.setCode("404");
+            return result;
         }
-        result.setCode("25");
-        return result;
+        
     }
 
     @PostMapping(value = "/getImage")
@@ -86,4 +96,17 @@ public class avatorController {
 
          return bytes;
      }
+
+    @GetMapping("/test/getPicture")
+    public Result getPicture(ServletRequest request){
+        Result result = new Result();
+        String username = (String) request.getAttribute("name");
+
+        String path = iUserService.selectPicture(username);
+        System.out.println(path);
+
+        result.setCode("200");
+        result.setMessage("/hello/123.png");
+        return result;
+    }
 }

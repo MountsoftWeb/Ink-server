@@ -11,5 +11,7 @@ public interface IUserService {
 
     boolean update(User_login user_login);
 
-    boolean updateAvator(User user);
+    boolean updatePicture(User user);
+
+    String selectPicture(String username);
 }

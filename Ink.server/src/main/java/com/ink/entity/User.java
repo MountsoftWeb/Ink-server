@@ -9,7 +9,7 @@ public class User {
 
     private String sex;
 
-    private String avatar;
+    private String picture;
 
     private String registtime;
 
@@ -23,20 +23,20 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String profile, String sex, String avatar, String registtime, String school, String major) {
+    public User(Integer id, String username, String profile, String sex, String picture, String registtime, String school, String major) {
         this.id = id;
         this.username = username;
         this.profile = profile;
         this.sex = sex;
-        this.avatar = avatar;
+        this.picture = picture;
         this.registtime = registtime;
         this.school = school;
         this.major = major;
     }
 
-    public User(String username, String avatar){
+    public User(String username, String picture){
         this.username = username;
-        this.avatar = avatar;
+        this.picture = picture;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", profile='" + profile + '\'' +
                 ", sex='" + sex + '\'' +
-                ", avatar='" + avatar + '\'' +
+                ", picture='" + picture + '\'' +
                 ", registtime='" + registtime + '\'' +
                 ", school='" + school + '\'' +
                 ", major='" + major + '\'' +
@@ -85,12 +85,12 @@ public class User {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar == null ? null : avatar.trim();
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
     }
 
     public String getRegisttime() {
