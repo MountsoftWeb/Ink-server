@@ -26,4 +26,6 @@ public interface userMapper {
     boolean updatePicture(@Param("user")User user);
 
     String selectPicture(@Param("username")String username);
+
+    User getDetail(@Param("username")String username);
 }

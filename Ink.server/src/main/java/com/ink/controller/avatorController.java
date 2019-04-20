@@ -49,7 +49,7 @@ public class avatorController {
                 String userPicturePath = path + "/" + userNamePicture;
                 // 存储路径到数据库
                 User user = new User(username, userPicturePath);
-                boolean bool = iUserService.updateAvator(user);
+                boolean bool = iUserService.updatePicture(user);
 
                 File newFile = new File(userPicturePath);
                 if (!newFile.exists()) {

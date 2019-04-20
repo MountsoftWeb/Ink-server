@@ -23,7 +23,17 @@
   <resultMap id="picturePath" type="java.lang.String" >
     <result column="picture" property="picture" jdbcType="VARCHAR" />
   </resultMap>
-
+  <!-- 用户详细信息 -->
+  <resultMap id="BaseUserDetail" type="com.ink.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="profile" jdbcType="VARCHAR" property="profile" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="registTime" jdbcType="VARCHAR" property="registtime" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+  </resultMap>
 
   <sql id="Base_Column_List">
     id, userName, profile, sex, picture, registTime, school, major
@@ -44,6 +54,12 @@
 
   <select id="selectByUserid" resultMap="BaseResultMap">
      select * from user u, user_login l where u.id=l.userid
+  </select>
+
+  <select id="getDetail" parameterType="java.lang.String" resultMap="BaseUserDetail">
+    select * 
+    from user
+    where username = #{username, jdbcType=VARCHAR}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

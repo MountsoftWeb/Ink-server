@@ -14,4 +14,6 @@ public interface IUserService {
     boolean updatePicture(User user);
 
     String selectPicture(String username);
+
+    User getDetail(String username);
 }

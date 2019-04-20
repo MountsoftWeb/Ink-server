@@ -99,5 +99,10 @@ public class userServiceImpl implements IUserService {
         return userMapper.selectPicture(username);
     }
 
+    @Override
+    public User getDetail(String username) {
+        return userMapper.getDetail(username);
+    }
+
     
 }
