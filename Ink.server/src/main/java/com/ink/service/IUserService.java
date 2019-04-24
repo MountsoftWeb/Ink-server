@@ -16,4 +16,8 @@ public interface IUserService {
     String selectPicture(String username);
 
     User getDetail(String username);
+    // 检查用户名是否重复
+    boolean checkUser(String username);
+    // 注册用户
+    boolean registerUser(userEntity userEntity);
 }

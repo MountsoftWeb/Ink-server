@@ -3,6 +3,8 @@ package com.ink.dao;
 import java.util.List;
 
 import com.ink.entity.User;
+import com.ink.entity.login.userEntity;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +30,8 @@ public interface userMapper {
     String selectPicture(@Param("username")String username);
 
     User getDetail(@Param("username")String username);
+
+    boolean registerUser(@Param("user")User user);
+
+    boolean checkUser(@Param("username")String username);
 }

@@ -104,5 +104,21 @@ public class userServiceImpl implements IUserService {
         return userMapper.getDetail(username);
     }
 
+    /**
+     * 注册用户
+     */
+    @Override
+    public boolean registerUser(userEntity userEntity) {
+        return false;
+    }
+    /**
+     * 检查用户是否重复
+     */
+    @Override
+    public boolean checkUser(String username) {
+        
+        return false;
+    }
+
     
 }
