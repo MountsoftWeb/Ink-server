@@ -28,4 +28,6 @@ public interface user_loginMapper {
     int updateByPrimaryKeySelective(User_login record);
 
     int updateByPrimaryKey(User_login record);
+
+    int registerUser(@Param("user_login") User_login user_login);     // 注册新用户，添加登录信息
 }

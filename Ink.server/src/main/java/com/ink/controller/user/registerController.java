@@ -15,18 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class registerController{
     @Autowired
     IUserService iUserService;
-    @Autowired
-    Result result;
     @PostMapping(value = "/register")
     public Result register(@RequestBody userEntity userEntity){
+        Result result = new Result();
         boolean bool = iUserService.registerUser(userEntity);
-
-        return null;
+        if (bool){
+            result.setCode("200");
+            return result;
+        }else{
+            result.setCode("400");
+            result.setMessage("注册失败");
+            return result;
+        }
+        
     }
-    @GetMapping(value = "checkUser")
+    @GetMapping(value = "/checkUser")
     public Result checkUser(@RequestParam(value = "username")String username){
         boolean bool = iUserService.checkUser(username);
-
+        Result result = new Result();
         return result;
     }
 }

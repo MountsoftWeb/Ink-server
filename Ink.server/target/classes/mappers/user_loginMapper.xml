@@ -88,6 +88,13 @@
     </trim>
   </insert>
 
+  <insert id="registerUser" parameterType="com.ink.entity.User_login">
+    insert into user_login (userId, loginType, password)
+    values (#{user_login.userid, jdbcType=INTEGER}, #{user_login.logintype, jdbcType=VARCHAR},
+            #{user_login.password, jdbcType=VARCHAR})
+  </insert>
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.ink.entity.User_login">
     update user_login
     <set>

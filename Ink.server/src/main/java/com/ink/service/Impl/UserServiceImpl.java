@@ -109,7 +109,33 @@ public class userServiceImpl implements IUserService {
      */
     @Override
     public boolean registerUser(userEntity userEntity) {
-        return false;
+        User user = new User();
+        // System.out.println(userEntity.getUsername());
+        String username = userEntity.getUsername();
+        user.setUsername(username);
+        user.setRegisttime(new Date().toString());
+        
+        int register = userMapper.registerUser(user);
+        if (register != 1){
+            return false;
+        }
+        Integer id = userMapper.selectByUsername(username);
+        if (id == null){
+            return false;
+        }
+        User_login user_login = new User_login();
+        user_login.setUserid(String.valueOf(id));    // 按照用户名找到主健
+        user_login.setPassword(userEntity.getPassword());
+        int register_user = user_loginMapper.registerUser(user_login);  // 注册新用户，添加用户登录信息
+        if (register_user == 1){
+            return true;
+        }else{
+            return false;
+        }
+
+            // System.out.println("register = " + register);
+            // System.out.println("register_user = " + register_user);
+        
     }
     /**
      * 检查用户是否重复

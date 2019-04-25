@@ -21,6 +21,8 @@ public interface userMapper {
 
     List selectByUserid();
 
+    int selectByUsername(@Param("username")String username);    // 按照用户名找到用户对应主健
+
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
@@ -31,7 +33,7 @@ public interface userMapper {
 
     User getDetail(@Param("username")String username);
 
-    boolean registerUser(@Param("user")User user);
+    int registerUser(@Param("user")User user);
 
     boolean checkUser(@Param("username")String username);
 }

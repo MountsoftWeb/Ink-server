@@ -1,5 +1,7 @@
 package com.ink.entity;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
@@ -124,5 +126,8 @@ public class User {
     public void setUser_login(User_login user_login) {
         this.user_login = user_login;
     }
+
+	public void setRegisttime(Date date) {
+	}
 
 }

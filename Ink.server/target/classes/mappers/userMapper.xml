@@ -35,6 +35,10 @@
     <result column="major" jdbcType="VARCHAR" property="major" />
   </resultMap>
 
+  <resultMap id="userId" type="java.lang.Integer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, userName, profile, sex, picture, registTime, school, major
   </sql>
@@ -58,6 +62,12 @@
 
   <select id="getDetail" parameterType="java.lang.String" resultMap="BaseUserDetail">
     select * 
+    from user
+    where username = #{username, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="userId">
+    select id
     from user
     where username = #{username, jdbcType=VARCHAR}
   </select>
@@ -130,6 +140,11 @@
         #{major,jdbcType=VARCHAR},
       </if>
     </trim>
+  </insert>
+
+  <insert id="registerUser" parameterType="com.ink.entity.User">
+    insert into user (userName, registTime)
+    values (#{user.username, jdbcType=VARCHAR}, #{user.registtime, jdbcType=VARCHAR})
   </insert>
 
   <update id="updateByPrimaryKeySelective" parameterType="com.ink.entity.User">
