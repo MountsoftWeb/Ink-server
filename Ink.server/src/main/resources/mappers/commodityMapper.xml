@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namepace="com.ink.dao.commodityMapper">
+    <resultMap id="BaseResultMap" type="com.ink.entity.Commodity">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="userId" jdbcType="INTEGER" property="userId" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="categoryId" jdbcType="INTEGER" property="categoryId" />
+    </resultMap>
+</mapper>

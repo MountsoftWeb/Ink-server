@@ -38,7 +38,7 @@ public class userServiceImpl implements IUserService {
         if (user_login != null){
             user_login.setLoginip(ip);
             user_login.setLogintime(data.toString());
-            
+
             String jwtToken = Jwts.builder()
                     .setSubject(userEntity.getUsername())
                     .claim("roles", "member")
