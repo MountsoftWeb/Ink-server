@@ -7,6 +7,7 @@ public class Commodity {
     private String name;
     private String picture;
     private Integer categoryId;
+    private CommodityCategory commodityCategory;
 
     public Commodity() {
 
@@ -24,6 +25,20 @@ public class Commodity {
      */
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    /**
+     * @return the commodityCategory
+     */
+    public CommodityCategory getCommodityCategory() {
+        return commodityCategory;
+    }
+
+    /**
+     * @param commodityCategory the commodityCategory to set
+     */
+    public void setCommodityCategory(CommodityCategory commodityCategory) {
+        this.commodityCategory = commodityCategory;
     }
 
     /**

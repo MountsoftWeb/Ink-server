@@ -8,6 +8,25 @@
         <result column="price" jdbcType="DOUBLE" property="price" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />
-        <result column="categoryId" jdbcType="INTEGER" property="categoryId" />
+        <result column="categoryId" jdbcType="INTEGER" property="categoryId">
     </resultMap>
+    <!-- 分类表 -->
+    <resultMap id="CategoryResultMap" type="com.ink.entity.Commodity">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="userId" jdbcType="INTEGER" property="userId" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="categoryId" jdbcType="INTEGER" property="categoryId">
+        <association property="CommodityCategory" jdbcType="com.ink.entity.Commodity">
+            <id column="c_id" jdbcType="INTEGER" property="id" />
+            <result column="c_name" jdbcType="VARCHAR" property="name" />
+        </association>
+    </resultMap>
+
+    <select id="selectByUserid" parameterType="java.lang.Integer" resultMap="CategoryResultMap">
+        select price, picture, co.name, ca.c_name
+        from commodity co, category ca
+        where co.categoryId = ca.c_id and co.id = #{userId, jdbcType=INTEGER}
+    </select>
 </mapper>
