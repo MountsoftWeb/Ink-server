@@ -22,12 +22,16 @@ public class tradingController {
         commodity2.setId(13);
         commodity2.setName("ds");
         commodity2.setPrice(32.0);
+        
 
         ArrayList list = new ArrayList();
 
         list.add(commodity);
         list.add(commodity2);
         list.add(commodity);
+
+        list.add(commodity);
+
         result.setCode("200");
 
         result.setMessage("success");

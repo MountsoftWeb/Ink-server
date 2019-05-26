@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ink.dao.commodityCategoryMapper">
+<mapper namespace="com.ink.dao.commodityMapper">
     <resultMap id="BaseResultMap" type="com.ink.entity.Commodity">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="userId" jdbcType="INTEGER" property="userId" />
@@ -17,7 +17,7 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />
         <result column="categoryId" jdbcType="INTEGER" property="categoryId"/>
-        <association property="CommodityCategory" jdbcType="com.ink.entity.Commodity">
+        <association property="CommodityCategory" javaType="com.ink.entity.CommodityCategory">
             <id column="c_id" jdbcType="INTEGER" property="id" />
             <result column="c_name" jdbcType="VARCHAR" property="name" />
         </association>

@@ -1,5 +1,7 @@
 package com.ink.service.Impl;
 
+import com.ink.dao.commodityCategoryMapper;
+import com.ink.dao.commodityMapper;
 import com.ink.dao.user_loginMapper;
 import com.ink.entity.User;
 import com.ink.entity.User_login;
@@ -23,7 +25,10 @@ public class userServiceImpl implements IUserService {
     userMapper userMapper;
     @Autowired
     user_loginMapper user_loginMapper;
-
+    @Autowired
+    commodityCategoryMapper commodityCategoryMapper;
+    @Autowired
+    commodityMapper commodityMapper;
     /**
      * 登录验证，信息验证无误，更新 user_login 的 ip 和 logintime
      * @param userEntity
