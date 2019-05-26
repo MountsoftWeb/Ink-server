@@ -3,7 +3,6 @@ package com.ink.dao;
 import java.util.List;
 
 import com.ink.entity.User;
-import com.ink.entity.login.userEntity;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
