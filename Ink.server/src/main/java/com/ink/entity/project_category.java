@@ -1,10 +1,10 @@
 package com.ink.entity;
 
-public class CommodityCategory {
+public class project_category {
     private Integer id;
     private String name;
 
-    public CommodityCategory(Integer id, String name) {
+    public project_category(Integer id, String name) {
         this.id = id;
         this.name = name;
     }

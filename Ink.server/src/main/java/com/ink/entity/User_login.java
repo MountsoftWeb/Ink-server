@@ -1,39 +1,39 @@
 package com.ink.entity;
 
-public class User_login {
+public class user_login {
     private Integer id;
 
-    private String userid;
+    private String userId;
 
-    private String logintype;
+    private String loginType;
 
     private String password;
 
-    private String loginip;
+    private String loginIp;
 
-    private String logintime;
+    private String loginTime;
 
-    public User_login() {
+    public user_login() {
     }
 
-    public User_login(Integer id, String userid, String logintype, String password, String loginip, String logintime) {
+    public user_login(Integer id, String userId, String loginType, String password, String loginIp, String loginTime) {
         this.id = id;
-        this.userid = userid;
-        this.logintype = logintype;
+        this.userId = userId;
+        this.loginType = loginType;
         this.password = password;
-        this.loginip = loginip;
-        this.logintime = logintime;
+        this.loginIp = loginIp;
+        this.loginTime = loginTime;
     }
 
     @Override
     public String toString() {
         return "User_login{" +
                 "id=" + id +
-                ", userid='" + userid + '\'' +
-                ", logintype='" + logintype + '\'' +
+                ", userId='" + userId + '\'' +
+                ", loginType='" + loginType + '\'' +
                 ", password='" + password + '\'' +
-                ", loginip='" + loginip + '\'' +
-                ", logintime='" + logintime + '\'' +
+                ", loginIp='" + loginIp + '\'' +
+                ", loginTime='" + loginTime + '\'' +
                 '}';
     }
 
@@ -46,19 +46,19 @@ public class User_login {
     }
 
     public String getUserid() {
-        return userid;
+        return userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid == null ? null : userid.trim();
+    public void setUserid(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public String getLogintype() {
-        return logintype;
+        return loginType;
     }
 
-    public void setLogintype(String logintype) {
-        this.logintype = logintype == null ? null : logintype.trim();
+    public void setLogintype(String loginType) {
+        this.loginType = loginType == null ? null : loginType.trim();
     }
 
     public String getPassword() {
@@ -70,18 +70,18 @@ public class User_login {
     }
 
     public String getLoginip() {
-        return loginip;
+        return loginIp;
     }
 
     public void setLoginip(String loginip) {
-        this.loginip = loginip == null ? null : loginip.trim();
+        this.loginTime = loginip == null ? null : loginip.trim();
     }
 
     public String getLogintime() {
-        return logintime;
+        return loginTime;
     }
 
     public void setLogintime(String logintime) {
-        this.logintime = logintime == null ? null : logintime.trim();
+        this.loginTime = logintime == null ? null : logintime.trim();
     }
 }

@@ -1,0 +1,158 @@
+2019-05-30 16:10:51.586  INFO 15952 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 15952 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-05-30 16:10:51.589  INFO 15952 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-05-30 16:10:52.521  INFO 15952 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-05-30 16:10:52.538  INFO 15952 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 16:10:52.538  INFO 15952 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-05-30 16:10:52.542  INFO 15952 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-05-30 16:10:52.597  INFO 15952 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 16:10:52.597  INFO 15952 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 979 ms
+2019-05-30 16:10:52.838  WARN 15952 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'projectController': Unsatisfied dependency expressed through field 'iProjectService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.ink.service.IProjectService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2019-05-30 16:10:52.840  INFO 15952 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-30 16:10:52.853  INFO 15952 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-30 16:10:52.993 ERROR 15952 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field iProjectService in com.ink.controller.projectController required a bean of type 'com.ink.service.IProjectService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ink.service.IProjectService' in your configuration.
+
+2019-05-30 16:11:33.327  INFO 15958 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 15958 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-05-30 16:11:33.329  INFO 15958 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-05-30 16:11:34.309  INFO 15958 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-05-30 16:11:34.326  INFO 15958 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 16:11:34.326  INFO 15958 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-05-30 16:11:34.331  INFO 15958 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-05-30 16:11:34.384  INFO 15958 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 16:11:34.384  INFO 15958 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1030 ms
+2019-05-30 16:11:34.623  WARN 15958 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'projectController': Unsatisfied dependency expressed through field 'iProjectService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.ink.service.IProjectService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2019-05-30 16:11:34.625  INFO 15958 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-30 16:11:34.638  INFO 15958 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-30 16:11:34.745 ERROR 15958 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field iProjectService in com.ink.controller.projectController required a bean of type 'com.ink.service.IProjectService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ink.service.IProjectService' in your configuration.
+
+2019-05-30 16:12:24.401  INFO 15964 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 15964 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-05-30 16:12:24.405  INFO 15964 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-05-30 16:12:25.270  INFO 15964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-05-30 16:12:25.295  INFO 15964 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 16:12:25.296  INFO 15964 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-05-30 16:12:25.300  INFO 15964 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-05-30 16:12:25.355  INFO 15964 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 16:12:25.355  INFO 15964 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 916 ms
+2019-05-30 16:12:25.608  WARN 15964 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'projectController': Unsatisfied dependency expressed through field 'iProjectService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.ink.service.IProjectService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2019-05-30 16:12:25.610  INFO 15964 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-30 16:12:25.622  INFO 15964 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-30 16:12:25.721 ERROR 15964 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field iProjectService in com.ink.controller.projectController required a bean of type 'com.ink.service.IProjectService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ink.service.IProjectService' in your configuration.
+
+2019-05-30 16:14:30.762  INFO 15980 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 15980 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-05-30 16:14:30.764  INFO 15980 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-05-30 16:14:31.814  INFO 15980 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-05-30 16:14:31.834  INFO 15980 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 16:14:31.834  INFO 15980 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-05-30 16:14:31.839  INFO 15980 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-05-30 16:14:31.901  INFO 15980 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 16:14:31.901  INFO 15980 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1107 ms
+2019-05-30 16:14:32.161  WARN 15980 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'projectController': Unsatisfied dependency expressed through field 'iProjectService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.ink.service.IProjectService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2019-05-30 16:14:32.163  INFO 15980 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-30 16:14:32.220  INFO 15980 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-30 16:14:32.280 ERROR 15980 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field iProjectService in com.ink.controller.projectController required a bean of type 'com.ink.service.IProjectService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ink.service.IProjectService' in your configuration.
+
+2019-05-30 16:15:24.490  INFO 15987 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 15987 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-05-30 16:15:24.493  INFO 15987 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-05-30 16:15:25.483  INFO 15987 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-05-30 16:15:25.502  INFO 15987 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 16:15:25.502  INFO 15987 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-05-30 16:15:25.508  INFO 15987 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-05-30 16:15:25.564  INFO 15987 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 16:15:25.564  INFO 15987 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1038 ms
+2019-05-30 16:15:25.975  INFO 15987 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-05-30 16:15:26.170  INFO 15987 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2019-05-30 16:15:26.173  INFO 15987 --- [main] com.ink.DemoApplication                  : Started DemoApplication in 1.964 seconds (JVM running for 2.383)
+2019-05-30 16:17:12.695  INFO 15987 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 16:17:12.695  INFO 15987 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-05-30 16:17:12.700  INFO 15987 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-05-30 16:17:12.758  INFO 15987 --- [http-nio-8090-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-05-30 16:18:29.489  INFO 15987 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-05-30 16:18:29.494  INFO 15987 --- [Thread-7] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-05-30 16:18:31.678  INFO 16003 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 16003 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-05-30 16:18:31.681  INFO 16003 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-05-30 16:18:32.685  INFO 16003 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-05-30 16:18:32.701  INFO 16003 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 16:18:32.701  INFO 16003 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-05-30 16:18:32.706  INFO 16003 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-05-30 16:18:32.761  INFO 16003 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 16:18:32.761  INFO 16003 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1054 ms
+2019-05-30 16:18:33.166  INFO 16003 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-05-30 16:18:33.343  INFO 16003 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2019-05-30 16:18:33.346  INFO 16003 --- [main] com.ink.DemoApplication                  : Started DemoApplication in 1.947 seconds (JVM running for 2.362)
+2019-05-30 16:18:36.613  INFO 16003 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 16:18:36.613  INFO 16003 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-05-30 16:18:36.621  INFO 16003 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-05-30 16:18:36.673  INFO 16003 --- [http-nio-8090-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-05-30 16:19:13.049  INFO 16003 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-05-30 16:19:13.060  INFO 16003 --- [Thread-7] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

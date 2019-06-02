@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     private Integer id;
 
-    private String username;
+    private String userName;
 
     private String profile;
 
@@ -13,31 +13,31 @@ public class User {
 
     private String picture;
 
-    private String registtime;
+    private String registTime;
 
     private String school;
 
     private String major;
 
-    private User_login user_login;
+    private user_login user_login;
 
 
     public User() {
     }
 
-    public User(Integer id, String username, String profile, String sex, String picture, String registtime, String school, String major) {
+    public User(Integer id, String userName, String profile, String sex, String picture, String registTime, String school, String major) {
         this.id = id;
-        this.username = username;
+        this.userName = userName;
         this.profile = profile;
         this.sex = sex;
         this.picture = picture;
-        this.registtime = registtime;
+        this.registTime = registTime;
         this.school = school;
         this.major = major;
     }
 
-    public User(String username, String picture){
-        this.username = username;
+    public User(String userName, String picture){
+        this.userName = userName;
         this.picture = picture;
     }
 
@@ -45,11 +45,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", userName='" + userName + '\'' +
                 ", profile='" + profile + '\'' +
                 ", sex='" + sex + '\'' +
                 ", picture='" + picture + '\'' +
-                ", registtime='" + registtime + '\'' +
+                ", registTime='" + registTime + '\'' +
                 ", school='" + school + '\'' +
                 ", major='" + major + '\'' +
                 '}';
@@ -64,11 +64,11 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUsername(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getProfile() {
@@ -96,11 +96,11 @@ public class User {
     }
 
     public String getRegisttime() {
-        return registtime;
+        return registTime;
     }
 
-    public void setRegisttime(String registtime) {
-        this.registtime = registtime == null ? null : registtime.trim();
+    public void setRegisttime(String registTime) {
+        this.registTime = registTime == null ? null : registTime.trim();
     }
 
     public String getSchool() {
@@ -119,11 +119,11 @@ public class User {
         this.major = major == null ? null : major.trim();
     }
 
-    public User_login getUser_login() {
+    public user_login getUser_login() {
         return user_login;
     }
 
-    public void setUser_login(User_login user_login) {
+    public void setUser_login(user_login user_login) {
         this.user_login = user_login;
     }
 

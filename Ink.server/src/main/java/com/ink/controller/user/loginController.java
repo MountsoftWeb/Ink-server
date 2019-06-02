@@ -1,6 +1,6 @@
 package com.ink.controller.user;
 
-import com.ink.entity.User_login;
+import com.ink.entity.user_login;
 import com.ink.entity.login.userEntity;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
@@ -50,7 +50,7 @@ public class loginController {
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
-        User_login user_login = new User_login();
+        user_login user_login = new user_login();
         System.out.println(ip);
         user_login.setLoginip(ip);
 

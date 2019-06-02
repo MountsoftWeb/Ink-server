@@ -1,6 +1,6 @@
 package com.ink.dao;
 
-import com.ink.entity.User_login;
+import com.ink.entity.user_login;
 import com.ink.entity.login.userEntity;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -12,21 +12,21 @@ public interface user_loginMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(User_login record);
+    int insert(user_login record);
 
-    int insertSelective(User_login record);
-
-
-    User_login selectByPrimaryKey(Integer id);
-
-    User_login login(@Param("userEntity") userEntity userEntity);   // 登录验证
-
-    boolean update(@Param("user_login")User_login user_login);      // 更新是否成功
+    int insertSelective(user_login record);
 
 
-    int updateByPrimaryKeySelective(User_login record);
+    user_login selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKey(User_login record);
+    user_login login(@Param("userEntity") userEntity userEntity);   // 登录验证
 
-    int registerUser(@Param("user_login") User_login user_login);     // 注册新用户，添加登录信息
+    boolean update(@Param("user_login")user_login user_login);      // 更新是否成功
+
+
+    int updateByPrimaryKeySelective(user_login record);
+
+    int updateByPrimaryKey(user_login record);
+
+    int registerUser(@Param("user_login") user_login user_login);     // 注册新用户，添加登录信息
 }

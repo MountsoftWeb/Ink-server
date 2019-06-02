@@ -20,7 +20,7 @@ public interface userMapper {
 
     List selectByUserid();
 
-    int selectByUsername(@Param("username")String username);    // 按照用户名找到用户对应主健
+    int selectByUsername(@Param("userName")String userName);    // 按照用户名找到用户对应主健
 
     int updateByPrimaryKeySelective(User record);
 
@@ -28,11 +28,11 @@ public interface userMapper {
 
     boolean updatePicture(@Param("user")User user);
 
-    String selectPicture(@Param("username")String username);
+    String selectPicture(@Param("userName")String userName);
 
-    User getDetail(@Param("username")String username);
+    User getDetail(@Param("userName")String userName);
 
     int registerUser(@Param("user")User user);
 
-    boolean checkUser(@Param("username")String username);
+    boolean checkUser(@Param("userName")String userName);
 }

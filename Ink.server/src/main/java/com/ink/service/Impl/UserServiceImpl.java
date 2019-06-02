@@ -1,10 +1,10 @@
 package com.ink.service.Impl;
 
-import com.ink.dao.commodityCategoryMapper;
-import com.ink.dao.commodityMapper;
+import com.ink.dao.projectCategoryMapper;
+import com.ink.dao.projectMapper;
 import com.ink.dao.user_loginMapper;
 import com.ink.entity.User;
-import com.ink.entity.User_login;
+import com.ink.entity.user_login;
 import com.ink.entity.login.userEntity;
 import com.ink.dao.userMapper;
 import com.ink.service.IUserService;
@@ -26,9 +26,9 @@ public class userServiceImpl implements IUserService {
     @Autowired
     user_loginMapper user_loginMapper;
     @Autowired
-    commodityCategoryMapper commodityCategoryMapper;
+    projectCategoryMapper commodityCategoryMapper;
     @Autowired
-    commodityMapper commodityMapper;
+    projectMapper commodityMapper;
     /**
      * 登录验证，信息验证无误，更新 user_login 的 ip 和 logintime
      * @param userEntity
@@ -39,7 +39,7 @@ public class userServiceImpl implements IUserService {
     public Result longin(userEntity userEntity, String ip) {
         Result result = new Result();
         Date data = new Date();
-        User_login user_login = user_loginMapper.login(userEntity);
+        user_login user_login = user_loginMapper.login(userEntity);
         if (user_login != null){
             user_login.setLoginip(ip);
             user_login.setLogintime(data.toString());
@@ -86,7 +86,7 @@ public class userServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean update(User_login user_login) {
+    public boolean update(user_login user_login) {
         return user_loginMapper.update(user_login);
     }
 
@@ -127,7 +127,7 @@ public class userServiceImpl implements IUserService {
         if (id == null){
             return false;
         }
-        User_login user_login = new User_login();
+        user_login user_login = new user_login();
         user_login.setUserid(String.valueOf(id));    // 按照用户名找到主健
         user_login.setPassword(userEntity.getPassword());
         int register_user = user_loginMapper.registerUser(user_login);  // 注册新用户，添加用户登录信息

@@ -1,7 +1,7 @@
-package com.ink.service.Impl;
+package com.ink.service;
 
 import java.util.ArrayList;
 
 public interface IProjectService {
-    public ArrayList getProjectByUerId(Integer userId);
+    ArrayList getProjectByUsername(String userName);
 }
