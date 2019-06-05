@@ -1,4 +1,4 @@
-package com.ink.entity;
+package com.ink.model.entity;
 
 public class Project {
     private Integer id;
@@ -91,11 +91,11 @@ public class Project {
         this.categoryId = categoryId;
     }
 
-    public com.ink.entity.project_category getProject_category() {
+    public com.ink.model.entity.project_category getProject_category() {
         return project_category;
     }
 
-    public void setProject_category(com.ink.entity.project_category project_category) {
+    public void setProject_category(com.ink.model.entity.project_category project_category) {
         this.project_category = project_category;
     }
     public Integer getApprecations() {

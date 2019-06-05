@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ink.dao.user_loginMapper">
-  <resultMap id="BaseResultMap" type="com.ink.entity.user_login">
+  <resultMap id="BaseResultMap" type="com.ink.model.entity.user_login">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="login_type" jdbcType="VARCHAR" property="loginType" />
@@ -20,13 +20,13 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="login" parameterType="com.ink.entity.login.userEntity" resultMap="BaseResultMap">
+  <select id="login" parameterType="com.ink.model.entity.login.userEntity" resultMap="BaseResultMap">
     select *
     from user_login l, user u
     where u.user_name=#{userEntity.userName} and u.id=l.user_id and l.login_type=#{userEntity.loginType} and l.password=#{userEntity.password}
   </select>
 
-  <update id="update" parameterType="com.ink.entity.user_login" >
+  <update id="update" parameterType="com.ink.model.entity.user_login" >
     update user_login set login_ip=#{user_login.loginIp}, login_time=#{user_login.loginTime} where user_id=#{user_login.userId} and login_type=#{user_login.logintype}
   </update>
 
@@ -35,7 +35,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.ink.entity.user_login">
+  <insert id="insert" parameterType="com.ink.model.entity.user_login">
     insert into user_login (id, user_id, login_type, 
       password, login_ip, login_time
       )
@@ -44,7 +44,7 @@
       )
   </insert>
 
-  <insert id="insertSelective" parameterType="com.ink.entity.user_login">
+  <insert id="insertSelective" parameterType="com.ink.model.entity.user_login">
     insert into user_login
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -88,14 +88,14 @@
     </trim>
   </insert>
 
-  <insert id="registerUser" parameterType="com.ink.entity.user_login">
+  <insert id="registerUser" parameterType="com.ink.model.entity.user_login">
     insert into user_login (user_id, login_type, password)
     values (#{user_login.userId, jdbcType=INTEGER}, #{user_login.loginType, jdbcType=VARCHAR},
             #{user_login.password, jdbcType=VARCHAR})
   </insert>
 
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.ink.entity.user_login">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ink.model.entity.user_login">
     update user_login
     <set>
       <if test="userId != null">
@@ -117,7 +117,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.ink.entity.user_login">
+  <update id="updateByPrimaryKey" parameterType="com.ink.model.entity.user_login">
     update user_login
     set user_id = #{userId,jdbcType=VARCHAR},
       login_type = #{loginType,jdbcType=VARCHAR},

@@ -3,9 +3,9 @@ package com.ink.service.Impl;
 import com.ink.dao.projectCategoryMapper;
 import com.ink.dao.projectMapper;
 import com.ink.dao.user_loginMapper;
-import com.ink.entity.User;
-import com.ink.entity.user_login;
-import com.ink.entity.login.userEntity;
+import com.ink.model.entity.User;
+import com.ink.model.entity.user_login;
+import com.ink.model.entity.login.userEntity;
 import com.ink.dao.userMapper;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
@@ -148,6 +148,11 @@ public class userServiceImpl implements IUserService {
     public boolean checkUser(String username) {
         
         return false;
+    }
+
+    @Override
+    public User test() {
+        return userMapper.selectByUserid();
     }
 
     

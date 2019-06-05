@@ -1,8 +1,6 @@
 package com.ink.dao;
 
-import java.util.List;
-
-import com.ink.entity.User;
+import com.ink.model.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,7 +16,7 @@ public interface userMapper {
 
     User selectByPrimaryKey(Integer id);
 
-    List selectByUserid();
+    User selectByUserid();
 
     int selectByUsername(@Param("userName")String userName);    // 按照用户名找到用户对应主健
 

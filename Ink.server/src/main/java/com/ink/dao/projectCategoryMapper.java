@@ -1,6 +1,6 @@
 package com.ink.dao;
 
-import com.ink.entity.project_category;
+import com.ink.model.entity.project_category;
 
 import org.apache.ibatis.annotations.Mapper;
 

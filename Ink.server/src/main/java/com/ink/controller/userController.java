@@ -2,7 +2,7 @@ package com.ink.controller;
 
 import javax.servlet.ServletRequest;
 
-import com.ink.entity.User;
+import com.ink.model.entity.User;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
@@ -24,6 +24,14 @@ public class userController{
         result.setCode("200");
         result.setData(user);
         System.err.println("getDetail");
+        return result;
+    }
+
+    @PostMapping("/test/get")
+    public Result test(){
+        Result result = new Result();
+        User user = iUserService.test();
+        result.setData(user);
         return result;
     }
 }

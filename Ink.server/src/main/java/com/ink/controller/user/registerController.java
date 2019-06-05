@@ -1,6 +1,6 @@
 package com.ink.controller.user;
 
-import com.ink.entity.login.userEntity;
+import com.ink.model.entity.login.userEntity;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 

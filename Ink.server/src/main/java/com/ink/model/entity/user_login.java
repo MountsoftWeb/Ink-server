@@ -1,4 +1,4 @@
-package com.ink.entity;
+package com.ink.model.entity;
 
 public class user_login {
     private Integer id;

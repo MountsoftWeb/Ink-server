@@ -1,18 +1,14 @@
 package com.ink.controller.user;
 
-import com.ink.entity.user_login;
-import com.ink.entity.login.userEntity;
+import com.ink.model.entity.user_login;
+import com.ink.model.entity.login.userEntity;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
 import java.util.Date;
 
 /**

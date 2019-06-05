@@ -1,4 +1,4 @@
-package com.ink.entity;
+package com.ink.model.entity;
 
 import java.util.Date;
 

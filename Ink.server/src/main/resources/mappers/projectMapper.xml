@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ink.dao.projectMapper">
-    <resultMap id="BaseResultMap" type="com.ink.entity.Project">
+    <resultMap id="BaseResultMap" type="com.ink.model.entity.Project">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="user_name" jdbcType="INTEGER" property="userName" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
         <result column="price" jdbcType="DOUBLE" property="price" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="apprecations" javaType="INTEGER" property="apprecations" />
+        <result column="collections" javaType="INTEGER" property="collections" />
         <result column="category_Id" jdbcType="INTEGER" property="categoryId"/>
     </resultMap>
     <!-- 分类表 -->
-    <resultMap id="CategoryResultMap" type="com.ink.entity.Project">
+    <resultMap id="CategoryResultMap" type="com.ink.model.entity.Project">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="userId" jdbcType="INTEGER" property="userId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
         <result column="price" jdbcType="DOUBLE" property="price" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />
-        <result column="categoryId" jdbcType="INTEGER" property="categoryId"/>
-        <association property="project_category" javaType="com.ink.entity.project_category">
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <association property="project_category" javaType="com.ink.model.entity.project_category">
             <id column="c_id" jdbcType="INTEGER" property="id" />
             <result column="c_name" jdbcType="VARCHAR" property="name" />
         </association>
     </resultMap>
 
+    <resultMap id="AllProjects" type="com.ink.model.response.projectRespense">
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="up_date" jdbcType="VARCHAR" property="upDate" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="apprecations" jdbcType="INTEGER" property="apprecations" />
+        <result column="collections" jdbcType="INTEGER" property="collections" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    </resultMap>
+
+
     <select id="selectByUserid" parameterType="java.lang.Integer" resultMap="CategoryResultMap">
-        select price, picture, co.name, ca.c_name
-        from commodity co, category ca
-        where co.categoryId = ca.c_id and co.id = #{userId, jdbcType=INTEGER}
+        select price, picture, p.name, ca.c_name
+        from project p, category ca
+        where p.categoryId = ca.c_id and p.id = #{userId, jdbcType=INTEGER}
     </select>
 
     <select id="selectByUsername" parameterType="java.util.List" resultMap="BaseResultMap">
-        select id, user_name, category_Id, picture, up_date
+        select id, user_id, category_id, picture, up_date
         from project
-        where user_name = #{userName, jdbcType=VARCHAR}
+        where user_id = #{userName, jdbcType=VARCHAR}
+    </select>
+
+    <!--
+    p.name, p.up_date, p.picture, p.apprecations, p.collections
+             , u.user_name
+             inner join category c on p.category_id = c.c_id
+           inner join user u on u.id = p.user_id
+            <association property="project_category" javaType="com.ink.entity.project_category">
+            <id column="id" jdbcType="INTEGER" property="id" />
+            <result column="name" jdbcType="VARCHAR" property="name" />
+        </association>
+
+    -->
+    
+    <select id="selectAllProjects" parameterType="java.util.List" resultMap="AllProjects">
+        select  p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
+        from project p
+          inner join category c on p.category_id = c.id
+          inner join user u on u.id = p.user_id
     </select>
 </mapper>

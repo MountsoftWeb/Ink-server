@@ -1,8 +1,9 @@
 package com.ink.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import com.ink.entity.Project;
+import com.ink.model.entity.Project;
 import com.ink.service.IProjectService;
 import com.ink.utils.Json.Result;
 
@@ -65,5 +66,18 @@ public class projectController {
             return result;
         }
         return  result;
+    }
+
+    @PostMapping("/project/getAllProjects")
+    public Result getAllProjects(){
+        Result result = new Result();
+
+        List list =  iProjectService.getAllProjects();
+        System.out.println(list.size());
+        result.setCode("200");
+        result.setData(list);
+        result.setMessage("OK");
+
+        return result;
     }
 }

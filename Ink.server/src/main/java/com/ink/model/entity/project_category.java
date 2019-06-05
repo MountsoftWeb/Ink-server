@@ -1,4 +1,4 @@
-package com.ink.entity;
+package com.ink.model.entity;
 
 public class project_category {
     private Integer id;

@@ -1,9 +1,9 @@
 package com.ink.service;
 
 
-import com.ink.entity.User;
-import com.ink.entity.user_login;
-import com.ink.entity.login.userEntity;
+import com.ink.model.entity.User;
+import com.ink.model.entity.user_login;
+import com.ink.model.entity.login.userEntity;
 import com.ink.utils.Json.Result;
 
 public interface IUserService {
@@ -20,4 +20,6 @@ public interface IUserService {
     boolean checkUser(String username);
     // 注册用户
     boolean registerUser(userEntity userEntity);
+
+    User test();
 }
