@@ -61,7 +61,7 @@ public class loginController {
         System.out.println("user_login = " + userEntity.toString());
 
         // 登录判断
-        Result result = iUserService.longin(userEntity, ip);
+        Result result = iUserService.login(userEntity, ip);
 
         return result;
     }

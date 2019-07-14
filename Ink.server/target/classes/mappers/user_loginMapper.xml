@@ -23,7 +23,10 @@
   <select id="login" parameterType="com.ink.model.entity.login.userEntity" resultMap="BaseResultMap">
     select *
     from user_login l, user u
-    where u.user_name=#{userEntity.userName} and u.id=l.user_id and l.login_type=#{userEntity.loginType} and l.password=#{userEntity.password}
+    where u.user_name=#{userEntity.userName} and 
+          u.id=l.user_id and 
+          <!-- l.login_type=#{userEntity.loginType} and  -->
+          l.password=#{userEntity.password}
   </select>
 
   <update id="update" parameterType="com.ink.model.entity.user_login" >

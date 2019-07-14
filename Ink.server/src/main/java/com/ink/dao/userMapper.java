@@ -32,5 +32,5 @@ public interface userMapper {
 
     int registerUser(@Param("user")User user);
 
-    boolean checkUser(@Param("userName")String userName);
+    boolean checkUser(@Param("username")String username);
 }

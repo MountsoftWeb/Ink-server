@@ -36,12 +36,12 @@ public class userServiceImpl implements IUserService {
      * @return
      */
     @Override
-    public Result longin(userEntity userEntity, String ip) {
+    public Result login(userEntity userEntity, String ip) {
         Result result = new Result();
         Date data = new Date();
         user_login user_login = user_loginMapper.login(userEntity);
         if (user_login != null){
-            user_login.setLoginip(ip);
+            user_login.setLoginip(ip);;
             user_login.setLogintime(data.toString());
 
             String jwtToken = Jwts.builder()
@@ -68,9 +68,7 @@ public class userServiceImpl implements IUserService {
          Jwts.parser().setSigningKey(key).parseClaimsJws(compactJws).getBody().getSubject().equals("Joe");
 
              */
-
-            user_loginMapper.update(user_login);
-
+            boolean b = user_loginMapper.update(user_login);
             result.setMessage("登录成功");
             result.setCode("200");
             result.setSuccess(true);
@@ -147,7 +145,7 @@ public class userServiceImpl implements IUserService {
     @Override
     public boolean checkUser(String username) {
         
-        return false;
+        return userMapper.checkUser(username);
     }
 
     @Override

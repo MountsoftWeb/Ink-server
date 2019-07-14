@@ -7,7 +7,7 @@ import com.ink.model.entity.login.userEntity;
 import com.ink.utils.Json.Result;
 
 public interface IUserService {
-    Result longin(userEntity userEntity, String ip);
+    Result login(userEntity userEntity, String ip);
 
     boolean update(user_login user_login);
 

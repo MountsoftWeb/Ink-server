@@ -29,10 +29,15 @@ public class registerController{
         }
         
     }
-    @GetMapping(value = "/checkUser")
+    @PostMapping(value = "/checkUser")
     public Result checkUser(@RequestParam(value = "username")String username){
         boolean bool = iUserService.checkUser(username);
         Result result = new Result();
+        if (bool){
+            result.setCode("21");
+        }else{
+            result.setCode("200");
+        }
         return result;
     }
 }
