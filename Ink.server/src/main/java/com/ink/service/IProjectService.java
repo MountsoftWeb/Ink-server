@@ -7,5 +7,7 @@ import java.util.ArrayList;
 public interface IProjectService {
     ArrayList getProjectByUsername(String userName);
 
-    ArrayList getAllProjects();
+    ArrayList getAllProject();
+
+    ArrayList getProject(String id);
 }

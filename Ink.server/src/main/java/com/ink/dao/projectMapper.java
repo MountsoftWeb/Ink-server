@@ -13,5 +13,7 @@ public interface projectMapper {
 
     ArrayList selectByUsername(@Param("userName") String userName);
 
-    ArrayList selectAllProjects();
+    ArrayList selectAllProject();
+
+    ArrayList selectByLabel(@Param("label") Integer label);
 }

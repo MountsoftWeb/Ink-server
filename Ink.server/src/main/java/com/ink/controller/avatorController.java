@@ -47,8 +47,9 @@ public class avatorController {
                 // 图片命名
                 String userNamePicture = username + ".png";
                 String userPicturePath = path + "/" + userNamePicture;
+                String mysqlPicture = "/hello/" + username + ".png";
                 // 存储路径到数据库
-                User user = new User(username, userPicturePath);
+                User user = new User(username, mysqlPicture);
                 boolean bool = iUserService.updatePicture(user);
 
                 File newFile = new File(userPicturePath);

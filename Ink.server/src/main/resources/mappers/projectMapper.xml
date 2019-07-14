@@ -25,7 +25,7 @@
         </association>
     </resultMap>
 
-    <resultMap id="AllProjects" type="com.ink.model.response.projectRespense">
+    <resultMap id="AllProject" type="com.ink.model.response.projectRespense">
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="up_date" jdbcType="VARCHAR" property="upDate" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />
@@ -47,6 +47,14 @@
         where user_id = #{userName, jdbcType=VARCHAR}
     </select>
 
+    <select id="selectByLabel" parameterType="java.util.List" resultMap="AllProject">
+        select  p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
+        from project p
+          inner join category c on p.category_id = c.id
+          inner join user u on u.id = p.user_id
+        where p.category_id = #{label, jdbcType=INTEGER}
+    </select>
+
     <!--
     p.name, p.up_date, p.picture, p.apprecations, p.collections
              , u.user_name
@@ -59,7 +67,7 @@
 
     -->
     
-    <select id="selectAllProjects" parameterType="java.util.List" resultMap="AllProjects">
+    <select id="selectAllProject" parameterType="java.util.List" resultMap="AllProject">
         select  p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
         from project p
           inner join category c on p.category_id = c.id

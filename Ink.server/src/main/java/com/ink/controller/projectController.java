@@ -10,6 +10,7 @@ import com.ink.utils.Json.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletRequest;
@@ -68,16 +69,26 @@ public class projectController {
         return  result;
     }
 
-    @PostMapping("/project/getAllProjects")
-    public Result getAllProjects(){
+    @PostMapping("/project/getAllProject")
+    public Result getAllProject(@RequestParam("id") String id){
         Result result = new Result();
+        System.out.println(id);
+        if (id.equals("undefined")){
+            ArrayList list =  iProjectService.getAllProject();
+            System.out.println(list.size());
+            result.setCode("200");
+            result.setData(list);
+            result.setMessage("OK");
+            return result;
+        }else{
+            ArrayList list = iProjectService.getProject(id);
+            result.setData(list);
+            result.setCode("200");
+            return result;
+        }
+        
+ 
 
-        List list =  iProjectService.getAllProjects();
-        System.out.println(list.size());
-        result.setCode("200");
-        result.setData(list);
-        result.setMessage("OK");
-
-        return result;
+        // return result;
     }
 }

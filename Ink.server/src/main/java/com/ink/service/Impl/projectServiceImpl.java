@@ -21,7 +21,15 @@ public class projectServiceImpl implements IProjectService {
     }
 
     @Override
-    public ArrayList getAllProjects() {
-        return projectMapper.selectAllProjects();
+    public ArrayList getAllProject() {
+        return projectMapper.selectAllProject();
+    }
+
+    @Override
+    public ArrayList getProject(String id) {
+        Integer label = Integer.valueOf(id);
+        ArrayList list = projectMapper.selectByLabel(label);
+        
+        return list;
     }
 }
