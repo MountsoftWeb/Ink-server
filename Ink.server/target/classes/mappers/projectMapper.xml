@@ -25,7 +25,7 @@
         </association>
     </resultMap>
 
-    <resultMap id="AllProject" type="com.ink.model.response.projectRespense">
+    <resultMap id="AllProject" type="com.ink.model.response.projectResponse">
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="up_date" jdbcType="VARCHAR" property="upDate" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />

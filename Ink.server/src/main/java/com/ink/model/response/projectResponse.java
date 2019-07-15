@@ -3,7 +3,7 @@ package com.ink.model.response;
 /**
  * @author Created by carlos
  */
-public class projectRespense {
+public class projectResponse {
     private String name;
     private String upDate;
     private String picture;
