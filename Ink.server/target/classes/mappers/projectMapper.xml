@@ -35,16 +35,16 @@
     </resultMap>
 
 
-    <select id="selectByUserid" parameterType="java.lang.Integer" resultMap="CategoryResultMap">
+    <select id="selectByUser" parameterType="java.lang.Integer" resultMap="CategoryResultMap">
         select price, picture, p.name, ca.c_name
         from project p, category ca
         where p.categoryId = ca.c_id and p.id = #{userId, jdbcType=INTEGER}
     </select>
 
-    <select id="selectByUsername" parameterType="java.util.List" resultMap="BaseResultMap">
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select id, user_id, category_id, picture, up_date
         from project
-        where user_id = #{userName, jdbcType=VARCHAR}
+        where user_id = #{id, jdbcType=INTEGER}
     </select>
 
     <select id="selectByLabel" parameterType="java.util.List" resultMap="AllProject">

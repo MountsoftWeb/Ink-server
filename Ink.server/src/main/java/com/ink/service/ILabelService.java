@@ -1,8 +1,11 @@
 package com.ink.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 
 
 public interface ILabelService {
-    ArrayList getLabel();
+    List<HashMap<Integer, String>> getLabel();
 }

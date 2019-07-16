@@ -19,7 +19,9 @@ public class registerController{
     public Result register(@RequestBody userEntity userEntity){
         Result result = new Result();
         boolean bool = iUserService.registerUser(userEntity);
+
         if (bool){
+            iUserService.creatFile(userEntity.getUsername());
             result.setCode("200");
             return result;
         }else{

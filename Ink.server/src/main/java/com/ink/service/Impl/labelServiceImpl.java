@@ -1,6 +1,8 @@
 package com.ink.service.Impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import com.ink.dao.labelMapper;
 import com.ink.service.ILabelService;
@@ -15,7 +17,7 @@ public class labelServiceImpl implements ILabelService {
 
 
     @Override
-    public ArrayList getLabel() {
+    public List<HashMap<Integer, String>> getLabel() {
         return labelMapper.getLabel();
     }
 

@@ -22,4 +22,6 @@ public interface IUserService {
     boolean registerUser(userEntity userEntity);
 
     User test();
+    // 创建用户所属文件
+    boolean creatFile(String username);
 }

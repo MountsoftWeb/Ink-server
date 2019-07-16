@@ -5,9 +5,9 @@
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="label_name" jdbcType="VARCHAR" property="labelName" />
     </resultMap>
-
-    <select id="getLabel" parameterType="java.util.List" resultMap="BaseResultMap">
-        select *
+<!-- resultMap="BaseResultMap" -->
+    <select id="getLabel" resultType="java.util.HashMap" >
+        select id, label_name
         from label
     </select>
 

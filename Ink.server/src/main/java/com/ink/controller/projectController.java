@@ -20,8 +20,8 @@ public class projectController {
     @Autowired
     IProjectService iProjectService;
 
-    @GetMapping("/project/getProject")
-    public Result getProject(){
+    @GetMapping("/project/getProjecta")
+    public Result getProjecta(){
         Result result = new Result();
         Project commodity = new Project();
         commodity.setId(12);
@@ -48,25 +48,26 @@ public class projectController {
         return result;
     }
 
-    @PostMapping("/project/getProjecta")
-    public Result getProjecta(ServletRequest request){
+    @GetMapping("/test/project/getProject")
+    public Result getProject(ServletRequest request){
         Result result = new Result();
         String userName = (String) request.getAttribute("name");
 
+        System.out.println(userName + " === project");
 
-
-        ArrayList list = iProjectService.getProjectByUsername("1");
+        ArrayList list = iProjectService.getProjectByUsername(userName);
 //        System.out.println(list.size());
         if (list != null) {
             result.setCode("200");
             result.setMessage("OK");
             result.setData(list);
+            return  result;
+
         }else {
             result.setCode("201");
             result.setMessage("no project");
             return result;
         }
-        return  result;
     }
 
     @PostMapping("/project/getAllProject")

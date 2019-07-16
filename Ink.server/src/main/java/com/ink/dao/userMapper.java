@@ -33,4 +33,6 @@ public interface userMapper {
     int registerUser(@Param("user")User user);
 
     boolean checkUser(@Param("username")String username);
+
+    boolean creatFile(@Param("username")String username);
 }

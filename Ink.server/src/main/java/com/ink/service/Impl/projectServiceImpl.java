@@ -1,6 +1,7 @@
 package com.ink.service.Impl;
 
 import com.ink.dao.projectMapper;
+import com.ink.dao.userMapper;
 import com.ink.model.entity.Project;
 import com.ink.service.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ import java.util.ArrayList;
 public class projectServiceImpl implements IProjectService {
     @Autowired
     projectMapper projectMapper;
+    @Autowired
+    userMapper userMapper;
     @Override
     public ArrayList getProjectByUsername(String userName) {
-        return projectMapper.selectByUsername(userName);
+        Integer id = userMapper.selectByUsername(userName);
+        return projectMapper.selectByUserId(id);
     }
 
     @Override

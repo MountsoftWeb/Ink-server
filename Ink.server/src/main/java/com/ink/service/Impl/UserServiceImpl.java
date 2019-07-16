@@ -14,6 +14,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -28,7 +33,7 @@ public class userServiceImpl implements IUserService {
     @Autowired
     projectCategoryMapper commodityCategoryMapper;
     @Autowired
-    projectMapper commodityMapper;
+    projectMapper projectMapper;
     /**
      * 登录验证，信息验证无误，更新 user_login 的 ip 和 logintime
      * @param userEntity
@@ -125,8 +130,10 @@ public class userServiceImpl implements IUserService {
         if (id == null){
             return false;
         }
+        
+        boolean creatFile = creatFile(username); // 为用户创建所属文件夹
         user_login user_login = new user_login();
-        user_login.setUserid(String.valueOf(id));    // 按照用户名找到主健
+        user_login.setUserid(String.valueOf(id));                       // 按照用户名找到主健
         user_login.setPassword(userEntity.getPassword());
         int register_user = user_loginMapper.registerUser(user_login);  // 注册新用户，添加用户登录信息
         if (register_user == 1){
@@ -151,6 +158,21 @@ public class userServiceImpl implements IUserService {
     @Override
     public User test() {
         return userMapper.selectByUserid();
+    }
+
+    @Override
+    public boolean creatFile(String username) {
+        // 文件上传 本地文件目录
+        String path = "/Users/carlos/Documents/images/";
+        // 服务器路径
+        // String path = "/home/carlos/image";
+        File newFile = new File(path + username);
+        boolean bool = newFile.mkdir();
+        if (bool) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     

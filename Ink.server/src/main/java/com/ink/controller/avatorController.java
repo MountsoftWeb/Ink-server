@@ -35,19 +35,20 @@ public class avatorController {
     @PostMapping("/test/updatePicture")
     public Result addImage(@RequestParam(name = "image_data", required = false) MultipartFile file, ServletRequest request) {
         Result result = new Result();
-        // 文件上传 本地文件目录
-        String path = "/Users/carlos/Documents/images";
-        // 服务器路径
-        // String path = "/home/carlos/image";
-        
+                
         // 获取更新头像用户的用户名
         String username = (String) request.getAttribute("name");
+        // 文件上传 本地文件目录
+        String path = "/Users/carlos/Documents/images/" + username;
+        // 服务器路径
+        // String path = "/home/carlos/image";
+
         if (!file.isEmpty()) {
             try {
                 // 图片命名
                 String userNamePicture = username + ".png";
                 String userPicturePath = path + "/" + userNamePicture;
-                String mysqlPicture = "/hello/" + username + ".png";
+                String mysqlPicture = "/hello/"+ username +"/"  + username + ".png";
                 // 存储路径到数据库
                 User user = new User(username, mysqlPicture);
                 boolean bool = iUserService.updatePicture(user);

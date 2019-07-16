@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 @Mapper
 public interface projectMapper {
-    Project selectByUserid(Integer id);
+    Project selectByUser(Integer id);
 
-    ArrayList selectByUsername(@Param("userName") String userName);
+    ArrayList selectByUserId(@Param("id") Integer id);
 
     ArrayList selectAllProject();
 
