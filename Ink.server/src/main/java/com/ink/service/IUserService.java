@@ -1,10 +1,12 @@
 package com.ink.service;
 
-
+import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
 import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
 import com.ink.utils.Json.Result;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public interface IUserService {
     Result login(userEntity userEntity, String ip);
@@ -20,8 +22,14 @@ public interface IUserService {
     boolean checkUser(String username);
     // 注册用户
     boolean registerUser(userEntity userEntity);
+    // 查找用户 id
+    Integer selectByUsername(String username);
 
     User test();
     // 创建用户所属文件
     boolean creatFile(String username);
+    // 创建用户上传的文件夹
+    String creatProjectFile(String username, StringBuffer time);
+    // uploadFile
+    boolean uploadFile(MultipartFile file, String username, Project project, String path);
 }

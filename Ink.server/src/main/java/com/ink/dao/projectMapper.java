@@ -16,4 +16,6 @@ public interface projectMapper {
     ArrayList selectAllProject();
 
     ArrayList selectByLabel(@Param("label") Integer label);
+
+    boolean uploadFile(@Param("project") Project project);
 }

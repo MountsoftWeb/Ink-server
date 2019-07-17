@@ -73,4 +73,16 @@
           inner join category c on p.category_id = c.id
           inner join user u on u.id = p.user_id
     </select>
+
+    <update id="uploadFisle" parameterType="com.ink.model.entity.Project">
+    update project
+        set picture = #{project.picture}
+        where user_name = #{user.userName}
+  
+    </update>
+
+    <insert id="uploadFile" parameterType="com.ink.model.entity.Project">
+    insert into project (user_id, picture)
+        values (#{project.userId, jdbcType=INTEGER}, #{project.picture, jdbcType=VARCHAR})
+    </insert>
 </mapper>
