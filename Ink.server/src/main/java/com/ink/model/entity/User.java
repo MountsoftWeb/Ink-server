@@ -15,8 +15,6 @@ public class User {
 
     private String registTime;
 
-    private String school;
-
     private String major;
 
     private user_login user_login;
@@ -25,14 +23,13 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String userName, String profile, String sex, String picture, String registTime, String school, String major) {
+    public User(Integer id, String userName, String profile, String sex, String picture, String registTime, String major) {
         this.id = id;
         this.userName = userName;
         this.profile = profile;
         this.sex = sex;
         this.picture = picture;
         this.registTime = registTime;
-        this.school = school;
         this.major = major;
     }
 
@@ -50,7 +47,6 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", picture='" + picture + '\'' +
                 ", registTime='" + registTime + '\'' +
-                ", school='" + school + '\'' +
                 ", major='" + major + '\'' +
                 '}';
     }
@@ -101,14 +97,6 @@ public class User {
 
     public void setRegisttime(String registTime) {
         this.registTime = registTime == null ? null : registTime.trim();
-    }
-
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school == null ? null : school.trim();
     }
 
     public String getMajor() {

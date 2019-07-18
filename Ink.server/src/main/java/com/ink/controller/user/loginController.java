@@ -20,14 +20,6 @@ public class loginController {
     @Autowired
     IUserService iUserService;
 
-
-//    @PostMapping("/test1")
-//    public String test(){
-//
-////        User s = iUserService.longin("123","123");
-////        System.out.println("============" + s.toString());
-//        return "d";
-//    }
     @PostMapping(value= "/login")
     public Result login(@RequestBody userEntity userEntity, HttpServletRequest request){
         String ip = request.getHeader("X-Real-IP");

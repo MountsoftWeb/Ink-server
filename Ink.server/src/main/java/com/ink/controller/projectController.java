@@ -26,12 +26,10 @@ public class projectController {
         Project commodity = new Project();
         commodity.setId(12);
         commodity.setName("name");
-        commodity.setPrice(21.0);
         Project commodity2 = new Project();
         commodity2.setId(13);
         commodity2.setName("ds");
-        commodity2.setPrice(32.0);
-        
+
 
         ArrayList list = new ArrayList();
 
@@ -70,11 +68,12 @@ public class projectController {
         }
     }
 
-    @PostMapping("/project/getAllProject")
-    public Result getAllProject(@RequestParam("id") String id){
+    @GetMapping("/project/getAllProject")
+    public Result getAllProject(@RequestParam("c") String category,
+                                @RequestParam("l") String label){
         Result result = new Result();
-        System.out.println(id);
-        if (id.equals("undefined")){
+        System.out.println(category + "_________" + label);
+        if (category.equals("undefined") || (category.equals("1") && label.equals("1"))){
             ArrayList list =  iProjectService.getAllProject();
             System.out.println(list.size());
             result.setCode("200");
@@ -82,7 +81,7 @@ public class projectController {
             result.setMessage("OK");
             return result;
         }else{
-            ArrayList list = iProjectService.getProject(id);
+            ArrayList list = iProjectService.getProject(category);
             result.setData(list);
             result.setCode("200");
             return result;

@@ -34,7 +34,12 @@ public class userController{
     }
 
     @PostMapping("/test/user/uploadFile")
-    public Result uploadFile(@RequestParam(name = "image_data", required = false) MultipartFile file, ServletRequest request){
+    public Result uploadFile(
+                            @RequestParam(name = "name", required = false) String name,
+                            @RequestParam(name = "label", required = false) Integer patitingway,
+                            @RequestParam(name = "image_data", required = false) MultipartFile file, 
+                            ServletRequest request
+                            ){
         Result result = new Result();
         String username = (String) request.getAttribute("name");
 
@@ -43,6 +48,7 @@ public class userController{
         int year = cal.get(Calendar.YEAR);
         int day = cal.get(Calendar.DATE);
         int month = cal.get(Calendar.MONTH) + 1;
+        // 用于创建文件夹所用时间格式
         StringBuffer time = new StringBuffer();
         time.append(year).append(month).append(day);
         String path = iUserService.creatProjectFile(username, time);
@@ -52,12 +58,16 @@ public class userController{
         if (path.equals("no")){
             System.out.println("创建失败");
         }else{
+            StringBuffer upDate = new StringBuffer();
             Project project = new Project();
-            project.setName(username);
-            project.setUpDate(String.valueOf(time));
+            upDate.append(year).append("/").append(month);
+            project.setName(name);
+            project.setPaintingwayId(patitingway);
+            project.setUpDate(String.valueOf(upDate));
+            
             // project.setCategoryId(categoryId);
             project.setUserId(user_id);
-            iUserService.uploadFile(file, username, project, path);
+            iUserService.uploadFile(file, username, project, path, String.valueOf(time));
         }
 
         return result;
@@ -65,8 +75,10 @@ public class userController{
     @PostMapping("/test/get")
     public Result test(){
         Result result = new Result();
-        User user = iUserService.test();
-        result.setData(user);
+        // User user = iUserService.test();
+        // result.setData(user);
+        Date upDate = new Date("yyyy/MM/dd");
+        // System.out.println(upDate.f);
         return result;
     }
 }

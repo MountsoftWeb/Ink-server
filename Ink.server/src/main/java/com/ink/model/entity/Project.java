@@ -3,44 +3,35 @@ package com.ink.model.entity;
 public class Project {
     private Integer id;
     private Integer userId;
-    private Double price;
     private String name;
-    private String picture;
+    private Integer paintingwayId;
+    private Integer categoryId;
+    private Integer labelId;
+    private Integer locationId;
     private String upDate;
     private String deleteDate;
-    private Integer categoryId;
+    private String picture;
     private Integer apprecations;
     private Integer collections;
     private project_category project_category;
 
-
-
     public Project() {
-
     }
 
-    public Project(Integer id, String name, String upDate, Integer apprecations, Integer collections) {
+    public Project(Integer id, Integer userId, String name, Integer paintingwayId, Integer categoryId, Integer labelId, Integer locationId, String upDate, String deleteDate, String picture, Integer apprecations, Integer collections, com.ink.model.entity.project_category project_category) {
         this.id = id;
+        this.userId = userId;
         this.name = name;
+        this.paintingwayId = paintingwayId;
+        this.categoryId = categoryId;
+        this.labelId = labelId;
+        this.locationId = locationId;
         this.upDate = upDate;
+        this.deleteDate = deleteDate;
+        this.picture = picture;
         this.apprecations = apprecations;
         this.collections = collections;
-    }
-
-    public String getUpDate() {
-        return upDate;
-    }
-
-    public void setUpDate(String upDate) {
-        this.upDate = upDate;
-    }
-
-    public String getDeleteDate() {
-        return deleteDate;
-    }
-
-    public void setDeleteDate(String deleteDate) {
-        this.deleteDate = deleteDate;
+        this.project_category = project_category;
     }
 
     public Integer getId() {
@@ -59,14 +50,6 @@ public class Project {
         this.userId = userId;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public String getName() {
         return name;
     }
@@ -75,12 +58,12 @@ public class Project {
         this.name = name;
     }
 
-    public String getPicture() {
-        return picture;
+    public Integer getPaintingwayId() {
+        return paintingwayId;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setPaintingwayId(Integer paintingwayId) {
+        this.paintingwayId = paintingwayId;
     }
 
     public Integer getCategoryId() {
@@ -91,13 +74,46 @@ public class Project {
         this.categoryId = categoryId;
     }
 
-    public com.ink.model.entity.project_category getProject_category() {
-        return project_category;
+    public Integer getLabelId() {
+        return labelId;
     }
 
-    public void setProject_category(com.ink.model.entity.project_category project_category) {
-        this.project_category = project_category;
+    public void setLabelId(Integer labelId) {
+        this.labelId = labelId;
     }
+
+    public Integer getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
+    }
+
+    public String getUpDate() {
+        return upDate;
+    }
+
+    public void setUpDate(String upDate) {
+        this.upDate = upDate;
+    }
+
+    public String getDeleteDate() {
+        return deleteDate;
+    }
+
+    public void setDeleteDate(String deleteDate) {
+        this.deleteDate = deleteDate;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     public Integer getApprecations() {
         return apprecations;
     }
@@ -112,5 +128,13 @@ public class Project {
 
     public void setCollections(Integer collections) {
         this.collections = collections;
+    }
+
+    public com.ink.model.entity.project_category getProject_category() {
+        return project_category;
+    }
+
+    public void setProject_category(com.ink.model.entity.project_category project_category) {
+        this.project_category = project_category;
     }
 }

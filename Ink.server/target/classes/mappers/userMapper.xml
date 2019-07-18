@@ -8,7 +8,6 @@
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="regist_time" jdbcType="VARCHAR" property="registTime" />
-    <result column="school" jdbcType="VARCHAR" property="school" />
     <result column="major" jdbcType="VARCHAR" property="major" />
       <association property="user_login" javaType="com.ink.model.entity.user_login">
         <id property="id" column="id"/>
@@ -31,7 +30,6 @@
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="regist_time" jdbcType="VARCHAR" property="registTime" />
-    <result column="school" jdbcType="VARCHAR" property="school" />
     <result column="major" jdbcType="VARCHAR" property="major" />
   </resultMap>
 
@@ -40,7 +38,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, user_name, profile, sex, picture, regist_time, school, major
+    id, user_name, profile, sex, picture, regist_time, major
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -80,10 +78,10 @@
   <insert id="insert" parameterType="com.ink.model.entity.User">
     insert into user (id, user_name, profile, 
       sex, picture, registTime,
-      school, major)
+      major)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{profile,jdbcType=VARCHAR},
       #{sex,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{registTime,jdbcType=VARCHAR},
-      #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR})
+      #{major,jdbcType=VARCHAR})
   </insert>
 
   <insert id="insertSelective" parameterType="com.ink.model.entity.User">
@@ -107,9 +105,6 @@
       <if test="registTime != null">
         registTime,
       </if>
-      <if test="school != null">
-        school,
-      </if>
       <if test="major != null">
         major,
       </if>
@@ -132,9 +127,6 @@
       </if>
       <if test="registTime != null">
         #{registtime,jdbcType=VARCHAR},
-      </if>
-      <if test="school != null">
-        #{school,jdbcType=VARCHAR},
       </if>
       <if test="major != null">
         #{major,jdbcType=VARCHAR},
@@ -165,9 +157,6 @@
       <if test="registTime != null">
         regist_time = #{registTime,jdbcType=VARCHAR},
       </if>
-      <if test="school != null">
-        school = #{school,jdbcType=VARCHAR},
-      </if>
       <if test="major != null">
         major = #{major,jdbcType=VARCHAR},
       </if>
@@ -182,7 +171,6 @@
       sex = #{sex,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
       regist_time = #{registTime,jdbcType=VARCHAR},
-      school = #{school,jdbcType=VARCHAR},
       major = #{major,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

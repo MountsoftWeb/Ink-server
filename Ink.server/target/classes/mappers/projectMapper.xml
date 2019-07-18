@@ -82,7 +82,11 @@
     </update>
 
     <insert id="uploadFile" parameterType="com.ink.model.entity.Project">
-    insert into project (user_id, picture)
-        values (#{project.userId, jdbcType=INTEGER}, #{project.picture, jdbcType=VARCHAR})
+    insert into project (user_id, name, paintingway_id, picture, up_date)
+        values (#{project.userId, jdbcType=INTEGER}, 
+                #{project.name, jdbcType=VARCHAR},
+                #{project.paintingwayId, jdbcType=INTEGER},
+                #{project.picture, jdbcType=VARCHAR},
+                #{project.upDate, jdbcType=VARCHAR})
     </insert>
 </mapper>

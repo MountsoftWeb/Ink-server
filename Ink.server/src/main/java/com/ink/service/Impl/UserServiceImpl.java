@@ -175,33 +175,48 @@ public class userServiceImpl implements IUserService {
         }
     }
 
+    // 文件长传，创建所需文件夹
     @Override
     public String creatProjectFile(String username, StringBuffer time) {
         // 文件上传 本地文件目录
-        String path = "/Users/carlos/Documents/images/" + username + "/" + time;
+        StringBuilder path = new StringBuilder();  
+        // 长度 /Users/carlos/Documents/images/   31
+        path.append("/Users/carlos/Documents/images/")
+            .append(username)
+            .append("/")
+            .append(time)
+            .append("/")
+            .append(String.valueOf(System.currentTimeMillis()));
         // 服务器路径
-        // String path = "/home/carlos/image";
-        File newFile = new File(path);
+        // String path = "/home/carlos/image";  18
+        File newFile = new File(String.valueOf(path));
         boolean bool = newFile.mkdir();
         if (bool) {
-            return path;
+            return String.valueOf(path);
         } else {
             return "no";
         }
     }
 
     @Override
-    public boolean uploadFile(MultipartFile file, String username, Project project, String path) {
+    public boolean uploadFile(MultipartFile file, String username, Project project, String path, String time) {
         if (!file.isEmpty()) {
             try {
                 // 图片命名
-                String fileName = System.currentTimeMillis() + ".png";
-                String userPicturePath = path + "/" + fileName;
-                String mysqlPicture = "/hello/" + username + "/" + System.currentTimeMillis() + ".png";
+                StringBuffer fileName = new StringBuffer();
+                fileName.append(System.currentTimeMillis()).append(".png");
+                StringBuffer userPicturePath = new StringBuffer();
+                userPicturePath.append(path).append("/").append(fileName);
+                StringBuffer mysqlPicture = new StringBuffer();
+                
+                String url = path.substring(31); 
+                // 服务器 18   
+                // String url = path.substring(18); 
+                mysqlPicture.append("/hello/").append(url).append("/").append(fileName);
                 // 存储路径到数据库
-                project.setPicture(mysqlPicture);
+                project.setPicture(String.valueOf(mysqlPicture));
                 projectMapper.uploadFile(project);
-                File newFile = new File(userPicturePath);
+                File newFile = new File(String.valueOf(userPicturePath));
                 if (!newFile.exists()) {
                     newFile.createNewFile();
                 }
