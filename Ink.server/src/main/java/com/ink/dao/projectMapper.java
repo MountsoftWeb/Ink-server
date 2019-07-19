@@ -1,6 +1,8 @@
 package com.ink.dao;
 
 import com.ink.model.entity.Project;
+import com.ink.model.entity.appreciate;
+import com.ink.model.response.projectDetailResponse;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,7 +17,13 @@ public interface projectMapper {
 
     ArrayList selectAllProject();
 
+    projectDetailResponse selectByProjectId(@Param("projectId") Integer projectId);
+
     ArrayList selectByLabel(@Param("label") Integer label);
 
     boolean uploadFile(@Param("project") Project project);
+
+    boolean updataAppreciate(@Param("appreciate")appreciate appreciate);
+
+    boolean insertAppreciate(@Param("appreciate")appreciate appreciate);
 }

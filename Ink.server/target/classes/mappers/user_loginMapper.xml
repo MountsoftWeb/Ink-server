@@ -24,7 +24,7 @@
     select *
     from user_login l, user u
     where u.user_name=#{userEntity.userName} and 
-          u.id=l.user_id and 
+          u.id=l.user_id and
           <!-- l.login_type=#{userEntity.loginType} and  -->
           l.password=#{userEntity.password}
   </select>

@@ -42,7 +42,7 @@ public class userController{
                             ){
         Result result = new Result();
         String username = (String) request.getAttribute("name");
-
+        System.out.println("------------ 上传文件 ------------");
         // 获取时间为作品创建文件夹
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);

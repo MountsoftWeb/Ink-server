@@ -38,9 +38,9 @@ public class avatorController {
         // 获取更新头像用户的用户名
         String username = (String) request.getAttribute("name");
         // 文件上传 本地文件目录
-        String path = "/Users/carlos/Documents/images/" + username;
+//        String path = "/Users/carlos/Documents/images/" + username;
         // 服务器路径
-        // String path = "/home/carlos/image";
+         String path = "/home/carlos/image/" + username;
 
         if (!file.isEmpty()) {
             try {

@@ -160,12 +160,15 @@ public class userServiceImpl implements IUserService {
         return userMapper.selectByUserid();
     }
 
+    /**
+     * 服务器需改变路径
+     */
     @Override
     public boolean creatFile(String username) {
         // 文件上传 本地文件目录
         String path = "/Users/carlos/Documents/images/";
         // 服务器路径
-        // String path = "/home/carlos/image";
+        // String path = "/home/carlos/image/";
         File newFile = new File(path + username);
         boolean bool = newFile.mkdir();
         if (bool) {
@@ -174,13 +177,16 @@ public class userServiceImpl implements IUserService {
             return false;
         }
     }
-
-    // 文件长传，创建所需文件夹
+    /** 
+     * 文件上传，创建所需文件夹
+     * 服务器上传需改变路径
+     */
     @Override
     public String creatProjectFile(String username, StringBuffer time) {
         // 文件上传 本地文件目录
         StringBuilder path = new StringBuilder();  
         // 长度 /Users/carlos/Documents/images/   31
+        // /home/carlos/image/  19
         path.append("/Users/carlos/Documents/images/")
             .append(username)
             .append("/")
@@ -188,9 +194,9 @@ public class userServiceImpl implements IUserService {
             .append("/")
             .append(String.valueOf(System.currentTimeMillis()));
         // 服务器路径
-        // String path = "/home/carlos/image";  18
+        // String path = "/home/carlos/image/";  19
         File newFile = new File(String.valueOf(path));
-        boolean bool = newFile.mkdir();
+        boolean bool = newFile.mkdirs();
         if (bool) {
             return String.valueOf(path);
         } else {
@@ -209,9 +215,11 @@ public class userServiceImpl implements IUserService {
                 userPicturePath.append(path).append("/").append(fileName);
                 StringBuffer mysqlPicture = new StringBuffer();
                 
-                String url = path.substring(31); 
-                // 服务器 18   
-                // String url = path.substring(18); 
+                // String url = path.substring(31); 
+                // 服务器 19
+                // String url = path.substring(19);
+                String url = path.substring(31);
+
                 mysqlPicture.append("/hello/").append(url).append("/").append(fileName);
                 // 存储路径到数据库
                 project.setPicture(String.valueOf(mysqlPicture));
@@ -225,18 +233,12 @@ public class userServiceImpl implements IUserService {
                 out.write(file.getBytes());
                 out.flush();
                 out.close();
-
-                
                 return true;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                
-
                 return false;
             } catch (IOException e) {
                 e.printStackTrace();
-               
-
                 return false;
             }
         }else{

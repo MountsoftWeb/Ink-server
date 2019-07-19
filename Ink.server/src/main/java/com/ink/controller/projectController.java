@@ -1,15 +1,18 @@
 package com.ink.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import com.ink.model.entity.Project;
+import com.ink.model.entity.appreciate;
+import com.ink.model.response.projectDetailResponse;
 import com.ink.service.IProjectService;
 import com.ink.utils.Json.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,28 +27,15 @@ public class projectController {
     public Result getProjecta(){
         Result result = new Result();
         Project commodity = new Project();
-        commodity.setId(12);
-        commodity.setName("name");
-        Project commodity2 = new Project();
-        commodity2.setId(13);
-        commodity2.setName("ds");
-
-
-        ArrayList list = new ArrayList();
-
-        list.add(commodity);
-        list.add(commodity2);
-        list.add(commodity);
-        list.add(commodity);
-        list.add(commodity);
-
-        result.setCode("200");
-
-        result.setMessage("success");
-        result.setData(list);
+        
         return result;
     }
 
+    /**
+     * 按照用户名获取对应作品
+     * @param request
+     * @return
+     */
     @GetMapping("/test/project/getProject")
     public Result getProject(ServletRequest request){
         Result result = new Result();
@@ -86,9 +76,31 @@ public class projectController {
             result.setCode("200");
             return result;
         }
-        
- 
-
-        // return result;
     }
+    @GetMapping("/test/project/updataAppreciate")
+    public void updataAppreciate(@RequestBody appreciate appreciate,
+                                ServletRequest request) {
+        String username = (String) request.getAttribute("name");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
+        String testDate = df.format(new Date());//格式化当前日期
+        
+        System.out.println(appreciate.getProjectId());
+        // appreciate.setAppreciateTime(testDate);
+        // if(appreciate.getStatus().equals("1")){
+        //     iProjectService.updataAppreciate(appreciate);
+        // }else{
+        //     iProjectService.insertAppreciate(appreciate);
+        // }
+    }
+    /**
+     * 按照 作品 id 返回相关信息
+     */
+    @GetMapping("/project/getProjectDetail")
+    public Result getProjectDetail(@RequestParam("projectId") String projectId){
+        Result result = new Result();
+        projectDetailResponse projectDetailResponse = iProjectService.getProjectDetail(Integer.valueOf(projectId));
+        result.setData(projectDetailResponse);
+        return result;
+    }
+    
 }

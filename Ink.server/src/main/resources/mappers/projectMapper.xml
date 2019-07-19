@@ -26,6 +26,7 @@
     </resultMap>
 
     <resultMap id="AllProject" type="com.ink.model.response.projectResponse">
+        <result column="id" jdbcType="INTEGER" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="up_date" jdbcType="VARCHAR" property="upDate" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />
@@ -34,6 +35,18 @@
         <result column="user_name" jdbcType="VARCHAR" property="userName" />
     </resultMap>
 
+    <resultMap id="projectDetail" type="com.ink.model.response.projectDetailResponse">
+        <!-- <result column="id" jdbcType="INTEGER" property="id" /> -->
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="up_date" jdbcType="VARCHAR" property="upDate" />
+        <result column="picture" jdbcType="VARCHAR" property="projectPicture" />
+        <result column="apprecations" jdbcType="INTEGER" property="apprecations" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="profile" jdbcType="VARCHAR" property="profile" />
+        <result column="major" jdbcType="VARCHAR" property="major" />
+        <result column="user_picture" jdbcType="VARCHAR" property="userPicture" />
+        
+    </resultMap>
 
     <select id="selectByUser" parameterType="java.lang.Integer" resultMap="CategoryResultMap">
         select price, picture, p.name, ca.c_name
@@ -48,7 +61,7 @@
     </select>
 
     <select id="selectByLabel" parameterType="java.util.List" resultMap="AllProject">
-        select  p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
+        select  p.id, p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
         from project p
           inner join category c on p.category_id = c.id
           inner join user u on u.id = p.user_id
@@ -66,9 +79,15 @@
         </association>
 
     -->
+    <select id="selectByProjectId" parameterType="com.ink.model.response.projectDetailResponse" resultMap="projectDetail">
+        select p.name, p.up_date, p.picture, p.apprecations, u.user_name, u.profile, u.picture as user_picture, u.major
+        from project p
+            inner join user u on p.user_id = u.id
+        where p.id = #{projectId, jdbcType=INTEGER}
+    </select>
     
     <select id="selectAllProject" parameterType="java.util.List" resultMap="AllProject">
-        select  p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
+        select  p.id, p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
         from project p
           inner join category c on p.category_id = c.id
           inner join user u on u.id = p.user_id
@@ -88,5 +107,24 @@
                 #{project.paintingwayId, jdbcType=INTEGER},
                 #{project.picture, jdbcType=VARCHAR},
                 #{project.upDate, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 更新状态 -->
+    <update id="updataAppreciate" parameterType="com.ink.model.entity.appreciate">
+        UPDATE appreciate 
+        SET project_id = #{appreciate.projectId, jdbcType=INTEGER}, 
+            user_id = #{appreciate.userId}, 
+            status = #{appreciate.status, jdbcType=INTEGER}, 
+            appreciate_time = #{appreciate.appreciateTime} 
+        WHERE id = 1
+    </update>
+
+    <insert id="insertAppreciate" parameterType="com.ink.model.entity.appreciate">
+        INSERT INTO appreciate (project_id, user_id, status, appreciate_time) 
+        VALUES (#{appreciate.projectId}, 
+                #{appreciate.userId},
+                #{appreciate.status},
+                #{appreciate.appreciateTime},);
+
     </insert>
 </mapper>

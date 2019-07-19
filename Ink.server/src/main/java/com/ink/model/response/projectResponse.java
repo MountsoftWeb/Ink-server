@@ -4,6 +4,7 @@ package com.ink.model.response;
  * @author Created by carlos
  */
 public class projectResponse {
+    private Integer id;
     private String name;
     private String upDate;
     private String picture;
@@ -13,6 +14,14 @@ public class projectResponse {
 
     public String getName() {
         return name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setName(String name) {
