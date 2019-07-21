@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ink.dao.followMapper">
+    <resultMap id="BaseResultMap" type="">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+    </resultMap>
+<!-- resultMap="BaseResultMap" -->
+    <select id="getFollowByUserId" resultType="java.util.List" >
+        select user_id 
+        from follows 
+        where user_id = #{userId, jdbcType=INTEGERY}
+    </select>
+
+    <select id="getFansByUserId" resultType="java.util.List">
+        select user_id 
+        from follows 
+        where follow_id = #{userId, jdbcType=INTEGER}
+    </select>
+
+    <!-- 共同关注 select * from `com_wechat_user_follow` where `uid` in ('你的id', '某个用户id') -->
+
+    <!-- 是否相互关注 select * from `com_wechat_user_follow` where `uid`='你的id' and `fid`='某个用户id' and `uid` in (select `fid` from `com_wechat_user_follow` where `uid`='某个用户id') -->
+
+</mapper>

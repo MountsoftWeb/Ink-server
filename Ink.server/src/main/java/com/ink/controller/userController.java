@@ -1,5 +1,6 @@
 package com.ink.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +26,6 @@ public class userController{
     @PostMapping("/test/getDetail")
     public Result getDetail(ServletRequest request){
         Result result = new Result();
-
         String username = (String) request.getAttribute("name");
         User user = iUserService.getDetail(username);
         result.setCode("200");
@@ -33,6 +34,14 @@ public class userController{
         return result;
     }
 
+    /**
+     * 上传作品
+     * @param name
+     * @param patitingway
+     * @param file
+     * @param request
+     * @return
+     */
     @PostMapping("/test/user/uploadFile")
     public Result uploadFile(
                             @RequestParam(name = "name", required = false) String name,
@@ -72,6 +81,25 @@ public class userController{
 
         return result;
     }
+    
+    @GetMapping("/user/getFollowsFans")
+    public Result getFollows(@RequestParam(value = "userId", required = false) String userId) {
+        Result result = new Result();
+
+
+        return result;
+    }
+
+    public void upFollow(@RequestParam(value = "userId") String userId,
+                        ServletRequest request){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
+        String testDate = df.format(new Date());//格式化当前日期
+        String username = (String) request.getAttribute("name");
+        Integer my_id = iUserService.selectByUsername(username);
+
+    }
+    
+    
     @PostMapping("/test/get")
     public Result test(){
         Result result = new Result();

@@ -2,6 +2,7 @@ package com.ink.dao;
 
 import com.ink.model.entity.Project;
 import com.ink.model.entity.appreciate;
+import com.ink.model.entity.label;
 import com.ink.model.response.projectDetailResponse;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -13,13 +14,13 @@ import java.util.ArrayList;
 public interface projectMapper {
     Project selectByUser(Integer id);
 
-    ArrayList selectByUserId(@Param("id") Integer id);
+    ArrayList<Project> selectByUserId(@Param("id") Integer id);
 
-    ArrayList selectAllProject();
+    ArrayList<Project> selectAllProject();
 
     projectDetailResponse selectByProjectId(@Param("projectId") Integer projectId);
 
-    ArrayList selectByLabel(@Param("label") Integer label);
+    ArrayList<Project> selectByLabel(@Param("label") Integer label);
 
     boolean uploadFile(@Param("project") Project project);
 

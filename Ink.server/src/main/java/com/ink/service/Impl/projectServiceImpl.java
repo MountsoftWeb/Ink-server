@@ -2,7 +2,9 @@ package com.ink.service.Impl;
 
 import com.ink.dao.projectMapper;
 import com.ink.dao.userMapper;
+import com.ink.model.entity.Project;
 import com.ink.model.entity.appreciate;
+import com.ink.model.entity.pageBean;
 import com.ink.model.response.projectDetailResponse;
 import com.ink.service.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +22,20 @@ public class projectServiceImpl implements IProjectService {
     @Autowired
     userMapper userMapper;
     @Override
-    public ArrayList getProjectByUsername(String userName) {
+    public ArrayList<Project> getProjectByUsername(String userName) {
         Integer id = userMapper.selectByUsername(userName);
         return projectMapper.selectByUserId(id);
     }
 
     @Override
-    public ArrayList getAllProject() {
+    public ArrayList<Project> getAllProject() {
         return projectMapper.selectAllProject();
     }
 
     @Override
-    public ArrayList getProject(String id) {
+    public ArrayList<Project> getProject(String id) {
         Integer label = Integer.valueOf(id);
-        ArrayList list = projectMapper.selectByLabel(label);
+        ArrayList<Project> list = projectMapper.selectByLabel(label);
         
         return list;
     }
@@ -66,5 +68,15 @@ public class projectServiceImpl implements IProjectService {
 
 
         return projectResponse;
+    }
+
+    @Override
+    public pageBean getPageNum(int pageNum, int pageSize) {
+
+        ArrayList list = projectMapper.selectAllProject();
+        pageBean pageBean = new pageBean<>(pageNum, pageSize, list.size());
+        
+        pageBean.setList(list);
+        return pageBean;
 	}
 }
