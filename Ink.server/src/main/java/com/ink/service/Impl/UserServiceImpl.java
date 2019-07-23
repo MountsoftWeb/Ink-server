@@ -1,10 +1,12 @@
 package com.ink.service.Impl;
 
+import com.ink.dao.labelMapper;
 import com.ink.dao.projectCategoryMapper;
 import com.ink.dao.projectMapper;
 import com.ink.dao.user_loginMapper;
 import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
+import com.ink.model.entity.label;
 import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
 import com.ink.dao.userMapper;
@@ -36,6 +38,8 @@ public class userServiceImpl implements IUserService {
     projectCategoryMapper commodityCategoryMapper;
     @Autowired
     projectMapper projectMapper;
+    @Autowired
+    labelMapper labelMapper;
     private int date;
 
     /**
@@ -249,6 +253,23 @@ public class userServiceImpl implements IUserService {
     @Override
     public Integer selectByUsername(String userName) {
         return userMapper.selectByUsername(userName);
+    }
+
+    @Override
+    public Integer insertLabel(String labelName) {
+        
+        label l = new label();
+        // l.setId(null);
+        l.setLabelName(labelName);
+        
+        Integer id = labelMapper.insertLabel(l);
+        return id;
+        // return l.getId();
+    }
+
+    @Override
+    public Integer deleteProjectId(Integer id) {
+        return projectMapper.deleteProjectId(id);
     }
 
     

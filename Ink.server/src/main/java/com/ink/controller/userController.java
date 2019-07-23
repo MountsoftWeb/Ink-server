@@ -45,7 +45,9 @@ public class userController{
     @PostMapping("/test/user/uploadFile")
     public Result uploadFile(
                             @RequestParam(name = "name", required = false) String name,
-                            @RequestParam(name = "label", required = false) Integer patitingway,
+                            @RequestParam(name = "describe", required = false) String describe,
+                            @RequestParam(name = "label", required = false) String label,
+                            @RequestParam(name = "paintingwayId", required = false) Integer paintingwayId,
                             @RequestParam(name = "image_data", required = false) MultipartFile file, 
                             ServletRequest request
                             ){
@@ -61,7 +63,7 @@ public class userController{
         StringBuffer time = new StringBuffer();
         time.append(year).append(month).append(day);
         String path = iUserService.creatProjectFile(username, time);
-
+        Integer labelId = iUserService.insertLabel(label);
         Integer user_id = iUserService.selectByUsername(username);
 
         if (path.equals("no")){
@@ -71,9 +73,10 @@ public class userController{
             Project project = new Project();
             upDate.append(year).append("/").append(month);
             project.setName(name);
-            project.setPaintingwayId(patitingway);
+            project.setPaintingwayId(paintingwayId);
             project.setUpDate(String.valueOf(upDate));
-            
+            project.setDeleteDate(describe);
+            project.setLabelId(labelId);
             // project.setCategoryId(categoryId);
             project.setUserId(user_id);
             iUserService.uploadFile(file, username, project, path, String.valueOf(time));
@@ -99,7 +102,15 @@ public class userController{
 
     }
     
-    
+    @GetMapping("/test/user/deleteProject")
+    public Result deleteProject(@RequestParam(value = "projectId") String projectId){
+        Result result = new Result();
+        Integer id = Integer.valueOf(projectId);
+        iUserService.deleteProjectId(id);
+
+        return result;
+    }
+
     @PostMapping("/test/get")
     public Result test(){
         Result result = new Result();

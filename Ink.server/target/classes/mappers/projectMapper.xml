@@ -10,6 +10,7 @@
         <result column="apprecations" javaType="INTEGER" property="apprecations" />
         <result column="collections" javaType="INTEGER" property="collections" />
         <result column="category_Id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe" />
     </resultMap>
     <!-- 分类表 -->
     <resultMap id="CategoryResultMap" type="com.ink.model.entity.Project">
@@ -63,9 +64,11 @@
     <select id="selectByLabel" parameterType="java.util.List" resultMap="AllProject">
         select  p.id, p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
         from project p
+          inner join label l on p.label_id = l.id
           inner join category c on p.category_id = c.id
           inner join user u on u.id = p.user_id
-        where p.category_id = #{label, jdbcType=INTEGER}
+        where   l.id = #{labelId, jdbcType=INTEGER} or 
+                c.id = #{categoryId, jdbcType=INTEGER}
     </select>
 
     <!--
@@ -89,7 +92,7 @@
     <select id="selectAllProject" parameterType="java.util.List" resultMap="AllProject">
         select  p.id, p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
         from project p
-          inner join category c on p.category_id = c.id
+          <!-- inner join category c on p.category_id = c.id -->
           inner join user u on u.id = p.user_id
     </select>
 
@@ -101,12 +104,14 @@
     </update>
 
     <insert id="uploadFile" parameterType="com.ink.model.entity.Project">
-    insert into project (user_id, name, paintingway_id, picture, up_date)
+    insert into project (user_id, name, paintingway_id, label_id, picture, up_date, describe)
         values (#{project.userId, jdbcType=INTEGER}, 
                 #{project.name, jdbcType=VARCHAR},
                 #{project.paintingwayId, jdbcType=INTEGER},
+                #{project.labelId, jdbcType=INTEGER},
                 #{project.picture, jdbcType=VARCHAR},
-                #{project.upDate, jdbcType=VARCHAR})
+                #{project.upDate, jdbcType=VARCHAR},
+                #{project.describe, jdbcType=VARCHAR})
     </insert>
 
     <!-- 更新状态 -->

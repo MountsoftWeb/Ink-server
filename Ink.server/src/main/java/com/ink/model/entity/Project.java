@@ -14,11 +14,22 @@ public class Project {
     private Integer apprecations;
     private Integer collections;
     private project_category project_category;
+    private String describe;
 
     public Project() {
     }
 
-    public Project(Integer id, Integer userId, String name, Integer paintingwayId, Integer categoryId, Integer labelId, Integer locationId, String upDate, String deleteDate, String picture, Integer apprecations, Integer collections, com.ink.model.entity.project_category project_category) {
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    public Project(Integer id, Integer userId, String name, Integer paintingwayId, Integer categoryId, Integer labelId,
+            Integer locationId, String upDate, String deleteDate, String picture, Integer apprecations,
+            Integer collections, com.ink.model.entity.project_category project_category) {
         this.id = id;
         this.userId = userId;
         this.name = name;

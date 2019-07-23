@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -42,10 +44,10 @@ public class loginController {
         System.out.println(ip);
         user_login.setLoginip(ip);
 
-        Date data = new Date();
-
-//        user_login.setLogintime(String.valueOf(System.currentTimeMillis()));
-        user_login.setLogintime(data.toString());
+//      user_login.setLogintime(String.valueOf(System.currentTimeMillis()));
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
+        String testDate = df.format(new Date());//格式化当前日期
+        user_login.setLogintime(testDate);
         System.out.println(user_login.getLogintime());
 
         System.out.println("username = " + userEntity.getUsername());

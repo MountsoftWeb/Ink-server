@@ -32,4 +32,8 @@ public interface IUserService {
     String creatProjectFile(String username, StringBuffer time);
     // uploadFile
     boolean uploadFile(MultipartFile file, String username, Project project, String path, String time);
+    // 插入新标签
+    Integer insertLabel(String label);
+
+    Integer deleteProjectId(Integer id);
 }

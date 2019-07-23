@@ -33,9 +33,10 @@ public class projectServiceImpl implements IProjectService {
     }
 
     @Override
-    public ArrayList<Project> getProject(String id) {
-        Integer label = Integer.valueOf(id);
-        ArrayList<Project> list = projectMapper.selectByLabel(label);
+    public ArrayList<Project> getProject(String category, String label) {
+        Integer labelId = Integer.valueOf(label);
+        Integer categoryId = Integer.valueOf(category);
+        ArrayList<Project> list = projectMapper.selectByLabel(labelId, categoryId);
         
         return list;
     }

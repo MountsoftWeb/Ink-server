@@ -80,7 +80,7 @@ public class projectController {
             result.setMessage("OK");
             return result;
         }else{
-            ArrayList<Project> list = iProjectService.getProject(category);
+            ArrayList<Project> list = iProjectService.getProject(category, label);
             pageBean<Project> pb = new pageBean<>(page, 10, list.size());
             pb.setList(list);
             result.setData(pb);

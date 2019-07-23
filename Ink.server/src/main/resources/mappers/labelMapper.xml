@@ -11,4 +11,10 @@
         from label
     </select>
 
+    <insert id="insertLabel" useGeneratedKeys="true" keyProperty="label.id" parameterType="com.ink.model.entity.label" >
+        insert into label 
+                (label_name) 
+        VALUES (
+                #{label.labelName, jdbcType=VARCHAR});
+    </insert>
 </mapper>

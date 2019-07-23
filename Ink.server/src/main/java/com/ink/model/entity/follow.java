@@ -1,14 +1,22 @@
 package com.ink.model.entity;
 
 
-public class follows {
+public class follow {
     private Integer id;
     private Integer userId;
-    private Integer follow_id;
+    private Integer followId;
     private String time;
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getFollowId() {
+        return followId;
+    }
+
+    public void setFollowId(Integer followId) {
+        this.followId = followId;
     }
 
     public String getTime() {
@@ -19,13 +27,6 @@ public class follows {
         this.time = time;
     }
 
-    public Integer getFollow_id() {
-        return follow_id;
-    }
-
-    public void setFollow_id(Integer follow_id) {
-        this.follow_id = follow_id;
-    }
 
     public Integer getUserId() {
         return userId;
