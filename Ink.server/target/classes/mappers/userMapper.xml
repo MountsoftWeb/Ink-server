@@ -22,6 +22,14 @@
   <resultMap id="picturePath" type="java.lang.String" >
     <result column="picture" property="picture" jdbcType="VARCHAR" />
   </resultMap>
+  <!-- ID 名称 头像地址 -->
+  <resultMap id="hotUsers" type="com.ink.model.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+
+  </resultMap>
+
   <!-- 用户详细信息 -->
   <resultMap id="BaseUserDetail" type="com.ink.model.entity.User">
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -188,5 +196,11 @@
       from user
       where user_name = #{username, jdbcType=VARCHAR}
     ]]>
+  </select>
+
+  <select id="getHotUser" resultMap="hotUsers">
+    select id, user_name, picture
+    from user 
+      order by id limit 10
   </select>
 </mapper>

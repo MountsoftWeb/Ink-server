@@ -8,6 +8,8 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="picture" jdbcType="VARCHAR" property="picture" />
         <result column="apprecations" javaType="INTEGER" property="apprecations" />
+        <result column="up_date" jdbcType="VARCHAR" property="upDate" />
+        <result column="label_id" jdbcType="INTEGER" property="labelId" />
         <result column="collections" javaType="INTEGER" property="collections" />
         <result column="category_Id" jdbcType="INTEGER" property="categoryId"/>
         <result column="describe" jdbcType="VARCHAR" property="describe" />
@@ -46,7 +48,15 @@
         <result column="profile" jdbcType="VARCHAR" property="profile" />
         <result column="major" jdbcType="VARCHAR" property="major" />
         <result column="user_picture" jdbcType="VARCHAR" property="userPicture" />
+        <result column="status" jdbcType="INTEGER" property="status" />
         
+    </resultMap>
+
+    <resultMap id="hotProjects" type="com.ink.model.entity.Project" >
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <!-- <result > -->
     </resultMap>
 
     <select id="selectByUser" parameterType="java.lang.Integer" resultMap="CategoryResultMap">
@@ -56,9 +66,13 @@
     </select>
 
     <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select id, user_id, category_id, picture, up_date
+        select id, name, label_id, state, category_id, picture, up_date, apprecations
         from project
         where user_id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="selectForUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id, 
     </select>
 
     <select id="selectByLabel" parameterType="java.util.List" resultMap="AllProject">
@@ -83,10 +97,11 @@
 
     -->
     <select id="selectByProjectId" parameterType="com.ink.model.response.projectDetailResponse" resultMap="projectDetail">
-        select p.name, p.up_date, p.picture, p.apprecations, u.user_name, u.profile, u.picture as user_picture, u.major
+        select p.name, p.up_date, p.picture, p.apprecations, u.user_name, u.profile, u.picture as user_picture, u.major, a.status
         from project p
-            inner join user u on p.user_id = u.id
-        where p.id = #{projectId, jdbcType=INTEGER}
+            left join appreciate a on a.user_id = #{id, jdbcType=INTEGER} and a.project_id = #{projectId, jdbcType=INTEGER}
+            left join user u on u.id = p.user_id
+            where p.id = #{projectId, jdbcType=INTEGER}
     </select>
     
     <select id="selectAllProject" parameterType="java.util.List" resultMap="AllProject">
@@ -94,6 +109,19 @@
         from project p
           <!-- inner join category c on p.category_id = c.id -->
           inner join user u on u.id = p.user_id
+    </select>
+
+    <select id="deleteFileByProjectId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select picture
+        from project
+        where id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="getHotProject" resultMap="hotProjects">
+        select id, name, picture
+        from project
+            order by id desc
+            limit 12
     </select>
 
     <update id="uploadFisle" parameterType="com.ink.model.entity.Project">
@@ -104,32 +132,36 @@
     </update>
 
     <insert id="uploadFile" parameterType="com.ink.model.entity.Project">
-    insert into project (user_id, name, paintingway_id, label_id, picture, up_date, describe)
+    insert into project (user_id, name, paintingway_id, label_id, picture, up_date, state)
         values (#{project.userId, jdbcType=INTEGER}, 
                 #{project.name, jdbcType=VARCHAR},
                 #{project.paintingwayId, jdbcType=INTEGER},
                 #{project.labelId, jdbcType=INTEGER},
                 #{project.picture, jdbcType=VARCHAR},
                 #{project.upDate, jdbcType=VARCHAR},
-                #{project.describe, jdbcType=VARCHAR})
+                #{project.state, jdbcType=VARCHAR})
     </insert>
 
     <!-- 更新状态 -->
     <update id="updataAppreciate" parameterType="com.ink.model.entity.appreciate">
         UPDATE appreciate 
-        SET project_id = #{appreciate.projectId, jdbcType=INTEGER}, 
-            user_id = #{appreciate.userId}, 
+        SET 
             status = #{appreciate.status, jdbcType=INTEGER}, 
             appreciate_time = #{appreciate.appreciateTime} 
-        WHERE id = 1
+        WHERE project_id = #{appreciate.projectId} and user_id = #{appreciate.userId}
     </update>
 
     <insert id="insertAppreciate" parameterType="com.ink.model.entity.appreciate">
         INSERT INTO appreciate (project_id, user_id, status, appreciate_time) 
         VALUES (#{appreciate.projectId}, 
                 #{appreciate.userId},
-                #{appreciate.status},
-                #{appreciate.appreciateTime},);
-
+                1,
+                #{appreciate.appreciateTime});
     </insert>
+
+
+    <delete id="deleteProjectId" parameterType="java.lang.Integer">
+        delete from project 
+            where id = #{id, jdbcType=INTEGER}
+    </delete>
 </mapper>

@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -262,8 +263,8 @@ public class userServiceImpl implements IUserService {
         // l.setId(null);
         l.setLabelName(labelName);
         
-        Integer id = labelMapper.insertLabel(l);
-        return id;
+        labelMapper.insertLabel(l);
+        return l.getId();
         // return l.getId();
     }
 
@@ -272,5 +273,39 @@ public class userServiceImpl implements IUserService {
         return projectMapper.deleteProjectId(id);
     }
 
-    
+    @Override
+    public boolean deleteFileByProjectId(Integer id) {
+        String filename = projectMapper.deleteFileByProjectId(id);
+        // 文件上传 本地文件目录
+        String path = "/Users/carlos/Documents/images/";
+        // 服务器路径
+        // String path = "/home/carlos/image/";
+        String filePath = path + filename.substring(7, filename.length());
+        System.out.println(filePath);
+        
+        // fileName.append(path).append(filePath);
+
+        File file = new File(filePath);
+        return deleteFile(file);
+        
+    }
+
+    private boolean deleteFile(File file) {
+        if (!file.exists()) {
+            return false;
+        }
+                
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File f : files) {
+                deleteFile(f);
+            }  
+        }
+        return file.delete();
+    }
+
+    @Override
+    public ArrayList getHotUser() {
+        return userMapper.getHotUser();
+	}
 }

@@ -18,7 +18,7 @@ public interface projectMapper {
 
     ArrayList<Project> selectAllProject();
 
-    projectDetailResponse selectByProjectId(@Param("projectId") Integer projectId);
+    projectDetailResponse selectByProjectId(@Param("projectId") Integer projectId, @Param("id") Integer id);
 
     ArrayList<Project> selectByLabel(@Param("labelId") Integer labelId,
                                     @Param("categoryId") Integer categoryId);
@@ -29,5 +29,10 @@ public interface projectMapper {
 
     boolean insertAppreciate(@Param("appreciate")appreciate appreciate);
 
+    String deleteFileByProjectId(@Param("id") Integer id);
+    
     Integer deleteProjectId(@Param("id") Integer id);
+
+    ArrayList getHotProject();
+
 }

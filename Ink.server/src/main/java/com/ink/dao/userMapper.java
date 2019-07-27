@@ -1,5 +1,7 @@
 package com.ink.dao;
 
+import java.util.ArrayList;
+
 import com.ink.model.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -35,4 +37,6 @@ public interface userMapper {
     boolean checkUser(@Param("username")String username);
 
     boolean creatFile(@Param("username")String username);
+
+    ArrayList getHotUser();
 }

@@ -14,22 +14,23 @@ public class Project {
     private Integer apprecations;
     private Integer collections;
     private project_category project_category;
-    private String describe;
+    private String state;
 
     public Project() {
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getState() {
+        return state;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Project(Integer id, Integer userId, String name, Integer paintingwayId, Integer categoryId, Integer labelId,
             Integer locationId, String upDate, String deleteDate, String picture, Integer apprecations,
-            Integer collections, com.ink.model.entity.project_category project_category) {
+            Integer collections, com.ink.model.entity.project_category project_category,
+            String state) {
         this.id = id;
         this.userId = userId;
         this.name = name;
@@ -43,6 +44,7 @@ public class Project {
         this.apprecations = apprecations;
         this.collections = collections;
         this.project_category = project_category;
+        this.state = state;
     }
 
     public Integer getId() {

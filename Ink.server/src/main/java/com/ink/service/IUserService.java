@@ -1,5 +1,7 @@
 package com.ink.service;
 
+import java.util.ArrayList;
+
 import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
 import com.ink.model.entity.user_login;
@@ -34,6 +36,10 @@ public interface IUserService {
     boolean uploadFile(MultipartFile file, String username, Project project, String path, String time);
     // 插入新标签
     Integer insertLabel(String label);
+    // 按照 project ID 返回文件路径，用于删除文件
+    boolean deleteFileByProjectId(Integer id);
 
     Integer deleteProjectId(Integer id);
+    // 获取热门用户
+    ArrayList getHotUser();
 }

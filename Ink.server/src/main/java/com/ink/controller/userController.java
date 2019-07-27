@@ -1,6 +1,8 @@
 package com.ink.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -45,7 +47,7 @@ public class userController{
     @PostMapping("/test/user/uploadFile")
     public Result uploadFile(
                             @RequestParam(name = "name", required = false) String name,
-                            @RequestParam(name = "describe", required = false) String describe,
+                            @RequestParam(name = "state", required = false) String state,
                             @RequestParam(name = "label", required = false) String label,
                             @RequestParam(name = "paintingwayId", required = false) Integer paintingwayId,
                             @RequestParam(name = "image_data", required = false) MultipartFile file, 
@@ -75,7 +77,7 @@ public class userController{
             project.setName(name);
             project.setPaintingwayId(paintingwayId);
             project.setUpDate(String.valueOf(upDate));
-            project.setDeleteDate(describe);
+            project.setState(state);
             project.setLabelId(labelId);
             // project.setCategoryId(categoryId);
             project.setUserId(user_id);
@@ -102,13 +104,27 @@ public class userController{
 
     }
     
+    /**
+     * 按照 project ID 删除文件，先找到相应文件删除，然后删除数据库中信息
+     * @param projectId
+     * @return
+     */
     @GetMapping("/test/user/deleteProject")
     public Result deleteProject(@RequestParam(value = "projectId") String projectId){
         Result result = new Result();
         Integer id = Integer.valueOf(projectId);
-        iUserService.deleteProjectId(id);
+        boolean bool = iUserService.deleteFileByProjectId(id);
+        if (bool){
+            iUserService.deleteProjectId(id);
+            result.setMessage("成功删除");
+            return result;
 
-        return result;
+        } else{
+            result.setCode("201");
+            result.setMessage("删除失败");
+            return result;
+        }
+
     }
 
     @PostMapping("/test/get")
@@ -118,6 +134,18 @@ public class userController{
         // result.setData(user);
         Date upDate = new Date("yyyy/MM/dd");
         // System.out.println(upDate.f);
+        return result;
+    }
+
+    /**
+     * 返回粉丝最多的前九用户
+     * @return
+     */
+    @GetMapping("/user/getHotUser")
+    public Result getHotUser(){
+        Result result = new Result();
+        ArrayList list = iUserService.getHotUser();
+        result.setData(list);
         return result;
     }
 }

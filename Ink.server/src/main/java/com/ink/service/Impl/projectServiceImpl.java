@@ -42,17 +42,18 @@ public class projectServiceImpl implements IProjectService {
     }
 
     @Override
-    public void updataAppreciate(appreciate appreciate) {
+    public void updataAppreciate(appreciate appreciate, String userName) {
         // Integer userId = userMapper.selectByUsername(username);
         
         // System.out.println(testDate);
         // String current = df.format(System.currentTimeMillis());  
-        
+        Integer userId = userMapper.selectByUsername(userName);
+        appreciate.setUserId(userId);
         projectMapper.updataAppreciate(appreciate);
     }
 
     @Override
-    public void insertAppreciate(appreciate appreciate) {
+    public void insertAppreciate(appreciate appreciate, String userName) {
         
         // System.out.println(testDate);
         // String current = df.format(System.currentTimeMillis());  
@@ -60,12 +61,17 @@ public class projectServiceImpl implements IProjectService {
         // appreciate.setProjectId(projectId);
         // appreciate.setUserId(userId);
         // appreciate.setAppreciateTime(testDate);
+        Integer userId = userMapper.selectByUsername(userName);
+        appreciate.setUserId(userId);
         projectMapper.insertAppreciate(appreciate);
     }
 
     @Override
-    public projectDetailResponse getProjectDetail(Integer projectId) {
-        projectDetailResponse projectResponse = projectMapper.selectByProjectId(projectId);
+    public projectDetailResponse getProjectDetail(Integer projectId, String userName) {
+        Integer id = userMapper.selectByUsername(userName);
+
+
+        projectDetailResponse projectResponse = projectMapper.selectByProjectId(projectId, id);
 
 
         return projectResponse;
@@ -76,8 +82,13 @@ public class projectServiceImpl implements IProjectService {
 
         ArrayList list = projectMapper.selectAllProject();
         pageBean pageBean = new pageBean<>(pageNum, pageSize, list.size());
-        
         pageBean.setList(list);
         return pageBean;
 	}
+
+    @Override
+    public ArrayList getHotProject() {
+        
+        return projectMapper.getHotProject();
+    }
 }

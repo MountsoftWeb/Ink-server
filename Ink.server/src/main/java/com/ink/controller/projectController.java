@@ -88,28 +88,39 @@ public class projectController {
             return result;
         }
     }
+
     @GetMapping("/test/project/updataAppreciate")
-    public void updataAppreciate(@RequestBody appreciate appreciate,
+    public void updataAppreciate(@RequestParam(value = "projectId") String projectId,
+                                @RequestParam(value = "status") String status,
                                 ServletRequest request) {
+        appreciate appreciate = new appreciate();
         String username = (String) request.getAttribute("name");
+        appreciate.setProjectId(Integer.valueOf(projectId));
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
         String testDate = df.format(new Date());//格式化当前日期
-        
-        System.out.println(appreciate.getProjectId());
-        // appreciate.setAppreciateTime(testDate);
-        // if(appreciate.getStatus().equals("1")){
-        //     iProjectService.updataAppreciate(appreciate);
-        // }else{
-        //     iProjectService.insertAppreciate(appreciate);
-        // }
+        appreciate.setAppreciateTime(testDate);
+        // System.out.println(appreciate.getProjectId());
+
+        if(status.equals("1") || status.equals("0")){
+            appreciate.setStatus(Integer.valueOf(status));
+            iProjectService.updataAppreciate(appreciate, username);
+        }else{
+            iProjectService.insertAppreciate(appreciate, username);
+        }
     }
+    
     /**
      * 按照 作品 id 返回相关信息
      */
-    @GetMapping("/project/getProjectDetail")
-    public Result getProjectDetail(@RequestParam("projectId") String projectId){
+    @GetMapping("/test/project/getProjectDetail")
+    public Result getProjectDetail(@RequestParam("projectId") String projectId,
+                                    ServletRequest request){
         Result result = new Result();
-        projectDetailResponse projectDetailResponse = iProjectService.getProjectDetail(Integer.valueOf(projectId));
+        String username = (String) request.getAttribute("name");
+        System.out.println(username);
+
+        projectDetailResponse projectDetailResponse = iProjectService.getProjectDetail(Integer.valueOf(projectId), username);
         result.setData(projectDetailResponse);
         return result;
     }
@@ -123,6 +134,18 @@ public class projectController {
         int pageSize = 10;
         pageBean<Project> pb = iProjectService.getPageNum(pageNum, pageSize);
         result.setData(pb);
+        return result;
+    }
+
+    /**
+     * 返回粉丝点赞最多的前九的作品
+     * @return
+     */
+    @GetMapping("/project/getHotProject") 
+    public Result getHotProject(){
+        Result result = new Result();
+        ArrayList list = iProjectService.getHotProject();
+        result.setData(list);
         return result;
     }
 }
