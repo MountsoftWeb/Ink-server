@@ -6,6 +6,7 @@ import com.ink.dao.projectMapper;
 import com.ink.dao.user_loginMapper;
 import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
+import com.ink.model.entity.follow;
 import com.ink.model.entity.label;
 import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
@@ -23,6 +24,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -308,4 +310,16 @@ public class userServiceImpl implements IUserService {
     public ArrayList getHotUser() {
         return userMapper.getHotUser();
 	}
+
+    @Override
+    public boolean upFollow(Integer myId, Integer userId) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
+        String testDate = df.format(new Date());//格式化当前日期
+        follow follow = new follow();
+        follow.setFollowId(myId);
+        follow.setUserId(userId);
+        follow.setTime(testDate);
+        int bool = userMapper.upFollow(follow);
+        return bool == 1 ? true : false;
+    }
 }

@@ -147,6 +147,13 @@
     values (#{user.userName, jdbcType=VARCHAR}, #{user.registTime, jdbcType=VARCHAR})
   </insert>
 
+  <insert id="upFollow" parameterType="com.ink.model.entity.follow">
+    insert into follows (user_id, follow_id, time)
+    values (#{follow.userId, jdbcType=INTEGER},
+            #{follow.followId, jdbcType=INTEGER},
+            #{follow.time, jdbcType=VARCHAR})
+  </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.ink.model.entity.User">
     update user
     <set>

@@ -39,7 +39,7 @@
     </resultMap>
 
     <resultMap id="projectDetail" type="com.ink.model.response.projectDetailResponse">
-        <!-- <result column="id" jdbcType="INTEGER" property="id" /> -->
+        <result column="id" jdbcType="INTEGER" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="up_date" jdbcType="VARCHAR" property="upDate" />
         <result column="picture" jdbcType="VARCHAR" property="projectPicture" />
@@ -97,7 +97,7 @@
 
     -->
     <select id="selectByProjectId" parameterType="com.ink.model.response.projectDetailResponse" resultMap="projectDetail">
-        select p.name, p.up_date, p.picture, p.apprecations, u.user_name, u.profile, u.picture as user_picture, u.major, a.status
+        select u.id, p.name, p.up_date, p.picture, p.apprecations, u.user_name, u.profile, u.picture as user_picture, u.major, a.status
         from project p
             left join appreciate a on a.user_id = #{id, jdbcType=INTEGER} and a.project_id = #{projectId, jdbcType=INTEGER}
             left join user u on u.id = p.user_id
@@ -122,6 +122,12 @@
         from project
             order by id desc
             limit 12
+    </select>
+
+    <select id="selectUserIdByProjectId" resultType="java.lang.Integer">
+        select user_id
+        from project
+        where id = #{projectId, jdbcType=INTEGER}
     </select>
 
     <update id="uploadFisle" parameterType="com.ink.model.entity.Project">

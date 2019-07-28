@@ -13,9 +13,18 @@ public class projectDetailResponse {
     private String major;
     private String fans;
     private Integer status;
+    private Integer userFollowStatus;
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getUserFollowStatus() {
+        return userFollowStatus;
+    }
+
+    public void setUserFollowStatus(Integer userFollowStatus) {
+        this.userFollowStatus = userFollowStatus;
     }
 
     public Integer getStatus() {

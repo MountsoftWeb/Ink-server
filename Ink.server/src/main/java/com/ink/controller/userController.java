@@ -25,6 +25,11 @@ public class userController{
     @Autowired
     IUserService iUserService;
 
+    /**
+     * 获取用户基本信息
+     * @param request
+     * @return
+     */
     @PostMapping("/test/getDetail")
     public Result getDetail(ServletRequest request){
         Result result = new Result();
@@ -95,13 +100,23 @@ public class userController{
         return result;
     }
 
-    public void upFollow(@RequestParam(value = "userId") String userId,
+    @GetMapping("/test/user/upFollow")
+    public Result upFollow(@RequestParam(value = "userId") String userId,
                         ServletRequest request){
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
-        String testDate = df.format(new Date());//格式化当前日期
+        Result result = new Result();
         String username = (String) request.getAttribute("name");
-        Integer my_id = iUserService.selectByUsername(username);
-
+        Integer myId = iUserService.selectByUsername(username);
+        Integer user = Integer.valueOf(userId);
+        boolean bool = iUserService.upFollow(myId, user);
+        if (bool) {
+            result.setCode("200");
+            result.setMessage("关注成功");
+            return result;
+        }else {
+            result.setCode("400");
+            result.setMessage("关注失败");
+            return result;
+        }
     }
     
     /**
@@ -138,7 +153,7 @@ public class userController{
     }
 
     /**
-     * 返回粉丝最多的前九用户
+     * 返回粉丝最多的前九用户           待完善
      * @return
      */
     @GetMapping("/user/getHotUser")

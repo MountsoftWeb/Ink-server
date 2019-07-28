@@ -35,4 +35,5 @@ public interface projectMapper {
 
     ArrayList getHotProject();
 
+    Integer selectUserIdByProjectId(@Param("projectId") Integer projectId);
 }

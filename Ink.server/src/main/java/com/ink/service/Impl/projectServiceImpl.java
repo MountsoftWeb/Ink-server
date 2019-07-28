@@ -1,5 +1,6 @@
 package com.ink.service.Impl;
 
+import com.ink.dao.followMapper;
 import com.ink.dao.projectMapper;
 import com.ink.dao.userMapper;
 import com.ink.model.entity.Project;
@@ -21,6 +22,8 @@ public class projectServiceImpl implements IProjectService {
     projectMapper projectMapper;
     @Autowired
     userMapper userMapper;
+    @Autowired
+    followMapper followMapper;
     @Override
     public ArrayList<Project> getProjectByUsername(String userName) {
         Integer id = userMapper.selectByUsername(userName);
@@ -68,12 +71,12 @@ public class projectServiceImpl implements IProjectService {
 
     @Override
     public projectDetailResponse getProjectDetail(Integer projectId, String userName) {
-        Integer id = userMapper.selectByUsername(userName);
+        Integer myId = userMapper.selectByUsername(userName);
+        Integer projectUserId = projectMapper.selectUserIdByProjectId(projectId);
 
-
-        projectDetailResponse projectResponse = projectMapper.selectByProjectId(projectId, id);
-
-
+        projectDetailResponse projectResponse = projectMapper.selectByProjectId(projectId, myId);
+        Integer followStatus = followMapper.selectByUserIdStatus(projectUserId, myId);
+        projectResponse.setUserFollowStatus(followStatus);
         return projectResponse;
     }
 

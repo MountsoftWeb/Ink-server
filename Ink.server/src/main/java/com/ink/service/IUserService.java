@@ -42,4 +42,6 @@ public interface IUserService {
     Integer deleteProjectId(Integer id);
     // 获取热门用户
     ArrayList getHotUser();
+    // 关注用户
+    boolean upFollow(Integer myId, Integer userId);
 }

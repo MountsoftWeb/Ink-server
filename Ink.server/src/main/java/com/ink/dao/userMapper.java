@@ -3,6 +3,7 @@ package com.ink.dao;
 import java.util.ArrayList;
 
 import com.ink.model.entity.User;
+import com.ink.model.entity.follow;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -39,4 +40,6 @@ public interface userMapper {
     boolean creatFile(@Param("username")String username);
 
     ArrayList getHotUser();
+
+    Integer upFollow(@Param("follow") follow follow);
 }
