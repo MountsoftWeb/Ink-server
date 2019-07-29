@@ -18,13 +18,29 @@
         where follow_id = #{userId, jdbcType=INTEGER}
     </select>
 
-    <select id="selectByUserIdStatus" resultType="java.lang.Integer">
+    <select id="selectByUserIdStatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select status
         from follows
         where user_id = #{userId, jdbcType=INTEGER} and follow_id = #{followId, jdbcType=INTEGER}
     </select>
+
+    
     <!-- 共同关注 select * from `com_wechat_user_follow` where `uid` in ('你的id', '某个用户id') -->
 
     <!-- 是否相互关注 select * from `com_wechat_user_follow` where `uid`='你的id' and `fid`='某个用户id' and `uid` in (select `fid` from `com_wechat_user_follow` where `uid`='某个用户id') -->
+
+    <insert id="insertFollow" parameterType="com.ink.model.entity.follow">
+        insert into follows (user_id, follow_id, status, time)
+        values (#{follow.userId, jdbcType=INTEGER},
+                #{follow.followId, jdbcType=INTEGER},
+                1,
+                #{follow.time, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateFollow" parameterType="com.ink.model.entity.follow">
+        update follows
+            set status = #{follow.status, jdbcType=INTEGER}
+            where user_id = #{follow.userId, jdbcType=INTEGER} and follow_id = #{follow.followId, jdbcType=INTEGER}
+    </update>
 
 </mapper>

@@ -6,9 +6,18 @@ public class follow {
     private Integer userId;
     private Integer followId;
     private String time;
+    private Integer status;
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getFollowId() {

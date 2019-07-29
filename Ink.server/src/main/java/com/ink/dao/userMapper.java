@@ -41,5 +41,4 @@ public interface userMapper {
 
     ArrayList getHotUser();
 
-    Integer upFollow(@Param("follow") follow follow);
 }

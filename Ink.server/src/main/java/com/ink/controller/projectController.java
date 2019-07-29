@@ -89,6 +89,12 @@ public class projectController {
         }
     }
 
+    /**
+     * 点赞作品
+     * @param projectId
+     * @param status
+     * @param request
+     */
     @GetMapping("/test/project/updataAppreciate")
     public void updataAppreciate(@RequestParam(value = "projectId") String projectId,
                                 @RequestParam(value = "status") String status,

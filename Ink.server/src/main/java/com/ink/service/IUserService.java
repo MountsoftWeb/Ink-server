@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
+import com.ink.model.entity.follow;
 import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
 import com.ink.utils.Json.Result;
@@ -42,6 +43,8 @@ public interface IUserService {
     Integer deleteProjectId(Integer id);
     // 获取热门用户
     ArrayList getHotUser();
-    // 关注用户
-    boolean upFollow(Integer myId, Integer userId);
+    // 更新关注用户
+    boolean updateFollow(follow follow);
+    // 新增关注
+    boolean insertFollow(follow follow);
 }

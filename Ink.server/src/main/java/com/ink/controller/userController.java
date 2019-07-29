@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 
 import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
+import com.ink.model.entity.follow;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
@@ -100,23 +101,42 @@ public class userController{
         return result;
     }
 
-    @GetMapping("/test/user/upFollow")
+    @GetMapping("/test/user/updateFollow")
     public Result upFollow(@RequestParam(value = "userId") String userId,
+                            @RequestParam(value = "userFollowStatus") String userFollowStatus,
                         ServletRequest request){
         Result result = new Result();
         String username = (String) request.getAttribute("name");
         Integer myId = iUserService.selectByUsername(username);
         Integer user = Integer.valueOf(userId);
-        boolean bool = iUserService.upFollow(myId, user);
-        if (bool) {
-            result.setCode("200");
-            result.setMessage("关注成功");
-            return result;
-        }else {
-            result.setCode("400");
-            result.setMessage("关注失败");
-            return result;
+        Integer status = Integer.valueOf(userFollowStatus);
+        follow follow = new follow();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
+        String testDate = df.format(new Date());//格式化当前日期
+        follow.setTime(testDate);
+        boolean bool;
+        if(userFollowStatus.equals("1") || userFollowStatus.equals("0")){
+            follow.setUserId(user);
+            follow.setFollowId(myId);
+            follow.setStatus(status);
+            bool = iUserService.updateFollow(follow);
+        }else{
+            // iProjectService.insertAppreciate(appreciate, username);
+            follow.setFollowId(myId);
+            follow.setUserId(user);
+            follow.setTime(testDate);
+            bool = iUserService.insertFollow(follow);
         }
+        if (bool){
+            result.setCode("200");
+            result.setMessage("更新成功");
+        }else {
+            result.setCode("200");
+            result.setMessage("更新成功");
+        }
+        return result;
+        
     }
     
     /**

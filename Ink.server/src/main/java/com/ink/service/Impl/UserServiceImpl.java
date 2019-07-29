@@ -1,5 +1,6 @@
 package com.ink.service.Impl;
 
+import com.ink.dao.followMapper;
 import com.ink.dao.labelMapper;
 import com.ink.dao.projectCategoryMapper;
 import com.ink.dao.projectMapper;
@@ -43,6 +44,8 @@ public class userServiceImpl implements IUserService {
     projectMapper projectMapper;
     @Autowired
     labelMapper labelMapper;
+    @Autowired
+    followMapper followMapper;
     private int date;
 
     /**
@@ -312,14 +315,16 @@ public class userServiceImpl implements IUserService {
 	}
 
     @Override
-    public boolean upFollow(Integer myId, Integer userId) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
-        String testDate = df.format(new Date());//格式化当前日期
-        follow follow = new follow();
-        follow.setFollowId(myId);
-        follow.setUserId(userId);
-        follow.setTime(testDate);
-        int bool = userMapper.upFollow(follow);
+    public boolean updateFollow(follow follow) {
+        
+        int bool = followMapper.updateFollow(follow);
+        return bool == 1 ? true : false;
+    }
+
+    @Override
+    public boolean insertFollow(follow follow) {
+        
+        int bool = followMapper.insertFollow(follow);
         return bool == 1 ? true : false;
     }
 }
