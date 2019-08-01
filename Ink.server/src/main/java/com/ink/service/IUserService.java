@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
 import com.ink.model.entity.follow;
+import com.ink.model.entity.pageBean;
 import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
 import com.ink.utils.Json.Result;
@@ -47,4 +48,11 @@ public interface IUserService {
     boolean updateFollow(follow follow);
     // 新增关注
     boolean insertFollow(follow follow);
+    // 按照用户 ID 获取相关信息
+    ArrayList getUserDeatilByUserId(Integer id);
+    // 分页获取
+    pageBean getPageNum(Integer id, Integer pageNum, Integer pageSize);
+
+    // 获取用户相关关注 
+    ArrayList getFollowsFans(String id, String type);
 }

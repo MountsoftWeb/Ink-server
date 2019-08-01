@@ -9,6 +9,7 @@ import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
 import com.ink.model.entity.follow;
 import com.ink.model.entity.label;
+import com.ink.model.entity.pageBean;
 import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
 import com.ink.dao.userMapper;
@@ -326,5 +327,32 @@ public class userServiceImpl implements IUserService {
         
         int bool = followMapper.insertFollow(follow);
         return bool == 1 ? true : false;
+    }
+
+    @Override
+    public ArrayList getUserDeatilByUserId(Integer id) {
+        return projectMapper.getUserDeatilByUserId(id);
+    }
+
+    @Override
+    public pageBean getPageNum(Integer id, Integer pageNum, Integer pageSize) {
+        ArrayList list = projectMapper.getUserDeatilByUserId(id);
+        pageBean pageBean = new pageBean<>(pageNum, pageSize, list.size());
+        pageBean.setList(list);
+        return pageBean;
+	}
+
+    @Override
+    public ArrayList getFollowsFans(String id, String type) {
+        Integer myId = userMapper.selectByUsername(id);
+        if (type.equals("2")){
+            ArrayList list = followMapper.getFollows(myId);
+            return  list;
+        }else if (type.equals("3")){
+            ArrayList list = followMapper.getFans(myId);
+            return  list;
+        }else {
+            return null;
+        }
     }
 }

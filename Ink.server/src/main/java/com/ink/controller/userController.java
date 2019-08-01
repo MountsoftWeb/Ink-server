@@ -11,6 +11,7 @@ import javax.servlet.ServletRequest;
 import com.ink.model.entity.Project;
 import com.ink.model.entity.User;
 import com.ink.model.entity.follow;
+import com.ink.model.entity.pageBean;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
@@ -42,6 +43,45 @@ public class userController{
         return result;
     }
 
+    @GetMapping("/test/personal/getUserDetailByUserId")
+    public Result get(@RequestParam(value = "userId") String userId,
+                        @RequestParam(value = "pageNum", required = false) String pageNum) {
+        Result result = new Result();
+        Integer id = Integer.valueOf(userId);
+
+        Integer page = Integer.parseInt((pageNum.equals("undefined") ? "1" : pageNum));
+        ArrayList list = iUserService.getUserDeatilByUserId(id);
+
+        if (list != null) {
+            pageBean<Project> pb = new pageBean<>(page, 12, list.size());
+            pb.setList(list);
+            result.setCode("200");
+            result.setMessage("OK");
+            result.setData(pb);
+            return  result;
+
+        }else {
+            result.setCode("201");
+            result.setMessage("no project");
+            return result;
+        }
+
+
+
+    }
+
+    @GetMapping("/test/personal/getPersonalPageNum")
+    public Result getPersonalPageNum(@RequestParam("userId") String userId,
+                                    @RequestParam("pageNum") String page){
+        Result result = new Result();
+        int pageNum = Integer.parseInt((page.equals("undefined") ? "1" : page));
+        int id = Integer.valueOf(userId);
+        int pageSize = 12;
+        pageBean<Project> pb = iUserService.getPageNum(id, pageNum, pageSize);
+        result.setData(pb);
+        return result;
+
+    }
     /**
      * 上传作品
      * @param name
@@ -93,12 +133,39 @@ public class userController{
         return result;
     }
     
+
     @GetMapping("/user/getFollowsFans")
     public Result getFollows(@RequestParam(value = "userId", required = false) String userId) {
         Result result = new Result();
 
 
         return result;
+    }
+
+    /**
+     * 获取登录用户相关的关注与粉丝     0： 关注 
+     *                             1： 粉丝
+     * @param request
+     * @param type
+     * @param pageNum
+     * @return
+     */
+    @GetMapping("/test/user/getFollows")
+    public Result getFollowsFans(ServletRequest request,
+                                @RequestParam(value = "type", required = false) String type,
+                                @RequestParam(value = "pageNum", required = false) String pageNum){
+        Result result = new Result();
+        String id = (String) request.getAttribute("name");
+        Integer page = Integer.parseInt((pageNum.equals("undefined") ? "1" : pageNum));
+        ArrayList list = iUserService.getFollowsFans(id, type);
+        pageBean<Project> pb = new pageBean<>(page, 12, list.size());
+        pb.setList(list);
+        result.setCode("200");
+        
+        result.setMessage(type);
+        result.setData(pb);
+        return  result;
+        
     }
 
     @GetMapping("/test/user/updateFollow")

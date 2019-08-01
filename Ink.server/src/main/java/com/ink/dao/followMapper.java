@@ -19,4 +19,8 @@ public interface followMapper {
     Integer insertFollow(@Param("follow") follow follow);
 
     Integer updateFollow(@Param("follow") follow follow);
+
+    ArrayList getFollows(@Param("myId") Integer myId);
+
+    ArrayList getFans(@Param("myId") Integer myId);
 }

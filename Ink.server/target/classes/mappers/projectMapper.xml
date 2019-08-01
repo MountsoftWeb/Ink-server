@@ -130,6 +130,13 @@
         where id = #{projectId, jdbcType=INTEGER}
     </select>
 
+    <select id="getUserDeatilByUserId" parameterType="java.util.List" resultMap="AllProject">
+        select  p.id, p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
+        from project p
+          inner join user u on u.id = p.user_id
+        where user_id = #{userId, jdbcType=INTEGER}
+    </select>
+
     <update id="uploadFisle" parameterType="com.ink.model.entity.Project">
     update project
         set picture = #{project.picture}
