@@ -45,18 +45,18 @@ public class projectServiceImpl implements IProjectService {
     }
 
     @Override
-    public void updataAppreciate(appreciate appreciate, String userName) {
+    public boolean updataAppreciate(appreciate appreciate, String userName) {
         // Integer userId = userMapper.selectByUsername(username);
         
         // System.out.println(testDate);
         // String current = df.format(System.currentTimeMillis());  
         Integer userId = userMapper.selectByUsername(userName);
         appreciate.setUserId(userId);
-        projectMapper.updataAppreciate(appreciate);
+        return projectMapper.updataAppreciate(appreciate);
     }
 
     @Override
-    public void insertAppreciate(appreciate appreciate, String userName) {
+    public boolean insertAppreciate(appreciate appreciate, String userName) {
         
         // System.out.println(testDate);
         // String current = df.format(System.currentTimeMillis());  
@@ -66,7 +66,7 @@ public class projectServiceImpl implements IProjectService {
         // appreciate.setAppreciateTime(testDate);
         Integer userId = userMapper.selectByUsername(userName);
         appreciate.setUserId(userId);
-        projectMapper.insertAppreciate(appreciate);
+        return projectMapper.insertAppreciate(appreciate);
     }
 
     @Override
@@ -93,5 +93,11 @@ public class projectServiceImpl implements IProjectService {
     public ArrayList getHotProject() {
         
         return projectMapper.getHotProject();
+    }
+
+    @Override
+    public boolean countAppreciates(String projectId) {
+        Integer id = Integer.valueOf(projectId);
+        return projectMapper.countAppreciates(id);
     }
 }

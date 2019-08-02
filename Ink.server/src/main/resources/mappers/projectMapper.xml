@@ -164,6 +164,13 @@
         WHERE project_id = #{appreciate.projectId} and user_id = #{appreciate.userId}
     </update>
 
+    <update id="countAppreciates" parameterType="java.lang.Integer">
+        update project p
+        set
+            apprecations = (select count(a.user_id) from appreciate a where a.project_id = #{id, jdbcType=INTEGER} and a.status = 1)
+        where p.id = #{id, jdbcType=INTEGER}
+    </update>
+
     <insert id="insertAppreciate" parameterType="com.ink.model.entity.appreciate">
         INSERT INTO appreciate (project_id, user_id, status, appreciate_time) 
         VALUES (#{appreciate.projectId}, 

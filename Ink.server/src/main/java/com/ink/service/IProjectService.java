@@ -14,13 +14,15 @@ public interface IProjectService {
 
     ArrayList<Project> getProject(String category, String label);
 
-    void updataAppreciate(appreciate appreciate, String userName);
+    boolean updataAppreciate(appreciate appreciate, String userName);
 
-    void insertAppreciate(appreciate appreciate, String userName);
+    boolean insertAppreciate(appreciate appreciate, String userName);
 
     projectDetailResponse getProjectDetail(Integer projectId, String userName);
 
     pageBean<Project> getPageNum(int pageNum, int pageSize);
 
     ArrayList getHotProject();
+
+    boolean countAppreciates(String projectId);
 }

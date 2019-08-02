@@ -38,5 +38,7 @@ public interface projectMapper {
     Integer selectUserIdByProjectId(@Param("projectId") Integer projectId);
 
     ArrayList getUserDeatilByUserId(@Param("userId") Integer userId);
+
+    boolean countAppreciates(@Param("id") Integer id);
    
 }

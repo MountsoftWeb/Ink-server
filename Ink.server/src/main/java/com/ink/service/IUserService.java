@@ -45,7 +45,7 @@ public interface IUserService {
     // 获取热门用户
     ArrayList getHotUser();
     // 更新关注用户
-    boolean updateFollow(follow follow);
+    boolean updataFollow(follow follow);
     // 新增关注
     boolean insertFollow(follow follow);
     // 按照用户 ID 获取相关信息

@@ -168,11 +168,13 @@ public class userController{
         
     }
 
-    @GetMapping("/test/user/updateFollow")
+    @GetMapping("/test/user/updataFollow")
     public Result upFollow(@RequestParam(value = "userId") String userId,
                             @RequestParam(value = "userFollowStatus") String userFollowStatus,
                         ServletRequest request){
         Result result = new Result();
+
+        // System.out.println(user);
         String username = (String) request.getAttribute("name");
         Integer myId = iUserService.selectByUsername(username);
         Integer user = Integer.valueOf(userId);
@@ -187,7 +189,7 @@ public class userController{
             follow.setUserId(user);
             follow.setFollowId(myId);
             follow.setStatus(status);
-            bool = iUserService.updateFollow(follow);
+            bool = iUserService.updataFollow(follow);
         }else{
             // iProjectService.insertAppreciate(appreciate, username);
             follow.setFollowId(myId);

@@ -55,9 +55,10 @@
                 #{follow.time, jdbcType=VARCHAR})
     </insert>
 
-    <update id="updateFollow" parameterType="com.ink.model.entity.follow">
+    <update id="updataFollow" parameterType="com.ink.model.entity.follow">
         update follows
-            set status = #{follow.status, jdbcType=INTEGER}
+            set status = #{follow.status, jdbcType=INTEGER},
+                time = #{follow.time, jdbcType=VARCHAR}
             where user_id = #{follow.userId, jdbcType=INTEGER} and follow_id = #{follow.followId, jdbcType=INTEGER}
     </update>
 

@@ -177,9 +177,9 @@ public class userServiceImpl implements IUserService {
     @Override
     public boolean creatFile(String username) {
         // 文件上传 本地文件目录
-        String path = "/Users/carlos/Documents/images/";
+//        String path = "/Users/carlos/Documents/images/";
         // 服务器路径
-        // String path = "/home/carlos/image/";
+         String path = "/home/carlos/image/";
         File newFile = new File(path + username);
         boolean bool = newFile.mkdir();
         if (bool) {
@@ -228,7 +228,7 @@ public class userServiceImpl implements IUserService {
                 
                 // String url = path.substring(31); 
                 // 服务器 19
-                // String url = path.substring(19);
+//                 String url = path.substring(19);
                 String url = path.substring(31);
 
                 mysqlPicture.append("/hello/").append(url).append("/").append(fileName);
@@ -285,7 +285,7 @@ public class userServiceImpl implements IUserService {
         // 文件上传 本地文件目录
         String path = "/Users/carlos/Documents/images/";
         // 服务器路径
-        // String path = "/home/carlos/image/";
+//         String path = "/home/carlos/image/";
         String filePath = path + filename.substring(7, filename.length());
         System.out.println(filePath);
         
@@ -316,9 +316,9 @@ public class userServiceImpl implements IUserService {
 	}
 
     @Override
-    public boolean updateFollow(follow follow) {
+    public boolean updataFollow(follow follow) {
         
-        int bool = followMapper.updateFollow(follow);
+        int bool = followMapper.updataFollow(follow);
         return bool == 1 ? true : false;
     }
 

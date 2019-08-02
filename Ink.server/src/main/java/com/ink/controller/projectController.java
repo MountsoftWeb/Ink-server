@@ -108,12 +108,14 @@ public class projectController {
         appreciate.setAppreciateTime(testDate);
         // System.out.println(appreciate.getProjectId());
 
+        System.out.println(status);
         if(status.equals("1") || status.equals("0")){
             appreciate.setStatus(Integer.valueOf(status));
             iProjectService.updataAppreciate(appreciate, username);
         }else{
             iProjectService.insertAppreciate(appreciate, username);
         }
+        iProjectService.countAppreciates(projectId);
     }
     
     /**
