@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,9 +39,9 @@ public class userController{
     @PostMapping("/test/getDetail")
     public Result getDetail(ServletRequest request){
         Result result = new Result();
-        String username = (String) request.getAttribute("name");
-        log.info("获取用户：" + username + "   基本信息");
-        User user = iUserService.getDetail(username);
+        String phone = (String) request.getAttribute("name");
+        log.info("获取用户：" + phone + "   基本信息");
+        User user = iUserService.getDetail(phone);
         result.setCode("200");
         result.setData(user);
         
@@ -105,8 +106,8 @@ public class userController{
                             ServletRequest request
                             ){
         Result result = new Result();
-        String username = (String) request.getAttribute("name");
-        log.info("用户:" + username + "上传作品");
+        String phone = (String) request.getAttribute("name");
+        log.info("用户:" + phone + "上传作品");
         // 获取时间为作品创建文件夹
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -115,9 +116,9 @@ public class userController{
         // 用于创建文件夹所用时间格式
         StringBuffer time = new StringBuffer();
         time.append(year).append(month).append(day);
-        String path = iUserService.creatProjectFile(username, time);
+        String path = iUserService.creatProjectFile(phone, time);
         Integer labelId = iUserService.insertLabel(label);
-        Integer user_id = iUserService.selectByUsername(username);
+        Integer user_id = iUserService.selectByUsername(phone);
         Integer categoryId = Integer.valueOf(category);
         if (path.equals("no")){
             System.out.println("创建失败");
@@ -133,7 +134,7 @@ public class userController{
             project.setCategoryId(categoryId);
             // project.setCategoryId(categoryId);
             project.setUserId(user_id);
-            iUserService.uploadFile(file, username, project, path, String.valueOf(time));
+            iUserService.uploadFile(file, phone, project, path, String.valueOf(time));
         }
 
         return result;
@@ -163,11 +164,11 @@ public class userController{
         Result result = new Result();
         String id = (String) request.getAttribute("name");
         Integer page = Integer.parseInt((pageNum.equals("undefined") ? "1" : pageNum));
+        log.info(type);
         ArrayList list = iUserService.getFollowsFans(id, type);
         pageBean<Project> pb = new pageBean<>(page, 12, list.size());
         pb.setList(list);
         result.setCode("200");
-        
         result.setMessage(type);
         result.setData(pb);
         return  result;
@@ -181,8 +182,8 @@ public class userController{
         Result result = new Result();
 
         // System.out.println(user);
-        String username = (String) request.getAttribute("name");
-        Integer myId = iUserService.selectByUsername(username);
+        String phone = (String) request.getAttribute("name");
+        Integer myId = iUserService.selectByUsername(phone);
         Integer user = Integer.valueOf(userId);
         Integer status = Integer.valueOf(userFollowStatus);
         follow follow = new follow();
@@ -256,6 +257,23 @@ public class userController{
         Result result = new Result();
         ArrayList list = iUserService.getHotUser();
         result.setData(list);
+        return result;
+    }
+
+    @PostMapping("/test/user/updateDetail")
+    public Result updateDetail(@RequestParam(name = "username", required = false) String username,
+                                @RequestParam(name = "profile", required = false) String profile,
+                                @RequestParam(name = "email", required = false) String email,
+                                @RequestParam(name = "major", required = false) String major,
+                                ServletRequest request){
+        Result result = new Result();
+        String phone = (String) request.getAttribute("name");
+        User user = new User();
+        user.setPhone(phone);
+        user.setUsername(username);
+        user.setProfile(profile);
+        user.setMajor(major);
+        iUserService.updateDeatil(user);
         return result;
     }
 }

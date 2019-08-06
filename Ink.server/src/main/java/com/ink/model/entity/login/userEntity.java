@@ -4,12 +4,12 @@ package com.ink.model.entity.login;
  * @author Created by carlos
  */
 public class userEntity {
-    String userName;
+    String phone;
     String loginType;
     String password;
 
-    public userEntity(String userName, String loginType, String password) {
-        this.userName = userName;
+    public userEntity(String phone, String loginType, String password) {
+        this.phone = phone;
         this.loginType = loginType;
         this.password = password;
     }
@@ -20,7 +20,7 @@ public class userEntity {
     @Override
     public String toString() {
         return "UserEntity{" +
-                "userName='" + userName + '\'' +
+                "phone='" + phone + '\'' +
                 ", loginType='" + loginType + '\'' +
                 ", password='" + password + '\'' +
                 '}';
@@ -28,12 +28,12 @@ public class userEntity {
 
 
 
-    public String getUsername() {
-        return userName;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUsername(String userName) {
-        this.userName = userName;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {

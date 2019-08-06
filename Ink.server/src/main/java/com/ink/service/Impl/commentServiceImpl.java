@@ -19,13 +19,13 @@ public class commentServiceImpl implements ICommentService {
     @Autowired
     commentMapper commentMapper;
     @Override
-    public boolean insertComment(String projectId, String username, String content) {
+    public boolean insertComment(String projectId, String phone, String content) {
         comment comment = new comment();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String testDate = df.format(new Date());//格式化当前日期
         comment.setCommentTime(testDate);
         comment.setProjectId(Integer.valueOf(projectId));
-        Integer userId = userMapper.selectByUsername(username);
+        Integer userId = userMapper.selectByUsername(phone);
         comment.setUserId(userId);
         comment.setContent(content);
         Integer id = commentMapper.insertComment(comment);

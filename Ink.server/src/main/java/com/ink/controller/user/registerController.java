@@ -21,7 +21,7 @@ public class registerController{
         boolean bool = iUserService.registerUser(userEntity);
 
         if (bool){
-            iUserService.creatFile(userEntity.getUsername());
+            iUserService.creatFile(userEntity.getPhone());
             result.setCode("200");
             return result;
         }else{

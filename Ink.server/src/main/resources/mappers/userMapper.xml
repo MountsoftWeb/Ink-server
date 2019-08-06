@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ink.model.entity.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="profile" jdbcType="VARCHAR" property="profile" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
@@ -46,7 +47,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, user_name, profile, sex, picture, regist_time, major
+    id, phone, user_name, profile, sex, picture, regist_time, major
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -59,7 +60,7 @@
   <select id="selectPicture" parameterType="java.lang.String" resultMap="picturePath">
     select picture
     from user
-    where user_name = #{userName, jdbcType=VARCHAR}
+    where phone = #{phone, jdbcType=VARCHAR}
   </select>
 
   <select id="selectByUserid" resultMap="BaseResultMap">
@@ -69,13 +70,13 @@
   <select id="getDetail" parameterType="java.lang.String" resultMap="BaseUserDetail">
     select * 
     from user
-    where user_name = #{userName, jdbcType=VARCHAR}
+    where phone = #{phone, jdbcType=VARCHAR}
   </select>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="user_id">
     select id
     from user
-    where user_name = #{userName, jdbcType=VARCHAR}
+    where phone = #{phone, jdbcType=VARCHAR}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -84,10 +85,10 @@
   </delete>
 
   <insert id="insert" parameterType="com.ink.model.entity.User">
-    insert into user (id, user_name, profile, 
+    insert into user (id, phone, user_name, profile, 
       sex, picture, registTime,
       major)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{profile,jdbcType=VARCHAR},
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{profile,jdbcType=VARCHAR},
       #{sex,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{registTime,jdbcType=VARCHAR},
       #{major,jdbcType=VARCHAR})
   </insert>
@@ -143,8 +144,8 @@
   </insert>
 
   <insert id="registerUser" parameterType="com.ink.model.entity.User">
-    insert into user (user_name, regist_time)
-    values (#{user.userName, jdbcType=VARCHAR}, #{user.registTime, jdbcType=VARCHAR})
+    insert into user (phone, regist_time)
+    values (#{user.phone, jdbcType=VARCHAR}, #{user.registTime, jdbcType=VARCHAR})
   </insert>
 
   <insert id="upFollow" parameterType="com.ink.model.entity.follow">
@@ -181,7 +182,7 @@
 
   <update id="updateByPrimaryKey" parameterType="com.ink.model.entity.User">
     update user
-    set user_name = #{userName,jdbcType=VARCHAR},
+    set phone = #{phone,jdbcType=VARCHAR},
       profile = #{profile,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
@@ -193,15 +194,24 @@
   <update id="updatePicture" parameterType="com.ink.model.entity.User">
     update user
     set picture = #{user.picture}
-    where user_name = #{user.userName}
+    where phone = #{user.phone}
   
+  </update>
+
+  <update id="updateDeatil" parameterType="com.ink.model.entity.User">
+    update user 
+      set user_name = #{user.username, jdbcType=VARCHAR},
+          profile = #{user.profile, jdbcType=VARCHAR},
+          major = #{user.major, jdbcType=VARCHAR}
+    where phone = #{user.phone, jdbcType=VARCHAR}
+
   </update>
 
   <select id="checkUser" parameterType="java.lang.String" resultType="java.lang.Boolean">
     <![CDATA[
       select count(id)
       from user
-      where user_name = #{username, jdbcType=VARCHAR}
+      where phone = #{phone, jdbcType=VARCHAR}
     ]]>
   </select>
 

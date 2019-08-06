@@ -33,9 +33,9 @@ public class commentController {
                                 ServletRequest request){
 
         Result result = new Result();
-        String username = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("name");
        
-        boolean bool = iCommentService.insertComment(projectId, username, content);
+        boolean bool = iCommentService.insertComment(projectId, phone, content);
         if (bool){
             result.setCode("200");
             result.setMessage("评论成功");
@@ -51,7 +51,7 @@ public class commentController {
     public Result getCommentList(@RequestParam(value = "projectId") String projectId,
                                 ServletRequest request){
         Result result = new Result();
-        String username = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("name");
         
         ArrayList list = iCommentService.getCommentList(projectId);
         result.setData(list);

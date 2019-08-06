@@ -25,8 +25,8 @@ public class projectServiceImpl implements IProjectService {
     @Autowired
     followMapper followMapper;
     @Override
-    public ArrayList<Project> getProjectByUsername(String userName) {
-        Integer id = userMapper.selectByUsername(userName);
+    public ArrayList<Project> getProjectByUsername(String phone) {
+        Integer id = userMapper.selectByUsername(phone);
         return projectMapper.selectByUserId(id);
     }
 
@@ -44,18 +44,18 @@ public class projectServiceImpl implements IProjectService {
     }
 
     @Override
-    public boolean updateAppreciate(appreciate appreciate, String userName) {
+    public boolean updateAppreciate(appreciate appreciate, String phone) {
         // Integer userId = userMapper.selectByUsername(username);
         
         // System.out.println(testDate);
         // String current = df.format(System.currentTimeMillis());  
-        Integer userId = userMapper.selectByUsername(userName);
+        Integer userId = userMapper.selectByUsername(phone);
         appreciate.setUserId(userId);
         return projectMapper.updateAppreciate(appreciate);
     }
 
     @Override
-    public boolean insertAppreciate(appreciate appreciate, String userName) {
+    public boolean insertAppreciate(appreciate appreciate, String phone) {
         
         // System.out.println(testDate);
         // String current = df.format(System.currentTimeMillis());  
@@ -63,14 +63,14 @@ public class projectServiceImpl implements IProjectService {
         // appreciate.setProjectId(projectId);
         // appreciate.setUserId(userId);
         // appreciate.setAppreciateTime(testDate);
-        Integer userId = userMapper.selectByUsername(userName);
+        Integer userId = userMapper.selectByUsername(phone);
         appreciate.setUserId(userId);
         return projectMapper.insertAppreciate(appreciate);
     }
 
     @Override
-    public projectDetailResponse getProjectDetail(Integer projectId, String userName) {
-        Integer myId = userMapper.selectByUsername(userName);
+    public projectDetailResponse getProjectDetail(Integer projectId, String phone) {
+        Integer myId = userMapper.selectByUsername(phone);
         Integer projectUserId = projectMapper.selectUserIdByProjectId(projectId);
 
         projectDetailResponse projectResponse = projectMapper.selectByProjectId(projectId, myId);

@@ -36,20 +36,20 @@ public class avatorController {
     public Result addImage(@RequestParam(name = "image_data", required = false) MultipartFile file, ServletRequest request) {
         Result result = new Result();
         // 获取更新头像用户的用户名
-        String username = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("name");
         // 文件上传 本地文件目录
-       String path = "/Users/carlos/Documents/images/" + username;
+       String path = "/Users/carlos/Documents/images/" + phone;
         // 服务器路径
-        //  String path = "/home/carlos/image/" + username;
+        //  String path = "/home/carlos/image/" + phone;
 
         if (!file.isEmpty()) {
             try {
                 // 图片命名
-                String userNamePicture = username + ".png";
+                String userNamePicture = phone + ".png";
                 String userPicturePath = path + "/" + userNamePicture;
-                String mysqlPicture = "/hello/" + username + "/" + username + ".png";
+                String mysqlPicture = "/hello/" + phone + "/" + phone + ".png";
                 // 存储路径到数据库
-                User user = new User(username, mysqlPicture);
+                User user = new User(phone, mysqlPicture);
                 boolean bool = iUserService.updatePicture(user);
 
                 File newFile = new File(userPicturePath);
@@ -101,9 +101,9 @@ public class avatorController {
     @GetMapping("/test/getPicture")
     public Result getPicture(ServletRequest request){
         Result result = new Result();
-        String username = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("name");
 
-        String path = iUserService.selectPicture(username);
+        String path = iUserService.selectPicture(phone);
         System.out.println(path);
 
         result.setCode("200");

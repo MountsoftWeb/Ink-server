@@ -42,20 +42,18 @@ public class projectController {
     public Result getProject(ServletRequest request,
                             @RequestParam(value = "pageNum", required = false) String pageNum){
         Result result = new Result();
-        String userName = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("name");
 
-        log.info("用户名:" + userName + "查找所对应作品");
+        log.info("用户名:" + phone + "查找所对应作品");
         Integer page = Integer.parseInt((pageNum.equals("undefined") ? "1" : pageNum));
-        ArrayList<Project> list = iProjectService.getProjectByUsername(userName);
+        ArrayList<Project> list = iProjectService.getProjectByUsername(phone);
         if (list != null) {
             pageBean<Project> pb = new pageBean<>(page, 9, list.size());
-            
             pb.setList(list);
             result.setCode("200");
             result.setMessage("OK");
             result.setData(pb);
             return  result;
-
         }else {
             result.setCode("201");
             result.setMessage("no project");
@@ -100,19 +98,19 @@ public class projectController {
                                 @RequestParam(value = "status") String status,
                                 ServletRequest request) {
         appreciate appreciate = new appreciate();
-        String username = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("name");
         appreciate.setProjectId(Integer.valueOf(projectId));
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
         String testDate = df.format(new Date());//格式化当前日期
         appreciate.setAppreciateTime(testDate);
         // System.out.println(appreciate.getProjectId());
-        log.info("用户：" + username + "为作品 id = " + projectId + "点赞");
+        log.info("用户：" + phone + "为作品 id = " + projectId + "点赞");
         if(status.equals("1") || status.equals("0")){
             appreciate.setStatus(Integer.valueOf(status));
-            iProjectService.updateAppreciate(appreciate, username);
+            iProjectService.updateAppreciate(appreciate, phone);
         }else{
-            iProjectService.insertAppreciate(appreciate, username);
+            iProjectService.insertAppreciate(appreciate, phone);
         }
         iProjectService.countAppreciates(projectId);
     }
@@ -124,11 +122,11 @@ public class projectController {
     public Result getProjectDetail(@RequestParam("projectId") String projectId,
                                     ServletRequest request){
         Result result = new Result();
-        String username = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("name");
         log.info("查找作品详细信息，作品 id = " + projectId);
-        projectDetailResponse projectDetailResponse = iProjectService.getProjectDetail(Integer.valueOf(projectId), username);
-        if (projectDetailResponse.getUserFollowStatus() == null){
-            projectDetailResponse.setUserFollowStatus(2);
+        projectDetailResponse projectDetailResponse = iProjectService.getProjectDetail(Integer.valueOf(projectId), phone);
+        if (projectDetailResponse.getStatus() == null){
+            projectDetailResponse.setStatus(2);
         }
         result.setData(projectDetailResponse);
         return result;

@@ -19,23 +19,23 @@ public interface IUserService {
 
     boolean updatePicture(User user);
 
-    String selectPicture(String username);
+    String selectPicture(String phone);
 
-    User getDetail(String username);
+    User getDetail(String phone);
     // 检查用户名是否重复
-    boolean checkUser(String username);
+    boolean checkUser(String phone);
     // 注册用户
     boolean registerUser(userEntity userEntity);
     // 查找用户 id
-    Integer selectByUsername(String username);
+    Integer selectByUsername(String phone);
 
     User test();
     // 创建用户所属文件
-    boolean creatFile(String username);
+    boolean creatFile(String phone);
     // 创建用户上传的文件夹
-    String creatProjectFile(String username, StringBuffer time);
+    String creatProjectFile(String phone, StringBuffer time);
     // uploadFile
-    boolean uploadFile(MultipartFile file, String username, Project project, String path, String time);
+    boolean uploadFile(MultipartFile file, String phone, Project project, String path, String time);
     // 插入新标签
     Integer insertLabel(String label);
     // 按照 project ID 返回文件路径，用于删除文件
@@ -55,4 +55,6 @@ public interface IUserService {
 
     // 获取用户相关关注 
     ArrayList getFollowsFans(String id, String type);
+    // 信息修改
+    boolean updateDeatil(User user);
 }

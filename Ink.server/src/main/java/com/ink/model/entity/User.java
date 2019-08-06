@@ -17,13 +17,23 @@ public class User {
 
     private String major;
 
-    private user_login user_login;
+    private String phone;
 
+    private user_login user_login;
 
     public User() {
     }
 
-    public User(Integer id, String userName, String profile, String sex, String picture, String registTime, String major) {
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public User(Integer id, String userName, String profile, String sex, String picture, String registTime,
+            String major) {
         this.id = id;
         this.userName = userName;
         this.profile = profile;

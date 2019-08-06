@@ -66,7 +66,7 @@ public class userServiceImpl implements IUserService {
             ;
             user_login.setLogintime(data.toString());
 
-            String jwtToken = Jwts.builder().setSubject(userEntity.getUsername()).claim("roles", "member")
+            String jwtToken = Jwts.builder().setSubject(userEntity.getPhone()).claim("roles", "member")
                     .setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
 
             /*
@@ -112,13 +112,13 @@ public class userServiceImpl implements IUserService {
     }
 
     @Override
-    public String selectPicture(String username) {
-        return userMapper.selectPicture(username);
+    public String selectPicture(String phone) {
+        return userMapper.selectPicture(phone);
     }
 
     @Override
-    public User getDetail(String username) {
-        return userMapper.getDetail(username);
+    public User getDetail(String phone) {
+        return userMapper.getDetail(phone);
     }
 
     /**
@@ -128,20 +128,20 @@ public class userServiceImpl implements IUserService {
     public boolean registerUser(userEntity userEntity) {
         User user = new User();
         // System.out.println(userEntity.getUsername());
-        String username = userEntity.getUsername();
-        user.setUsername(username);
+        String phone = userEntity.getPhone();
+        user.setUsername(phone);
         user.setRegisttime(new Date().toString());
 
         int register = userMapper.registerUser(user);
         if (register != 1) {
             return false;
         }
-        Integer id = userMapper.selectByUsername(username);
+        Integer id = userMapper.selectByUsername(phone);
         if (id == null) {
             return false;
         }
 
-        boolean creatFile = creatFile(username); // 为用户创建所属文件夹
+        boolean creatFile = creatFile(phone); // 为用户创建所属文件夹
         user_login user_login = new user_login();
         user_login.setUserid(String.valueOf(id)); // 按照用户名找到主健
         user_login.setPassword(userEntity.getPassword());
@@ -161,9 +161,9 @@ public class userServiceImpl implements IUserService {
      * 检查用户是否重复
      */
     @Override
-    public boolean checkUser(String username) {
+    public boolean checkUser(String phone) {
 
-        return userMapper.checkUser(username);
+        return userMapper.checkUser(phone);
     }
 
     @Override
@@ -175,12 +175,12 @@ public class userServiceImpl implements IUserService {
      * 服务器需改变路径
      */
     @Override
-    public boolean creatFile(String username) {
+    public boolean creatFile(String phone) {
         // 文件上传 本地文件目录
 //        String path = "/Users/carlos/Documents/images/";
         // 服务器路径
          String path = "/home/carlos/image/";
-        File newFile = new File(path + username);
+        File newFile = new File(path + phone);
         boolean bool = newFile.mkdir();
         if (bool) {
             return true;
@@ -193,13 +193,13 @@ public class userServiceImpl implements IUserService {
      * 服务器上传需改变路径
      */
     @Override
-    public String creatProjectFile(String username, StringBuffer time) {
+    public String creatProjectFile(String phone, StringBuffer time) {
         // 文件上传 本地文件目录
         StringBuilder path = new StringBuilder();  
         // 长度 /Users/carlos/Documents/images/   31
         // /home/carlos/image/  19
         path.append("/Users/carlos/Documents/images/")
-            .append(username)
+            .append(phone)
             .append("/")
             .append(time)
             .append("/")
@@ -216,7 +216,7 @@ public class userServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean uploadFile(MultipartFile file, String username, Project project, String path, String time) {
+    public boolean uploadFile(MultipartFile file, String phone, Project project, String path, String time) {
         if (!file.isEmpty()) {
             try {
                 // 图片命名
@@ -258,8 +258,8 @@ public class userServiceImpl implements IUserService {
     }
 
     @Override
-    public Integer selectByUsername(String userName) {
-        return userMapper.selectByUsername(userName);
+    public Integer selectByUsername(String phone) {
+        return userMapper.selectByUsername(phone);
     }
 
     @Override
@@ -354,5 +354,10 @@ public class userServiceImpl implements IUserService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public boolean updateDeatil(User user) {
+        return userMapper.updateDeatil(user);
     }
 }

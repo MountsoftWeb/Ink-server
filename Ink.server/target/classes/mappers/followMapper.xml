@@ -36,8 +36,8 @@
     <select id="getFollows" parameterType="java.lang.Integer" resultType="java.util.List" resultMap="ResultFollowsFans">
         select f.user_id, 
             (select count(p.user_id) from project p where p.user_id = f.user_id) as projects,
-            (select count(f.follow_id) from follows f where f.user_id = #{myId, jdbcType=INTEGER} and status = 1) as fans,
-            (select count(f.user_id) from follows f where f.follow_id = #{myId, jdbcType=INTEGER} and status = 1) as follows,
+            (select count(fo.user_id) from follows fo where fo.user_id = f.user_id and status = 1) as fans,
+            (select count(fo.follow_id) from follows fo where fo.follow_id = f.user_id and status = 1) as follows,
             (select picture from user u where id = f.user_id) as userPicture,
             (select user_name from user u where id = f.user_id) as usernamme
         from follows f
@@ -45,12 +45,12 @@
     </select>
 
     <select id="getFans" parameterType="java.lang.Integer" resultType="java.util.List" resultMap="ResultFollowsFans">
-        select f.user_id,
-            (select count(p.user_id) from project p where p.user_id = f.user_id) as projects,
-            (select count(f.follow_id) from follows f where f.follow_id = #{myId, jdbcType=INTEGER} and status = 1) as fans,
-            (select count(f.user_id) from follows f where f.user_id = #{myId, jdbcType=INTEGER} and status = 1) as follows,
-            (select picture from user u where id = f.user_id) as userPicture,
-            (select user_name from user u where id = f.user_id) as usernamme
+        select f.follow_id, 
+            (select count(p.user_id) from project p where p.user_id = f.follow_id) as projects,
+            (select count(fo.user_id) from follows fo where fo.user_id = f.follow_id and status = 1) as fans,
+            (select count(fo.follow_id) from follows fo where fo.follow_id = f.follow_id and status = 1) as follows,
+            (select picture from user u where id = f.follow_id) as userPicture,
+            (select user_name from user u where id = f.follow_id) as usernamme
         from follows f
         where f.user_id = #{myId, jdbcType=INTEGER} and status = 1;
     </select>

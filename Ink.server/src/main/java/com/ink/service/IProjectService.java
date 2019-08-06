@@ -8,17 +8,17 @@ import com.ink.model.response.projectDetailResponse;
 import java.util.ArrayList;
 
 public interface IProjectService {
-    ArrayList<Project> getProjectByUsername(String userName);
+    ArrayList<Project> getProjectByUsername(String phone);
 
     ArrayList<Project> getAllProject();
 
     ArrayList<Project> getProject(String category);
 
-    boolean updateAppreciate(appreciate appreciate, String userName);
+    boolean updateAppreciate(appreciate appreciate, String phone);
 
-    boolean insertAppreciate(appreciate appreciate, String userName);
+    boolean insertAppreciate(appreciate appreciate, String phone);
 
-    projectDetailResponse getProjectDetail(Integer projectId, String userName);
+    projectDetailResponse getProjectDetail(Integer projectId, String phone);
 
     pageBean<Project> getPageNum(int pageNum, int pageSize);
 

@@ -55,7 +55,7 @@ public class loginController {
         user_login.setLogintime(testDate);
         log.info("登录信息: ip " + ip );
         log.info(user_login.getLogintime());
-        log.info("username = " + userEntity.getUsername());
+        log.info("phone = " + userEntity.getPhone());
         log.info("password = " + userEntity.getPassword());
         log.info("user_login = " + userEntity.toString());
 

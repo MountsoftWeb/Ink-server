@@ -23,7 +23,7 @@
   <select id="login" parameterType="com.ink.model.entity.login.userEntity" resultMap="BaseResultMap">
     select *
     from user_login l, user u
-    where u.user_name=#{userEntity.userName} and 
+    where u.phone=#{userEntity.phone} and 
           u.id=l.user_id and
           <!-- l.login_type=#{userEntity.loginType} and  -->
           l.password=#{userEntity.password}
