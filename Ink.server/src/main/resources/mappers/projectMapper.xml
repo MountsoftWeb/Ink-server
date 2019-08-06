@@ -23,7 +23,6 @@
         <result column="picture" jdbcType="VARCHAR" property="picture" />
         <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
         <association property="project_category" javaType="com.ink.model.entity.project_category">
-            <id column="c_id" jdbcType="INTEGER" property="id" />
             <result column="c_name" jdbcType="VARCHAR" property="name" />
         </association>
     </resultMap>
@@ -66,23 +65,21 @@
     </select>
 
     <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select id, name, label_id, state, category_id, picture, up_date, apprecations
-        from project
-        where user_id = #{id, jdbcType=INTEGER}
+        select p.id, p.name, p.label_id, p.state, p.category_id, p.picture, p.up_date, p.apprecations, c.category_name
+        from project p, category c
+        where p.user_id = #{id, jdbcType=INTEGER} and p.category_id = c.id;
     </select>
 
     <select id="selectForUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select id, 
     </select>
 
-    <select id="selectByLabel" parameterType="java.util.List" resultMap="AllProject">
+    <select id="selectByCategory" parameterType="java.util.List" resultMap="AllProject">
         select  p.id, p.name, p.up_date, p.picture, p.apprecations, p.collections, u.user_name
         from project p
-          inner join label l on p.label_id = l.id
           inner join category c on p.category_id = c.id
           inner join user u on u.id = p.user_id
-        where   l.id = #{labelId, jdbcType=INTEGER} or 
-                c.id = #{categoryId, jdbcType=INTEGER}
+        where  c.id = #{categoryId, jdbcType=INTEGER}
     </select>
 
     <!--
@@ -145,10 +142,11 @@
     </update>
 
     <insert id="uploadFile" parameterType="com.ink.model.entity.Project">
-    insert into project (user_id, name, paintingway_id, label_id, picture, up_date, state)
+    insert into project (user_id, name, paintingway_id, category_id, label_id, picture, up_date, state)
         values (#{project.userId, jdbcType=INTEGER}, 
                 #{project.name, jdbcType=VARCHAR},
                 #{project.paintingwayId, jdbcType=INTEGER},
+                #{project.categoryId, jdbcType=INTEGER},
                 #{project.labelId, jdbcType=INTEGER},
                 #{project.picture, jdbcType=VARCHAR},
                 #{project.upDate, jdbcType=VARCHAR},
@@ -156,7 +154,7 @@
     </insert>
 
     <!-- 更新状态 -->
-    <update id="updataAppreciate" parameterType="com.ink.model.entity.appreciate">
+    <update id="updateAppreciate" parameterType="com.ink.model.entity.appreciate">
         UPDATE appreciate 
         SET 
             status = #{appreciate.status, jdbcType=INTEGER}, 

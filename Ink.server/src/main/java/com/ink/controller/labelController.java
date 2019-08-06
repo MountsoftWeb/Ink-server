@@ -20,7 +20,7 @@ public class labelController {
         Result result = new Result();
 
         List<HashMap<Integer, String>> list = iLabelService.getLabel();
-        System.out.println("x");
+        // System.out.println("x");
         result.setCode("200");
         result.setData(list);
         return result;

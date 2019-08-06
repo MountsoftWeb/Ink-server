@@ -36,23 +36,22 @@ public class projectServiceImpl implements IProjectService {
     }
 
     @Override
-    public ArrayList<Project> getProject(String category, String label) {
-        Integer labelId = Integer.valueOf(label);
+    public ArrayList<Project> getProject(String category) {
         Integer categoryId = Integer.valueOf(category);
-        ArrayList<Project> list = projectMapper.selectByLabel(labelId, categoryId);
+        ArrayList<Project> list = projectMapper.selectByCategory(categoryId);
         
         return list;
     }
 
     @Override
-    public boolean updataAppreciate(appreciate appreciate, String userName) {
+    public boolean updateAppreciate(appreciate appreciate, String userName) {
         // Integer userId = userMapper.selectByUsername(username);
         
         // System.out.println(testDate);
         // String current = df.format(System.currentTimeMillis());  
         Integer userId = userMapper.selectByUsername(userName);
         appreciate.setUserId(userId);
-        return projectMapper.updataAppreciate(appreciate);
+        return projectMapper.updateAppreciate(appreciate);
     }
 
     @Override

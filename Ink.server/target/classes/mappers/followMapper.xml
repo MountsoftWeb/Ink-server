@@ -43,6 +43,17 @@
         from follows f
         where f.follow_id = #{myId, jdbcType=INTEGER} and status = 1;
     </select>
+
+    <select id="getFans" parameterType="java.lang.Integer" resultType="java.util.List" resultMap="ResultFollowsFans">
+        select f.user_id,
+            (select count(p.user_id) from project p where p.user_id = f.user_id) as projects,
+            (select count(f.follow_id) from follows f where f.follow_id = #{myId, jdbcType=INTEGER} and status = 1) as fans,
+            (select count(f.user_id) from follows f where f.user_id = #{myId, jdbcType=INTEGER} and status = 1) as follows,
+            (select picture from user u where id = f.user_id) as userPicture,
+            (select user_name from user u where id = f.user_id) as usernamme
+        from follows f
+        where f.user_id = #{myId, jdbcType=INTEGER} and status = 1;
+    </select>
     <!-- 共同关注 select * from `com_wechat_user_follow` where `uid` in ('你的id', '某个用户id') -->
 
     <!-- 是否相互关注 select * from `com_wechat_user_follow` where `uid`='你的id' and `fid`='某个用户id' and `uid` in (select `fid` from `com_wechat_user_follow` where `uid`='某个用户id') -->

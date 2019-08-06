@@ -33,7 +33,7 @@ public class JwtFilter extends GenericFilterBean {
 
         // Get authorization from Http request
         final String authHeader = request.getHeader("authorization");
-        System.out.println(authHeader);
+        // System.out.println(authHeader);
 
         // If the Http request is OPTIONS then just return the status code 200
         // which is HttpServletResponse.SC_OK in this code
@@ -49,7 +49,7 @@ public class JwtFilter extends GenericFilterBean {
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 // 返回登录页面
                 response.sendRedirect("/login");
-                System.out.println("++++++++++++++++");
+                // System.out.println("++++++++++++++++");
                 
                 // chain.doFilter(req, res);
                 return;
@@ -63,7 +63,7 @@ public class JwtFilter extends GenericFilterBean {
                 // Use JWT parser to check if the signature is valid with the Key "secretkey"
                 final Claims claims = Jwts.parser().setSigningKey("secretkey").parseClaimsJws(token).getBody();
 
-                System.out.println(claims.getSubject() + " =================== ");
+                // System.out.println(claims.getSubject() + " =================== ");
                 request.setAttribute("name", claims.getSubject());
                 // session.setAttribute("name", claims.getSubject());
                 // Add the claim to request header

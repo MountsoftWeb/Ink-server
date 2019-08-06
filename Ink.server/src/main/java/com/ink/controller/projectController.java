@@ -11,9 +11,10 @@ import com.ink.model.response.projectDetailResponse;
 import com.ink.service.IProjectService;
 import com.ink.utils.Json.Result;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,8 @@ public class projectController {
     @Autowired
     IProjectService iProjectService;
 
+    private Logger log = LoggerFactory.getLogger(projectController.class);
+    
     @GetMapping("/project/getProjecta")
     public Result getProjecta(){
         Result result = new Result();
@@ -41,7 +44,7 @@ public class projectController {
         Result result = new Result();
         String userName = (String) request.getAttribute("name");
 
-        System.out.println(userName + " === project");
+        log.info("用户名:" + userName + "查找所对应作品");
         Integer page = Integer.parseInt((pageNum.equals("undefined") ? "1" : pageNum));
         ArrayList<Project> list = iProjectService.getProjectByUsername(userName);
         if (list != null) {
@@ -62,25 +65,22 @@ public class projectController {
 
     @GetMapping("/project/getAllProject")
     public Result getAllProject(@RequestParam("c") String category,
-                                @RequestParam("l") String label,
                                 @RequestParam(value = "pageNum", required = false) String pageNum){
         Result result = new Result();
-        System.out.println(category + "_________" + label);
-
+        log.info("查询按照分类，分类 id = " + category);
         Integer page = Integer.parseInt((pageNum.equals("undefined") ? "1" : pageNum));
-        if (category.equals("undefined") || (category.equals("1") && label.equals("1"))){
+        if (category.equals("undefined") || (category.equals("1"))){
             ArrayList<Project> list =  iProjectService.getAllProject();
 
             pageBean<Project> pb = new pageBean<>(page, 20, list.size());
             
             pb.setList(list);
-            System.out.println(list.size());
             result.setCode("200");
             result.setData(pb);
             result.setMessage("OK");
             return result;
         }else{
-            ArrayList<Project> list = iProjectService.getProject(category, label);
+            ArrayList<Project> list = iProjectService.getProject(category);
             pageBean<Project> pb = new pageBean<>(page, 10, list.size());
             pb.setList(list);
             result.setData(pb);
@@ -95,8 +95,8 @@ public class projectController {
      * @param status
      * @param request
      */
-    @GetMapping("/test/project/updataAppreciate")
-    public void updataAppreciate(@RequestParam(value = "projectId") String projectId,
+    @GetMapping("/test/project/updateAppreciate")
+    public void updateAppreciate(@RequestParam(value = "projectId") String projectId,
                                 @RequestParam(value = "status") String status,
                                 ServletRequest request) {
         appreciate appreciate = new appreciate();
@@ -107,11 +107,10 @@ public class projectController {
         String testDate = df.format(new Date());//格式化当前日期
         appreciate.setAppreciateTime(testDate);
         // System.out.println(appreciate.getProjectId());
-
-        System.out.println(status);
+        log.info("用户：" + username + "为作品 id = " + projectId + "点赞");
         if(status.equals("1") || status.equals("0")){
             appreciate.setStatus(Integer.valueOf(status));
-            iProjectService.updataAppreciate(appreciate, username);
+            iProjectService.updateAppreciate(appreciate, username);
         }else{
             iProjectService.insertAppreciate(appreciate, username);
         }
@@ -126,9 +125,11 @@ public class projectController {
                                     ServletRequest request){
         Result result = new Result();
         String username = (String) request.getAttribute("name");
-        System.out.println(username);
-
+        log.info("查找作品详细信息，作品 id = " + projectId);
         projectDetailResponse projectDetailResponse = iProjectService.getProjectDetail(Integer.valueOf(projectId), username);
+        if (projectDetailResponse.getUserFollowStatus() == null){
+            projectDetailResponse.setUserFollowStatus(2);
+        }
         result.setData(projectDetailResponse);
         return result;
     }

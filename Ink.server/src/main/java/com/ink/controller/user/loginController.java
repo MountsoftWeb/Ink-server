@@ -4,6 +4,9 @@ import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,8 @@ import java.util.Date;
 public class loginController {
     @Autowired
     IUserService iUserService;
+
+    private Logger log = LoggerFactory.getLogger(loginController.class);
 
     @PostMapping(value= "/login")
     public Result login(@RequestBody userEntity userEntity, HttpServletRequest request){
@@ -41,18 +46,18 @@ public class loginController {
             ip = request.getRemoteAddr();
         }
         user_login user_login = new user_login();
-        System.out.println(ip);
         user_login.setLoginip(ip);
+        
 
 //      user_login.setLogintime(String.valueOf(System.currentTimeMillis()));
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
         String testDate = df.format(new Date());//格式化当前日期
         user_login.setLogintime(testDate);
-        System.out.println(user_login.getLogintime());
-
-        System.out.println("username = " + userEntity.getUsername());
-        System.out.println("password = " + userEntity.getPassword());
-        System.out.println("user_login = " + userEntity.toString());
+        log.info("登录信息: ip " + ip );
+        log.info(user_login.getLogintime());
+        log.info("username = " + userEntity.getUsername());
+        log.info("password = " + userEntity.getPassword());
+        log.info("user_login = " + userEntity.toString());
 
         // 登录判断
         Result result = iUserService.login(userEntity, ip);

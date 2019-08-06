@@ -15,6 +15,8 @@ import com.ink.model.entity.pageBean;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +29,7 @@ public class userController{
     @Autowired
     IUserService iUserService;
 
+    private Logger log = LoggerFactory.getLogger(userController.class);
     /**
      * 获取用户基本信息
      * @param request
@@ -36,10 +39,11 @@ public class userController{
     public Result getDetail(ServletRequest request){
         Result result = new Result();
         String username = (String) request.getAttribute("name");
+        log.info("获取用户：" + username + "   基本信息");
         User user = iUserService.getDetail(username);
         result.setCode("200");
         result.setData(user);
-        System.err.println("getDetail");
+        
         return result;
     }
 
@@ -94,6 +98,7 @@ public class userController{
     public Result uploadFile(
                             @RequestParam(name = "name", required = false) String name,
                             @RequestParam(name = "state", required = false) String state,
+                            @RequestParam(name = "category", required = false) String category,
                             @RequestParam(name = "label", required = false) String label,
                             @RequestParam(name = "paintingwayId", required = false) Integer paintingwayId,
                             @RequestParam(name = "image_data", required = false) MultipartFile file, 
@@ -101,7 +106,7 @@ public class userController{
                             ){
         Result result = new Result();
         String username = (String) request.getAttribute("name");
-        System.out.println("------------ 上传文件 ------------");
+        log.info("用户:" + username + "上传作品");
         // 获取时间为作品创建文件夹
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -113,7 +118,7 @@ public class userController{
         String path = iUserService.creatProjectFile(username, time);
         Integer labelId = iUserService.insertLabel(label);
         Integer user_id = iUserService.selectByUsername(username);
-
+        Integer categoryId = Integer.valueOf(category);
         if (path.equals("no")){
             System.out.println("创建失败");
         }else{
@@ -125,6 +130,7 @@ public class userController{
             project.setUpDate(String.valueOf(upDate));
             project.setState(state);
             project.setLabelId(labelId);
+            project.setCategoryId(categoryId);
             // project.setCategoryId(categoryId);
             project.setUserId(user_id);
             iUserService.uploadFile(file, username, project, path, String.valueOf(time));

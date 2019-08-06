@@ -12,9 +12,9 @@ public interface IProjectService {
 
     ArrayList<Project> getAllProject();
 
-    ArrayList<Project> getProject(String category, String label);
+    ArrayList<Project> getProject(String category);
 
-    boolean updataAppreciate(appreciate appreciate, String userName);
+    boolean updateAppreciate(appreciate appreciate, String userName);
 
     boolean insertAppreciate(appreciate appreciate, String userName);
 

@@ -19,7 +19,7 @@ public class categoryController {
         Result result = new Result();
 
         List<HashMap<Integer, String>> list = iCategoryService.getCategoryies();
-        System.out.println("x");
+        // System.out.println("x");
         result.setCode("200");
         result.setData(list);
         return result;

@@ -20,12 +20,11 @@ public interface projectMapper {
 
     projectDetailResponse selectByProjectId(@Param("projectId") Integer projectId, @Param("id") Integer id);
 
-    ArrayList<Project> selectByLabel(@Param("labelId") Integer labelId,
-                                    @Param("categoryId") Integer categoryId);
+    ArrayList<Project> selectByCategory(@Param("categoryId") Integer categoryId);
 
     boolean uploadFile(@Param("project") Project project);
 
-    boolean updataAppreciate(@Param("appreciate")appreciate appreciate);
+    boolean updateAppreciate(@Param("appreciate")appreciate appreciate);
 
     boolean insertAppreciate(@Param("appreciate")appreciate appreciate);
 
