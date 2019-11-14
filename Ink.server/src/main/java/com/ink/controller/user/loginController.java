@@ -8,6 +8,7 @@ import com.ink.utils.Json.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
@@ -48,7 +49,7 @@ public class loginController {
         user_login user_login = new user_login();
         user_login.setLoginip(ip);
         
-
+        // String md5Password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
 //      user_login.setLogintime(String.valueOf(System.currentTimeMillis()));
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
         String testDate = df.format(new Date());//格式化当前日期

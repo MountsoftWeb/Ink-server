@@ -1,0 +1,7 @@
+Ink-server.iml
+*.idea
+*.vscode
+
+*.classpath
+*.project
+*.settings

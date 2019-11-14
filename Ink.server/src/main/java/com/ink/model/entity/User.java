@@ -19,9 +19,19 @@ public class User {
 
     private String phone;
 
+    private String email;
+
     private user_login user_login;
 
     public User() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhone() {

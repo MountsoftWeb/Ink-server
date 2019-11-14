@@ -108,11 +108,11 @@
           inner join user u on u.id = p.user_id
     </select>
 
-    <select id="deleteFileByProjectId" parameterType="java.lang.Integer" resultType="java.lang.String">
-        select picture
+    <delete id="deleteFileByProjectId" parameterType="java.lang.Integer">
+        delete
         from project
         where id = #{id, jdbcType=INTEGER}
-    </select>
+    </delete>
 
     <select id="getHotProject" resultMap="hotProjects">
         select id, name, picture

@@ -28,7 +28,7 @@ public interface projectMapper {
 
     boolean insertAppreciate(@Param("appreciate")appreciate appreciate);
 
-    String deleteFileByProjectId(@Param("id") Integer id);
+    Integer deleteFileByProjectId(@Param("id") Integer id);
     
     Integer deleteProjectId(@Param("id") Integer id);
 

@@ -271,6 +271,7 @@ public class userController{
         User user = new User();
         user.setPhone(phone);
         user.setUsername(username);
+        user.setEmail(email);
         user.setProfile(profile);
         user.setMajor(major);
         iUserService.updateDeatil(user);

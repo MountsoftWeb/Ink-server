@@ -47,8 +47,6 @@ public class userServiceImpl implements IUserService {
     labelMapper labelMapper;
     @Autowired
     followMapper followMapper;
-    private int date;
-
     /**
      * 登录验证，信息验证无误，更新 user_login 的 ip 和 logintime
      * 
@@ -177,7 +175,7 @@ public class userServiceImpl implements IUserService {
     @Override
     public boolean creatFile(String phone) {
         // 文件上传 本地文件目录
-//        String path = "/Users/carlos/Documents/images/";
+    //    String path = "/Users/carlos/Documents/images/";
         // 服务器路径
          String path = "/home/carlos/image/";
         File newFile = new File(path + phone);
@@ -228,7 +226,7 @@ public class userServiceImpl implements IUserService {
                 
                 // String url = path.substring(31); 
                 // 服务器 19
-//                 String url = path.substring(19);
+                // String url = path.substring(19);
                 String url = path.substring(31);
 
                 mysqlPicture.append("/hello/").append(url).append("/").append(fileName);
@@ -281,18 +279,20 @@ public class userServiceImpl implements IUserService {
 
     @Override
     public boolean deleteFileByProjectId(Integer id) {
-        String filename = projectMapper.deleteFileByProjectId(id);
+        // String filename = projectMapper.deleteFileByProjectId(id);
         // 文件上传 本地文件目录
-        String path = "/Users/carlos/Documents/images/";
+        // String path = "/Users/carlos/Documents/images/";
         // 服务器路径
 //         String path = "/home/carlos/image/";
-        String filePath = path + filename.substring(7, filename.length());
-        System.out.println(filePath);
+        // String filePath = path + filename.substring(7, filename.length());
+        // System.out.println(filePath);
         
         // fileName.append(path).append(filePath);
 
-        File file = new File(filePath);
-        return deleteFile(file);
+        // File file = new File(filePath);
+        // return deleteFile(file);
+        Integer ds = projectMapper.deleteFileByProjectId(id);
+        return true;
         
     }
 

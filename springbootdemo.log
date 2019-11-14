@@ -1,0 +1,41 @@
+2019-09-04 08:29:29.594  INFO 45403 --- [main] com.ink.DemoApplication                  : Starting DemoApplication on CarlosHaoxj的MacBook with PID 45403 (/Users/carlos/Documents/MountsoftWeb/Ink-server/Ink.server/target/classes started by carlos in /Users/carlos/Documents/MountsoftWeb/Ink-server)
+2019-09-04 08:29:29.597  INFO 45403 --- [main] com.ink.DemoApplication                  : No active profile set, falling back to default profiles: default
+2019-09-04 08:29:30.650  INFO 45403 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2019-09-04 08:29:30.683  INFO 45403 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-04 08:29:30.684  INFO 45403 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-09-04 08:29:30.690  INFO 45403 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/carlos/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-09-04 08:29:30.760  INFO 45403 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-04 08:29:30.760  INFO 45403 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1135 ms
+2019-09-04 08:29:31.340  INFO 45403 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-04 08:29:31.562  INFO 45403 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2019-09-04 08:29:31.565  INFO 45403 --- [main] com.ink.DemoApplication                  : Started DemoApplication in 2.339 seconds (JVM running for 3.313)
+2019-09-04 08:30:15.535  INFO 45403 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-04 08:30:15.536  INFO 45403 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-04 08:30:15.543  INFO 45403 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2019-09-04 08:30:15.625  INFO 45403 --- [http-nio-8090-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-04 08:50:04.698  INFO 45403 --- [http-nio-8090-exec-1] com.ink.controller.projectController     : 查找作品详细信息，作品 id = 36
+2019-09-04 08:50:09.038  INFO 45403 --- [http-nio-8090-exec-2] com.ink.controller.projectController     : 用户：18847853889为作品 id = 36点赞
+2019-09-04 08:50:09.223  INFO 45403 --- [http-nio-8090-exec-3] com.ink.controller.projectController     : 查找作品详细信息，作品 id = 36
+2019-09-04 08:50:15.126  INFO 45403 --- [http-nio-8090-exec-7] com.ink.controller.projectController     : 查找作品详细信息，作品 id = 36
+2019-09-04 08:50:21.271  INFO 45403 --- [http-nio-8090-exec-10] com.ink.controller.projectController     : 查找作品详细信息，作品 id = 36
+2019-09-04 08:50:24.022  INFO 45403 --- [http-nio-8090-exec-2] com.ink.controller.projectController     : 用户名:18847853889查找所对应作品
+2019-09-04 08:50:24.022  INFO 45403 --- [http-nio-8090-exec-1] com.ink.controller.userController        : 获取用户：18847853889   基本信息
+2019-09-04 08:50:32.540  INFO 45403 --- [http-nio-8090-exec-3] com.ink.controller.userController        : 2
+2019-09-04 08:50:36.071  INFO 45403 --- [http-nio-8090-exec-5] com.ink.controller.projectController     : 查找作品详细信息，作品 id = 36
+2019-09-04 08:50:37.712  INFO 45403 --- [http-nio-8090-exec-8] com.ink.controller.projectController     : 查找作品详细信息，作品 id = 36
+2019-09-04 08:50:40.623  INFO 45403 --- [http-nio-8090-exec-10] com.ink.controller.userController        : 2
+2019-09-04 08:50:40.623  INFO 45403 --- [http-nio-8090-exec-1] com.ink.controller.userController        : 获取用户：18847853889   基本信息
+2019-09-04 08:50:51.701  INFO 45403 --- [http-nio-8090-exec-2] com.ink.controller.projectController     : 用户名:18847853889查找所对应作品
+2019-09-04 08:51:18.825  INFO 45403 --- [http-nio-8090-exec-6] com.ink.controller.user.loginController  : 登录信息: ip 127.0.0.1
+2019-09-04 08:51:18.825  INFO 45403 --- [http-nio-8090-exec-6] com.ink.controller.user.loginController  : 2019-09-04-08-51-18
+2019-09-04 08:51:18.825  INFO 45403 --- [http-nio-8090-exec-6] com.ink.controller.user.loginController  : phone = 18847853889
+2019-09-04 08:51:18.825  INFO 45403 --- [http-nio-8090-exec-6] com.ink.controller.user.loginController  : password = 123123123
+2019-09-04 08:51:18.825  INFO 45403 --- [http-nio-8090-exec-6] com.ink.controller.user.loginController  : user_login = UserEntity{phone='18847853889', loginType='phone', password='123123123'}
+2019-09-04 08:51:21.051  INFO 45403 --- [http-nio-8090-exec-9] com.ink.controller.projectController     : 查询按照分类，分类 id = undefined
+2019-09-04 08:51:24.293  INFO 45403 --- [http-nio-8090-exec-1] com.ink.controller.projectController     : 查询按照分类，分类 id = 3
+2019-09-04 08:51:25.404  INFO 45403 --- [http-nio-8090-exec-10] com.ink.controller.projectController     : 查询按照分类，分类 id = 4
+2019-09-04 08:51:27.854  INFO 45403 --- [http-nio-8090-exec-2] com.ink.controller.projectController     : 查询按照分类，分类 id = 1
+2019-09-04 08:51:31.337  INFO 45403 --- [http-nio-8090-exec-6] com.ink.controller.projectController     : 查询按照分类，分类 id = undefined
+2019-09-04 08:52:11.650  INFO 45403 --- [http-nio-8090-exec-8] com.ink.controller.projectController     : 查询按照分类，分类 id = undefined
+2019-09-04 14:28:48.402  INFO 45403 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-04 14:28:48.407  INFO 45403 --- [Thread-7] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
