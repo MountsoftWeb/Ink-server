@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ink.dao.user_loginMapper">
+  <resultMap id="BaseResultMap" type="user_login">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="login_type" jdbcType="VARCHAR" property="loginType" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_time" jdbcType="VARCHAR" property="loginTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, login_type, password, login_ip, login_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="login" parameterType="userEntity" resultMap="BaseResultMap">
+    select *
+    from user_login l, user u
+    where u.phone=#{userEntity.phone} and 
+          u.id=l.user_id and
+          <!-- l.login_type=#{userEntity.loginType} and  -->
+          l.password=#{userEntity.password}
+  </select>
+
+  <update id="update" parameterType="user_login" >
+    update user_login set login_ip=#{user_login.loginIp}, login_time=#{user_login.loginTime} where user_id=#{user_login.userId} and login_type=#{user_login.logintype}
+  </update>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_login
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="user_login">
+    insert into user_login (id, user_id, login_type, 
+      password, login_ip, login_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{logintype,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, #{loginTime,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="user_login">
+    insert into user_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="loginType != null">
+        login_type,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
+      </if>
+      <if test="loginTime != null">
+        login_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null">
+        #{loginType,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="registerUser" parameterType="user_login">
+    insert into user_login (user_id, login_type, password)
+    values (#{user_login.userId, jdbcType=INTEGER}, #{user_login.loginType, jdbcType=VARCHAR},
+            #{user_login.password, jdbcType=VARCHAR})
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="user_login">
+    update user_login
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null">
+        login_type = #{logintype,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        login_time = #{loginTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="user_login">
+    update user_login
+    set user_id = #{userId,jdbcType=VARCHAR},
+      login_type = #{loginType,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

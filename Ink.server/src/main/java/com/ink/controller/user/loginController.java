@@ -1,4 +1,4 @@
-package com.ink.controller.user;
+package com.ink.user;
 
 import com.ink.model.entity.user_login;
 import com.ink.model.entity.login.userEntity;
