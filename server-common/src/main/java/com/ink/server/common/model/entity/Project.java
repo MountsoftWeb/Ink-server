@@ -1,4 +1,4 @@
-package com.ink.common.model.entity;
+package com.ink.server.common.model.entity;
 
 public class Project {
     private Integer id;
@@ -29,7 +29,7 @@ public class Project {
 
     public Project(Integer id, Integer userId, String name, Integer paintingwayId, Integer categoryId, Integer labelId,
             Integer locationId, String upDate, String deleteDate, String picture, Integer apprecations,
-            Integer collections, com.ink.common.model.entity.project_category project_category,
+            Integer collections, com.ink.server.common.model.entity.project_category project_category,
             String state) {
         this.id = id;
         this.userId = userId;
@@ -143,11 +143,11 @@ public class Project {
         this.collections = collections;
     }
 
-    public com.ink.common.model.entity.project_category getProject_category() {
+    public com.ink.server.common.model.entity.project_category getProject_category() {
         return project_category;
     }
 
-    public void setProject_category(com.ink.common.model.entity.project_category project_category) {
+    public void setProject_category(com.ink.server.common.model.entity.project_category project_category) {
         this.project_category = project_category;
     }
 }

@@ -1,4 +1,4 @@
-package com.ink.common.model.entity;
+package com.ink.server.common.model.entity;
 
 /**
  * @author Created by carlos

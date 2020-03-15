@@ -1,9 +1,8 @@
 package com.ink.dao;
 
-import com.ink.model.entity.Project;
-import com.ink.model.entity.appreciate;
-import com.ink.model.entity.label;
-import com.ink.model.response.projectDetailResponse;
+import com.ink.server.common.model.entity.Project;
+import com.ink.server.common.model.entity.appreciate;
+import com.ink.server.common.response.projectDetailResponse;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

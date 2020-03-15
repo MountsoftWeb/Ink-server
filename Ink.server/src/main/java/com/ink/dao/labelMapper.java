@@ -1,11 +1,10 @@
 package com.ink.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.List;
 
-import com.ink.model.entity.label;
+import com.ink.server.common.model.entity.label;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

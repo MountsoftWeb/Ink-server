@@ -1,6 +1,5 @@
 package com.ink.controller;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,10 +7,10 @@ import java.util.Date;
 
 import javax.servlet.ServletRequest;
 
-import com.ink.model.entity.Project;
-import com.ink.model.entity.User;
-import com.ink.model.entity.follow;
-import com.ink.model.entity.pageBean;
+import com.ink.server.common.model.entity.Project;
+import com.ink.server.common.model.entity.User;
+import com.ink.server.common.model.entity.follow;
+import com.ink.server.common.model.entity.pageBean;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
@@ -20,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;

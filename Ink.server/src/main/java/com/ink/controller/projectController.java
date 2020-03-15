@@ -4,10 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.ink.model.entity.Project;
-import com.ink.model.entity.appreciate;
-import com.ink.model.entity.pageBean;
-import com.ink.model.response.projectDetailResponse;
+import com.ink.server.common.model.entity.Project;
+import com.ink.server.common.model.entity.appreciate;
+import com.ink.server.common.model.entity.pageBean;
+import com.ink.server.common.response.projectDetailResponse;
 import com.ink.service.IProjectService;
 import com.ink.utils.Json.Result;
 

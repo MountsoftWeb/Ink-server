@@ -1,10 +1,12 @@
-package com.ink;
+package com.ink.server.web;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-//@MapperScan("com.example.domain")
+//@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.ink.server.service")
+@MapperScan("com.ink.server.dao.mapper")
 public class DemoApplication {
 
     public static void main(String[] args) {

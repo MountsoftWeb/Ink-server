@@ -1,4 +1,4 @@
-package com.ink.server.common.model.entity;
+package com.ink.server.dao.entity;
 
 public class user_login {
     private Integer id;

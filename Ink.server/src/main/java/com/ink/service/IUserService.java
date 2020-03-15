@@ -2,12 +2,12 @@ package com.ink.service;
 
 import java.util.ArrayList;
 
-import com.ink.model.entity.Project;
-import com.ink.model.entity.User;
-import com.ink.model.entity.follow;
-import com.ink.model.entity.pageBean;
-import com.ink.model.entity.user_login;
-import com.ink.model.entity.login.userEntity;
+import com.ink.server.common.model.entity.Project;
+import com.ink.server.common.model.entity.User;
+import com.ink.server.common.model.entity.follow;
+import com.ink.server.common.model.entity.pageBean;
+import com.ink.server.common.model.entity.user_login;
+import com.ink.server.common.model.entity.login.userEntity;
 import com.ink.utils.Json.Result;
 
 import org.springframework.web.multipart.MultipartFile;

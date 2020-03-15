@@ -5,13 +5,13 @@ import com.ink.dao.labelMapper;
 import com.ink.dao.projectCategoryMapper;
 import com.ink.dao.projectMapper;
 import com.ink.dao.user_loginMapper;
-import com.ink.model.entity.Project;
-import com.ink.model.entity.User;
-import com.ink.model.entity.follow;
-import com.ink.model.entity.label;
-import com.ink.model.entity.pageBean;
-import com.ink.model.entity.user_login;
-import com.ink.model.entity.login.userEntity;
+import com.ink.server.common.model.entity.Project;
+import com.ink.server.common.model.entity.User;
+import com.ink.server.common.model.entity.follow;
+import com.ink.server.common.model.entity.label;
+import com.ink.server.common.model.entity.pageBean;
+import com.ink.server.common.model.entity.user_login;
+import com.ink.server.common.model.entity.login.userEntity;
 import com.ink.dao.userMapper;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
@@ -26,7 +26,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,7 +33,7 @@ import java.util.Date;
  * @author Created by carlos
  */
 @Service
-public class userServiceImpl implements IUserService {
+class userServiceImpl implements IUserService {
     @Autowired
     userMapper userMapper;
     @Autowired

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ink.dao.userMapper">
-  <resultMap id="BaseResultMap" type="com.ink.model.entity.User">
+  <resultMap id="BaseResultMap" type="User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
@@ -10,7 +10,7 @@
     <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="regist_time" jdbcType="VARCHAR" property="registTime" />
     <result column="major" jdbcType="VARCHAR" property="major" />
-      <association property="user_login" javaType="com.ink.model.entity.user_login">
+      <association property="user_login" javaType="user_login">
         <id property="id" column="id"/>
         <result property="userid" column="user_id"/>
         <result property="logintype" column="login_type"/>
@@ -24,7 +24,7 @@
     <result column="picture" property="picture" jdbcType="VARCHAR" />
   </resultMap>
   <!-- ID 名称 头像地址 -->
-  <resultMap id="hotUsers" type="com.ink.model.entity.User">
+  <resultMap id="hotUsers" type="User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
@@ -32,7 +32,7 @@
   </resultMap>
 
   <!-- 用户详细信息 -->
-  <resultMap id="BaseUserDetail" type="com.ink.model.entity.User">
+  <resultMap id="BaseUserDetail" type="User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="profile" jdbcType="VARCHAR" property="profile" />
@@ -84,7 +84,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.ink.model.entity.User">
+  <insert id="insert" parameterType="User">
     insert into user (id, phone, user_name, profile, 
       sex, picture, registTime,
       major)
@@ -93,7 +93,7 @@
       #{major,jdbcType=VARCHAR})
   </insert>
 
-  <insert id="insertSelective" parameterType="com.ink.model.entity.User">
+  <insert id="insertSelective" parameterType="User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -143,19 +143,19 @@
     </trim>
   </insert>
 
-  <insert id="registerUser" parameterType="com.ink.model.entity.User">
+  <insert id="registerUser" parameterType="User">
     insert into user (phone, regist_time)
     values (#{user.userName, jdbcType=VARCHAR}, #{user.registTime, jdbcType=VARCHAR})
   </insert>
 
-  <insert id="upFollow" parameterType="com.ink.model.entity.follow">
+  <insert id="upFollow" parameterType="follow">
     insert into follows (user_id, follow_id, time)
     values (#{follow.userId, jdbcType=INTEGER},
             #{follow.followId, jdbcType=INTEGER},
             #{follow.time, jdbcType=VARCHAR})
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.ink.model.entity.User">
+  <update id="updateByPrimaryKeySelective" parameterType="User">
     update user
     <set>
       <if test="userName != null">
@@ -180,7 +180,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.ink.model.entity.User">
+  <update id="updateByPrimaryKey" parameterType="User">
     update user
     set phone = #{phone,jdbcType=VARCHAR},
       profile = #{profile,jdbcType=VARCHAR},
@@ -191,14 +191,14 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updatePicture" parameterType="com.ink.model.entity.User">
+  <update id="updatePicture" parameterType="User">
     update user
     set picture = #{user.picture}
     where phone = #{user.userName}
   
   </update>
 
-  <update id="updateDeatil" parameterType="com.ink.model.entity.User">
+  <update id="updateDeatil" parameterType="User">
     update user 
       set user_name = #{user.username, jdbcType=VARCHAR},
           email = #{user.email, jdbcType=VARCHAR},

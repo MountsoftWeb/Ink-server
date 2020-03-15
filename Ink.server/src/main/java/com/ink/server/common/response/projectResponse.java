@@ -1,4 +1,4 @@
-package com.ink.server.common.model.response;
+package com.ink.server.common.response;
 
 /**
  * @author Created by carlos

@@ -1,11 +1,10 @@
 package com.ink.controller.user;
 
-import com.ink.model.entity.login.userEntity;
+import com.ink.server.common.model.entity.login.userEntity;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;

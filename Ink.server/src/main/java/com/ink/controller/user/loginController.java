@@ -1,19 +1,18 @@
-package com.ink.user;
+package com.ink.controller.user;
 
-import com.ink.model.entity.user_login;
-import com.ink.model.entity.login.userEntity;
+import com.ink.server.common.model.entity.login.userEntity;
+import com.ink.server.common.model.entity.user_login;
 import com.ink.service.IUserService;
 import com.ink.utils.Json.Result;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.ink.utils.Json;
+package com.ink.server.common.Json;
 
 import com.alibaba.fastjson.JSON;
 

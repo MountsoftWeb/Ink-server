@@ -1,4 +1,4 @@
-package com.ink.common.model.entity.login;
+package com.ink.server.common.model.entity.login;
 
 /**
  * @author Created by carlos

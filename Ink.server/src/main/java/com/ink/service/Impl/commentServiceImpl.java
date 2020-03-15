@@ -6,7 +6,7 @@ import java.util.Date;
 
 import com.ink.dao.commentMapper;
 import com.ink.dao.userMapper;
-import com.ink.model.entity.comment;
+import com.ink.server.common.model.entity.comment;
 import com.ink.service.ICommentService;
 
 import org.springframework.beans.factory.annotation.Autowired;

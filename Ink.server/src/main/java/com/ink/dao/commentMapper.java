@@ -2,7 +2,7 @@ package com.ink.dao;
 
 import java.util.ArrayList;
 
-import com.ink.model.entity.comment;
+import com.ink.server.common.model.entity.comment;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

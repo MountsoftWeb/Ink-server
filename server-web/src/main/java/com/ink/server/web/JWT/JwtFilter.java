@@ -1,4 +1,4 @@
-package com.ink.server.common.JWT;
+package com.ink.server.web.JWT;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

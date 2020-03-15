@@ -1,7 +1,7 @@
 package com.ink.dao;
 
-import com.ink.model.entity.user_login;
-import com.ink.model.entity.login.userEntity;
+import com.ink.server.common.model.entity.user_login;
+import com.ink.server.common.model.entity.login.userEntity;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

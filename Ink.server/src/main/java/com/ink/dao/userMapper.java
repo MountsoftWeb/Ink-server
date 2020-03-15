@@ -2,8 +2,7 @@ package com.ink.dao;
 
 import java.util.ArrayList;
 
-import com.ink.model.entity.User;
-import com.ink.model.entity.follow;
+import com.ink.server.common.model.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
