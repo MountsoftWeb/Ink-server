@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ink.dao.followMapper">
+    <resultMap id="BaseResultMap" type="com.ink.model.entity.follow">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+    </resultMap>
+
+    <resultMap id="ResultFollowsFans" type="com.ink.model.response.followFanResponse">
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="user_name" jdbcType="INTEGER" property="username" />
+        <result column="projects" jdbcType="INTEGER" property="projects" />
+        <result column="fans" jdbcType="INTEGER" property="fans" />
+        <result column="follows" jdbcType="INTEGER" property="follows" />
+        <result column="user_picture" jdbcType="INTEGER" property="userPicture" />
+    </resultMap>
+<!-- resultMap="BaseResultMap" -->
+    <select id="getFollowByUserId" resultType="java.util.List" >
+        select user_id 
+        from follows 
+        where user_id = #{userId, jdbcType=INTEGER}
+    </select>
+
+    <select id="getFansByUserId" resultType="java.util.List">
+        select user_id 
+        from follows 
+        where follow_id = #{userId, jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByUserIdStatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select status
+        from follows
+        where user_id = #{userId, jdbcType=INTEGER} and follow_id = #{followId, jdbcType=INTEGER}
+    </select>
+
+    <select id="getFollows" parameterType="java.lang.Integer" resultType="java.util.List" resultMap="ResultFollowsFans">
+        select f.user_id, 
+            (select count(p.user_id) from project p where p.user_id = f.user_id) as projects,
+            (select count(fo.user_id) from follows fo where fo.user_id = f.user_id and status = 1) as fans,
+            (select count(fo.follow_id) from follows fo where fo.follow_id = f.user_id and status = 1) as follows,
+            (select picture from user u where id = f.user_id) as userPicture,
+            (select user_name from user u where id = f.user_id) as usernamme
+        from follows f
+        where f.follow_id = #{myId, jdbcType=INTEGER} and status = 1;
+    </select>
+
+    <select id="getFans" parameterType="java.lang.Integer" resultType="java.util.List" resultMap="ResultFollowsFans">
+        select f.follow_id, 
+            (select count(p.user_id) from project p where p.user_id = f.follow_id) as projects,
+            (select count(fo.user_id) from follows fo where fo.user_id = f.follow_id and status = 1) as fans,
+            (select count(fo.follow_id) from follows fo where fo.follow_id = f.follow_id and status = 1) as follows,
+            (select picture from user u where id = f.follow_id) as userPicture,
+            (select user_name from user u where id = f.follow_id) as usernamme
+        from follows f
+        where f.user_id = #{myId, jdbcType=INTEGER} and status = 1;
+    </select>
+    <!-- 共同关注 select * from `com_wechat_user_follow` where `uid` in ('你的id', '某个用户id') -->
+
+    <!-- 是否相互关注 select * from `com_wechat_user_follow` where `uid`='你的id' and `fid`='某个用户id' and `uid` in (select `fid` from `com_wechat_user_follow` where `uid`='某个用户id') -->
+
+    <insert id="insertFollow" parameterType="com.ink.model.entity.follow">
+        insert into follows (user_id, follow_id, status, time)
+        values (#{follow.userId, jdbcType=INTEGER},
+                #{follow.followId, jdbcType=INTEGER},
+                1,
+                #{follow.time, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updataFollow" parameterType="com.ink.model.entity.follow">
+        update follows
+            set status = #{follow.status, jdbcType=INTEGER},
+                time = #{follow.time, jdbcType=VARCHAR}
+            where user_id = #{follow.userId, jdbcType=INTEGER} and follow_id = #{follow.followId, jdbcType=INTEGER}
+    </update>
+
+</mapper>
