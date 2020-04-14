@@ -1,14 +1,19 @@
 package com.ink.server.web.user;
 
-import com.ink.server.common.Json.Result;
-import com.ink.server.common.model.entity.login.userEntity;
-import com.ink.server.common.model.entity.user_login;
+
+import com.ink.server.common.utils.Json.Result;
+import com.ink.server.dao.entity.login.userEntity;
+import com.ink.server.dao.entity.user_login;
 import com.ink.server.service.IUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,7 +26,7 @@ public class loginController {
     @Autowired
     IUserService iUserService;
 
-//    private Logger log = LoggerFactory.getLogger(loginController.class);
+    private Logger log = LoggerFactory.getLogger(loginController.class);
 
     @PostMapping(value= "/login")
     public Result login(@RequestBody userEntity userEntity, HttpServletRequest request){
@@ -43,17 +48,17 @@ public class loginController {
         }
         user_login user_login = new user_login();
         user_login.setLoginip(ip);
-
+        
         // String md5Password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
 //      user_login.setLogintime(String.valueOf(System.currentTimeMillis()));
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");//设置日期格式
         String testDate = df.format(new Date());//格式化当前日期
         user_login.setLogintime(testDate);
-//        log.info("登录信息: ip " + ip );
-//        log.info(user_login.getLogintime());
-//        log.info("phone = " + userEntity.getPhone());
-//        log.info("password = " + userEntity.getPassword());
-//        log.info("user_login = " + userEntity.toString());
+        log.info("登录信息: ip " + ip );
+        log.info(user_login.getLogintime());
+        log.info("phone = " + userEntity.getPhone());
+        log.info("password = " + userEntity.getPassword());
+        log.info("user_login = " + userEntity.toString());
 
         // 登录判断
         Result result = iUserService.login(userEntity, ip);
@@ -61,7 +66,7 @@ public class loginController {
         return result;
     }
 
-
+   
 
      @PostMapping("/test/life")
      public String test(ServletRequest request){

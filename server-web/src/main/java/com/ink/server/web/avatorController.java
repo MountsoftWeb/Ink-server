@@ -1,0 +1,114 @@
+package com.ink.server.web;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import javax.servlet.ServletRequest;
+
+import com.ink.server.common.utils.Json.Result;
+import com.ink.server.dao.entity.User;
+import com.ink.server.service.IUserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+
+@RestController
+public class avatorController {
+    @Autowired
+    IUserService iUserService;
+
+    /**
+     * 添加头像，服务器地址为 /home/carlos/images/user 
+     * @param file
+     * @param request
+     * @return
+     */
+    @PostMapping("/test/updatePicture")
+    public Result addImage(@RequestParam(name = "image_data", required = false) MultipartFile file, ServletRequest request) {
+        Result result = new Result();
+        // 获取更新头像用户的用户名
+        String phone = (String) request.getAttribute("name");
+        // 文件上传 本地文件目录
+       String path = "/Users/carlos/Documents/images/" + phone;
+        // 服务器路径
+        //  String path = "/home/carlos/image/" + phone;
+
+        if (!file.isEmpty()) {
+            try {
+                // 图片命名
+                String userNamePicture = phone + ".png";
+                String userPicturePath = path + "/" + userNamePicture;
+                String mysqlPicture = "/hello/" + phone + "/" + phone + ".png";
+                // 存储路径到数据库
+                User user = new User(phone, mysqlPicture);
+                boolean bool = iUserService.updatePicture(user);
+
+                File newFile = new File(userPicturePath);
+                if (!newFile.exists()) {
+                    newFile.createNewFile();
+                }
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(newFile));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+
+                result.setMessage("成功");
+                result.setCode("25");   // 头像上传成功
+                return result;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                result.setCode("23");
+
+                return result;
+            } catch (IOException e) {
+                e.printStackTrace();
+                result.setCode("24");
+
+                return result;
+            }
+        }else{
+            result.setCode("404");
+            return result;
+        }
+        
+    }
+
+    @PostMapping(value = "/getImage")
+     public byte[] getImage() throws IOException {
+
+         File file = new File("/Users/carlos/Documents/images/newPIC.jpeg");
+         System.out.println("++++++++++++++++++");
+
+         FileInputStream inputStream = new FileInputStream(file);
+
+         byte[] bytes = new byte[inputStream.available()];
+
+         inputStream.read(bytes, 0, inputStream.available());
+
+         return bytes;
+     }
+
+    @GetMapping("/test/getPicture")
+    public Result getPicture(ServletRequest request){
+        Result result = new Result();
+        String phone = (String) request.getAttribute("name");
+
+        String path = iUserService.selectPicture(phone);
+        System.out.println(path);
+
+        result.setCode("200");
+        result.setMessage("/hello/123.png");
+        return result;
+    }
+
+}

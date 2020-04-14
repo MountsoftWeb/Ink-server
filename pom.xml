@@ -18,6 +18,12 @@
     <name>Ink-server</name>
     <packaging>pom</packaging>
 
+    <!-- 属性说明 -->
+    <properties>
+        <java.version>1.8</java.version>
+        <demo.version>0.0.1-SNAPSHOT</demo.version>
+    </properties>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

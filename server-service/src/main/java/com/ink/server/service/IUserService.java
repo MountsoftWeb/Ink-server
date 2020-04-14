@@ -1,12 +1,12 @@
 package com.ink.server.service;
 
-
-
-import com.ink.server.common.Json.Result;
-import com.ink.server.common.model.entity.*;
-import com.ink.server.common.model.entity.login.userEntity;
-
 import java.util.ArrayList;
+
+import com.ink.server.common.utils.Json.Result;
+import com.ink.server.dao.entity.*;
+import com.ink.server.dao.entity.login.userEntity;
+import org.springframework.web.multipart.MultipartFile;
+
 
 public interface IUserService {
     Result login(userEntity userEntity, String ip);
@@ -31,7 +31,7 @@ public interface IUserService {
     // 创建用户上传的文件夹
     String creatProjectFile(String phone, StringBuffer time);
     // uploadFile
-//    boolean uploadFile(MultipartFile file, String phone, Project project, String path, String time);
+    boolean uploadFile(MultipartFile file, String phone, Project project, String path, String time);
     // 插入新标签
     Integer insertLabel(String label);
     // 按照 project ID 返回文件路径，用于删除文件
