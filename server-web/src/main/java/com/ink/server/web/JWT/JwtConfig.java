@@ -1,4 +1,4 @@
-package com.ink.server.common.utils.JWT;
+package com.ink.server.web.JWT;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

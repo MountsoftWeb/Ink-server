@@ -32,7 +32,7 @@ build/
 
 <<<<<<< HEAD
 =======
-
+log/
 *.log
 *.gz
 >>>>>>> dev

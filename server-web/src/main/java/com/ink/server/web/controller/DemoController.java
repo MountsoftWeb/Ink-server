@@ -1,4 +1,4 @@
-package com.ink.server.web;
+package com.ink.server.web.controller;
 
 import com.ink.server.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class DemoController {
 
     @Autowired
     DemoService demoService;
-    @GetMapping("test")
+    @GetMapping("tttt")
     public String test() {
         System.out.println(demoService.test());
         return "Hello World!";
