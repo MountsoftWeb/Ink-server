@@ -21,11 +21,13 @@
             <version>2.1.3.RELEASE</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.ink.server</groupId>
-            <artifactId>server-common</artifactId>
+<!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20180813</version>
+</dependency>
 
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -35,6 +37,11 @@
         <dependency>
             <groupId>com.ink.server</groupId>
             <artifactId>server-dao</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ink.server</groupId>
+            <artifactId>server-common</artifactId>
         </dependency>
     </dependencies>
 </project>
