@@ -29,9 +29,14 @@ build/
 
 ### VS Code ###
 .vscode/
+bin/
+
+# eclipse project file
+.settings/
+.classpath
+.project
 
 
-=======
 log/
 *.log
 *.gz
