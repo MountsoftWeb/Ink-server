@@ -30,9 +30,9 @@ build/
 ### VS Code ###
 .vscode/
 
-<<<<<<< HEAD
+
 =======
 log/
 *.log
 *.gz
->>>>>>> dev
+
