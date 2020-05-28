@@ -13,9 +13,9 @@
 
 
     <groupId>com.ink</groupId>
-    <artifactId>Ink-server</artifactId>
-    <version>1.0.0</version>
-    <name>Ink-server</name>
+        <artifactId>Ink-server</artifactId>
+        <version>1.0.0</version>
+        <name>Ink-server</name>
     <packaging>pom</packaging>
 
     <!-- 属性说明 -->

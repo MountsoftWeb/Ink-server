@@ -13,7 +13,7 @@ public class JwtConfig {
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
-        registrationBean.addUrlPatterns("/test/*");     // 拦截路径  做 token 验证
+        registrationBean.addUrlPatterns("/api/*");     // 拦截路径  做 token 验证
 
         return registrationBean;
     }

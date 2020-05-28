@@ -3,7 +3,7 @@ package com.ink.server.common.utils.Json;
 /**
  * @author Created by carlos
  */
-public enum  ResultCode {
+public enum Res {
     SUCCESS(200),       // 成功
     FAIL(400),          // 失败
     UNAUTHORIZED(401),  // 请求超时
@@ -16,7 +16,7 @@ public enum  ResultCode {
 
     private final int code;
 
-    ResultCode(int code){
+    Res(int code){
         this.code = code;
     }
 

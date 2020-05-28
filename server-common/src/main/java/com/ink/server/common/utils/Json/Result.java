@@ -1,9 +1,6 @@
 package com.ink.server.common.utils.Json;
 
 
-/**
- * @author Created by carlos
- */
 public class Result {
     private int code;
     private String message;
@@ -12,8 +9,8 @@ public class Result {
     private String token;               // 返回 token 做登录验证
 
 
-    public Result setCode(ResultCode resultCode){
-        this.code = resultCode.code();
+    public Result setCode(Res res){
+        this.code = res.code();
         return this;
     }
 

@@ -1,6 +1,7 @@
 package com.ink.server.service;
 
-import org.json.JSONObject;
+
+import com.alibaba.fastjson.JSONObject;
 
 public interface DemoService {
     JSONObject test();
