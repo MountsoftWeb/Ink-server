@@ -41,3 +41,4 @@ log/
 *.log
 *.gz
 
+.DS_Store
